@@ -1271,7 +1271,7 @@ function xgitall {
 		# --------------------------------------------------------
 		# Agregar todos los cambios al staging
 		# --------------------------------------------------------
-		git add .zxalias .zxfunction .zshrc &&
+		git add ~/.zxalias ~/.zxfunction ~/.zshrc &&
 
 			# --------------------------------------------------------
 			# Crear commit con mensaje
