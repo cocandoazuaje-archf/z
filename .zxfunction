@@ -1245,7 +1245,7 @@ function xgitall {
 	# SELECCIÓN DE RESPALDO (y/n)
 	# ============================================================
 	# echo "===================================================="
-	xzen entry "'y' o  responde 'n', continuará con respaldo Git / ¿Desea enviar respaldo a Google Drive? (y/n)"
+	xzen entry "'y' para Google Drive? o 'n' para Git (y/n)"
 	# echo "===================================================="
 
 	# read "RESPALDO?Ingrese opción [y/n]: "
@@ -1271,35 +1271,35 @@ function xgitall {
 		# --------------------------------------------------------
 		# Agregar todos los cambios al staging
 		# --------------------------------------------------------
-		git add ~/.zxalias ~/.zxfunction ~/.zshrc &&
+		git add ~/.zxalias ~/.zxfunction ~/.zshrc
 
-			# --------------------------------------------------------
-			# Crear commit con mensaje
-			# --------------------------------------------------------
-			git commit -m "${1:-Actualización ...}" &&
+		# --------------------------------------------------------
+		# Crear commit con mensaje
+		# --------------------------------------------------------
+		git commit -m "${1:-Actualización ...}"
 
-			# --------------------------------------------------------
-			# Subir cambios al remoto
-			# --------------------------------------------------------
-			git push &&
+		# --------------------------------------------------------
+		# Subir cambios al remoto
+		# --------------------------------------------------------
+		git push
 
-			# --------------------------------------------------------
-			# Mostrar estado actual
-			# --------------------------------------------------------
-			git status &&
+		# --------------------------------------------------------
+		# Mostrar estado actual
+		# --------------------------------------------------------
+		git status
 
-			# --------------------------------------------------------
-			# Mostrar último commit
-			# --------------------------------------------------------
-			git log -1 &&
+		# --------------------------------------------------------
+		# Mostrar último commit
+		# --------------------------------------------------------
+		git log -1 &&
 
 			# --------------------------------------------------------
 			# Mostrar rama actual con tracking
 			# --------------------------------------------------------
 			# echo -e "\n**** Información de ramas ...."
-			xzen info "**** Información de ramas ...."
-		# echo "==============================================================="
-		xzen info "**** Rama actual: $(git branch --show-current)"
+			# xzen info "**** Información de ramas ...."
+			# echo "==============================================================="
+			xzen info "**** Rama actual: $(git branch --show-current)"
 		# echo -e "===========================================================\n"
 
 		xzen info "**** Proceso de git completo ..."
@@ -1340,49 +1340,49 @@ function xgitall {
 		# ------------------------------------------------------------
 		# for ARCHIVO in "${ARCHIVOS[@]}"; do
 
-			# Validar existencia
-			if [[ ! -f "$ARCHIVO" ]]; then
-				# echo "❌ No existe: $ARCHIVO"
-				xzen error "❌ No existe: $ARCHIVO"
-				continue
-			fi
+		# Validar existencia
+		if [[ ! -f "$ARCHIVO" ]]; then
+			# echo "❌ No existe: $ARCHIVO"
+			xzen error "❌ No existe: $ARCHIVO"
+			continue
+		fi
 
-			# echo "==========================================================="
-			xzen info "📤 **** Subiendo: $ARCHIVO"
-			# echo "==========================================================="
+		# echo "==========================================================="
+		xzen info "📤 **** Subiendo: $ARCHIVO"
+		# echo "==========================================================="
 
-			# rclone copy "$HOME" "$REMOTO:$ARCHIVO" \
-			# --progress \
-			# --exclude "**/node_modules/**" \
-			# --exclude "**/.git/**" \
-			# --exclude "**/Library/Caches/**" \
-			# --exclude ".Trash-*/**" \
-			# --exclude ".Trashes/**" \
-			# --exclude "Trash/**" \
-			# --exclude ".Trash/**"
+		# rclone copy "$HOME" "$REMOTO:$ARCHIVO" \
+		# --progress \
+		# --exclude "**/node_modules/**" \
+		# --exclude "**/.git/**" \
+		# --exclude "**/Library/Caches/**" \
+		# --exclude ".Trash-*/**" \
+		# --exclude ".Trashes/**" \
+		# --exclude "Trash/**" \
+		# --exclude ".Trash/**"
 
-			xzen info "📤 **** Subiendo: $ARCHIVO_LOCAL1"
-			rclone copy "$HOME" "$REMOTO":"$ARCHIVO_LOCAL1" 2>/dev/null
+		xzen info "📤 **** Subiendo: $ARCHIVO_LOCAL1"
+		rclone copy "$HOME" "$REMOTO":"$ARCHIVO_LOCAL1" 2>/dev/null
 
-			xzen info "📤 **** Subiendo: $ARCHIVO_LOCAL2"
-			rclone copy "$HOME" "$REMOTO":"$ARCHIVO_LOCAL2" 2>/dev/null
-			
-			xzen info "📤 **** Subiendo: $ARCHIVO_LOCAL3"
-			rclone copy "$HOME" "$REMOTO":"$ARCHIVO_LOCAL3" 2>/dev/null
-			
-			xzen info "📤 **** Subiendo: $ARCHIVO_LOCAL4"
-			rclone copy "$HOME" "$REMOTO":"$ARCHIVO_LOCAL4" 2>/dev/null
+		xzen info "📤 **** Subiendo: $ARCHIVO_LOCAL2"
+		rclone copy "$HOME" "$REMOTO":"$ARCHIVO_LOCAL2" 2>/dev/null
 
-			xpausa 5
+		xzen info "📤 **** Subiendo: $ARCHIVO_LOCAL3"
+		rclone copy "$HOME" "$REMOTO":"$ARCHIVO_LOCAL3" 2>/dev/null
 
-			# Validar resultado
-			if [[ $? -eq 0 ]]; then
-				xzen info "✅ Subida completada: $ARCHIVO"
-			else
-				xzen error "❌ Error al subir: $ARCHIVO"
-			fi
-			xzen info "Conectar con la pagina de Google Drive para verificar el respaldo ..."
-			xpausa 10
+		xzen info "📤 **** Subiendo: $ARCHIVO_LOCAL4"
+		rclone copy "$HOME" "$REMOTO":"$ARCHIVO_LOCAL4" 2>/dev/null
+
+		xpausa 5
+
+		# Validar resultado
+		if [[ $? -eq 0 ]]; then
+			xzen info "✅ Subida completada: $ARCHIVO"
+		else
+			xzen error "❌ Error al subir: $ARCHIVO"
+		fi
+		xzen info "Conectar con la pagina de Google Drive para verificar el respaldo ..."
+		xpausa 10
 
 		# done
 
@@ -2986,6 +2986,7 @@ function xinfozen {
 }
 
 function xmvnclp() {
+
 	local TITULO="${1:-Maven Build}"
 	local PROYECTO
 	local OUTPUT
