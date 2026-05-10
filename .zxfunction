@@ -3151,32 +3151,50 @@ function xgitall {
 
 }
 
-# ============================================================
-# FUNCIÓN: cread
-# DESCRIPCIÓN:
-#   Función envoltorio de `read` en bash.
-#   - Recibe como parámetro un mensaje a mostrar.
-#   - Si no recibe parámetros, muestra cómo usarla.
-#   - Redirige errores a /dev/null.
-#   - Guarda la salida en /tmp/cread.txt.
-#   - Abre el archivo con Visual Studio code (code).
-# ============================================================
+function xcau {
 
-function xread {
+  local NIVEL="$1"
 
-    read -e "confirm? \nPresione ENTER para continuar con $1 ..."
+  if [ -z "$NIVEL" ]; then
+    echo "Uso:"
+    echo "****  xcau 1   -> Busca: cause"
+    echo "****  xcau 2   -> Busca: caused|error"
+    echo "****  xcau 3   -> Busca: caused|exception|exist"
+    echo "****  xcau 4   -> Busca: caused|exception|exist|fail"
+    echo "****  xcau 5   -> Busca: caused|exception|error|fail|package"
+    echo ""
+    echo "Ejemplo:"
+    echo "  cat log.txt | xcau 3"
+    return 1
+  fi
+
+  case "$NIVEL" in
+    1)
+	  echo "****  xcau 1   -> Busca: cause"
+      grep -iE "cause"
+      ;;
+    2)
+	 echo "****  xcau 2   -> Busca: caused|error"
+      grep -iE "caused|error"
+      ;;
+    3)
+      echo "****  xcau 3   -> Busca: caused|exception|exist"
+      grep -iE "caused|exception|exist"
+      ;;
+    4)
+	 echo "****  xcau 4   -> Busca: caused|exception|exist|fail"
+      grep -iE "caused|exception|exist|fail"
+      ;;
+    5)
+      echo "****  xcau 5   -> Busca: caused|exception|error|fail|package"
+      grep -iE "caused|exception|error|fail|package"
+      ;;
+    *)
+      echo "Nivel inválido: $NIVEL"
+      echo "Usa valores del 1 al 5"
+      return 1
+      ;;
+  esac
 }
 
-function xkeepall {
-    xread "el siguiente paso para alias"
-    xkeepa
-    xread "el siguiente paso para funciones"
-    xkeepf
-    xread "el siguiente paso para sustituciones de texto"
-    xkeeps
-    xread "el siguiente paso para git"
-    xkeepg
-    xread "el siguiente paso para zshrc"
-    xkeepz
 
-}
