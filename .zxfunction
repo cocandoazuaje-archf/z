@@ -3065,7 +3065,7 @@ function xzen {
       zenity --info --title="Información" --text="$MENSAJE" 2>/dev/null
       ;;
     warning)
-      zenity --warning --title="Advertencia" --text="$MENSAJE" 2>/dev/null
+      zenity --warn --title="Advertencia" --text="$MENSAJE" 2>/dev/null
       ;;
     error)
       zenity --error --title="Error" --text="$MENSAJE" 2>/dev/null
