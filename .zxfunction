@@ -1261,7 +1261,7 @@ function xgitall {
 		# open httpse://github.com/
 		xiragit
 
-		xpausa 5
+		xpausa 2
 
 	else
 
@@ -1293,7 +1293,7 @@ function xgitall {
 			fi
 
 		done
-		xpausa 5
+		xpausa 2
 
 		if [[ $? -eq 0 ]]; then
 			xzen info "✅ Subida completada: $ARCHIVO"
@@ -1301,12 +1301,12 @@ function xgitall {
 			xzen error "❌ Error al subir: $ARCHIVO"
 		fi
 		xzen info "Conectar con la pagina de Google Drive para verificar el respaldo ..."
-		xpausa 10
+		xpausa 2
 
 		# open https://drive.google.com/drive/u/1/my-drive
 		xiradrive
 
-		xpausa 10
+		xpausa 2
 
 	fi
 	xzen info "🚀 **** Respaldo finalizado."
@@ -3079,4 +3079,104 @@ function xgittodo {
   }
 
   echo "Proceso completado correctamente."
+}
+
+
+function xgitall {
+
+    xzen entry "'y' para Google Drive? o 'n' para Git (y/n)"
+    xval=$(echo "$xval" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$xval" = "n" ]; then
+        xzen info "Ejecutando respaldo para Git ...\n"
+        git add ~/.zxalias ~/.zxfunction ~/.zshrc
+        git commit -m "${1:-Actualización ...}"
+        git push
+        git status
+        git log -1 &&
+            xzen info "**** Rama actual: $(git branch --show-current)"
+        xzen info "**** Proceso de git completo ..."
+        # open httpse://github.com/
+        xiragit
+
+        xpausa 2
+
+    else
+
+        REMOTO="gdrive"
+        CARPETA_REMOTA="z"
+
+        ARCHIVOS=(
+            "$HOME/.zxfunction"
+            "$HOME/.zxalias"
+            "$HOME/.zshrc"
+            "/Users/carlosocando/de_todo/Sustituciones de texto.plist"
+        )
+
+        for ARCHIVO in "${ARCHIVOS[@]}"; do
+
+            if [[ ! -f "$ARCHIVO" ]]; then
+                xzen error "❌ No existe: $ARCHIVO"
+                continue
+            fi
+
+            xzen info "📤 Subiendo: $ARCHIVO"
+
+            rclone copy "$ARCHIVO" "$REMOTO:$CARPETA_REMOTA/" >/dev/null 2>&1
+
+            if [[ $? -eq 0 ]]; then
+                xzen info "✅ Subida completada: $ARCHIVO"
+            else
+                xzen error "❌ Error al subir: $ARCHIVO"
+            fi
+
+        done
+        xpausa 2
+
+        if [[ $? -eq 0 ]]; then
+            xzen info "✅ Subida completada: $ARCHIVO"
+        else
+            xzen error "❌ Error al subir: $ARCHIVO"
+        fi
+        xzen info "Conectar con la pagina de Google Drive para verificar el respaldo ..."
+        xpausa 2
+
+        # open https://drive.google.com/drive/u/1/my-drive
+        xiradrive
+
+        xpausa 2
+
+    fi
+    xzen info "🚀 **** Respaldo finalizado."
+
+}
+
+# ============================================================
+# FUNCIÓN: cread
+# DESCRIPCIÓN:
+#   Función envoltorio de `read` en bash.
+#   - Recibe como parámetro un mensaje a mostrar.
+#   - Si no recibe parámetros, muestra cómo usarla.
+#   - Redirige errores a /dev/null.
+#   - Guarda la salida en /tmp/cread.txt.
+#   - Abre el archivo con Visual Studio code (code).
+# ============================================================
+
+function xread {
+
+    read -e "confirm? \nPresione ENTER para continuar con $1 ..."
+}
+
+function xkeepall {
+    xread "el siguiente paso para alias"
+    xkeepa
+    xread "el siguiente paso para funciones"
+    xkeepf
+    xread "el siguiente paso para sustituciones de texto"
+    xkeeps
+    xread "el siguiente paso para git"
+    xkeepg
+    xread "el siguiente paso para zshrc"
+    xkeepz
+
 }
