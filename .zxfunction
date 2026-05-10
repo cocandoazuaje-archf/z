@@ -173,7 +173,7 @@ function xkeepa {
 
 	pbcopy <~/.zxalias
 
-	# open "https://keep.google.com/u/0/#NOTE/19Up941HW3Lz3Wus5YLUA3tWAK8nSCd297uMbPzmbDQAAnLCkGg8ZoHverMFXBQ"
+	open "https://keep.google.com/u/0/#NOTE/19Up941HW3Lz3Wus5YLUA3tWAK8nSCd297uMbPzmbDQAAnLCkGg8ZoHverMFXBQ"
 
 }
 
@@ -188,7 +188,7 @@ function xkeepg {
 
 	pbcopy <~/xglasmenu.sh
 
-	# open "https://keep.google.com/u/0/#NOTE/1dzBq4kCvpda6GNHBjVAfIC-Lp4-TUN2_Mzyv68xzkHItDA6NYmUdZIeU9_-4lDE"
+	open "https://keep.google.com/u/0/#NOTE/1dzBq4kCvpda6GNHBjVAfIC-Lp4-TUN2_Mzyv68xzkHItDA6NYmUdZIeU9_-4lDE"
 
 xiradrive
 }
@@ -204,7 +204,7 @@ function xkeepf {
 
 	pbcopy <~/.zxfunction
 
-	# open "https://keep.google.com/u/0/#NOTE/1O8QXdPmSMGasEnlwymtrradJ7mK-7QdzUwKAMSH3IGZDrDdmUg7W8_pu_TsdKpg"
+	open "https://keep.google.com/u/0/#NOTE/1O8QXdPmSMGasEnlwymtrradJ7mK-7QdzUwKAMSH3IGZDrDdmUg7W8_pu_TsdKpg"
 	xiradrive
 
 }
@@ -684,13 +684,14 @@ function xsubir {
 	undeploy_project
 
 	# Abrir consola GlassFish
-	open "$GLAS"
+	xiraglas
 
 	# Nuevo despliegue
 	deploy_project
 
 	# Abrir consola nuevamente
-	open "$GLAS"
+
+xiraglas
 }
 
 # ____________________________________________________________
@@ -1375,7 +1376,8 @@ function xxlsglas {
 	# Compilar proyecto y desplegar
 	mvn clean package &&
 		/Users/carlosocando/Downloads/glassfish7/glassfish/domains/domain1/bin/asadmin deploy --force target/"$1" &&
-		open http://www.localhost:4848/common/index.jsf
+		# open http://www.localhost:4848/common/index.jsf
+		xiraglas
 }
 
 # ____________________________________________________________
@@ -1539,7 +1541,8 @@ function xmvnglas {
 	# --------------------------------------------------------
 	# Abrir panel de GlassFish
 	# --------------------------------------------------------
-	open -n "http://localhost:4848/common/index.jsf"
+	# open -n "http://localhost:4848/common/index.jsf"
+	xiraglas
 
 	# --------------------------------------------------------
 	# Pausa breve
@@ -1556,7 +1559,8 @@ function xmvnglas {
 	# # --------------------------------------------------------
 	# # Reabrir panel de administración
 	# # --------------------------------------------------------
-	open -n "http://localhost:4848/common/index.jsf"
+	# open -n "http://localhost:4848/common/index.jsf"
+	xiraglas
 
 	# --------------------------------------------------------
 	# Confirmación final
@@ -2956,7 +2960,8 @@ function xmvnclp() {
 	mv target/*.war . 2>/dev/null
 	open /Users/carlosocando/Documentos/prueba2/p2_original_1_boton_referidos2intento--master
 	xpausa 2
-	open "http://localhost:4848/common/appServer/serverInstGeneralPe.jsf?instanceName=server"
+	# open "http://localhost:4848/common/appServer/serverInstGeneralPe.jsf?instanceName=server"
+	xiraglas
 	echo "**** Fin"
 
 	zenity --info \
