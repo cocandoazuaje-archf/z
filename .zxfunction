@@ -2921,7 +2921,7 @@ function xmvnclp() {
 	fi
 
 	echo "**** Application encontrado -> $OUTPUT"
-	xread 5
+	xread 2
 
 	PROYECTO=$(osascript -e 'POSIX path of (choose folder with prompt "Seleccione una carpeta")')
 
@@ -3024,7 +3024,7 @@ function xzen {
 }
 
 
-xgittodo() {
+function xgittodo {
   local MENSAJE="$1"
   local ARCHIVOS
 
