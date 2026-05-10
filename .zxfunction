@@ -137,7 +137,8 @@ function xkeepz {
 
 	pbcopy <~/.zshrc
 
-	open "https://keep.google.com/u/0/#NOTE/1cHY3dqr_pplDokRVaP79pV0zGYsWguTSj8EMpmlXbPeSmHTgMgNua-exwhfhG9I"
+	# open "https://keep.google.com/u/0/#NOTE/1cHY3dqr_pplDokRVaP79pV0zGYsWguTSj8EMpmlXbPeSmHTgMgNua-exwhfhG9I"
+	xiradrive
 
 }
 
@@ -156,7 +157,8 @@ function xkeeps {
 
 	cat "/Users/carlosocando/de_todo/Sustituciones de texto.plist" | pbcopy
 
-	open "https://keep.google.com/u/0/#NOTE/1y0Kv4i0UsOA7jgni1XGqdbvUaatlLr7PGKy1OMztdc5vaob3tP2PyibmBCZy8Wo"
+	# open "https://keep.google.com/u/0/#NOTE/1y0Kv4i0UsOA7jgni1XGqdbvUaatlLr7PGKy1OMztdc5vaob3tP2PyibmBCZy8Wo"
+	xiradrive
 
 }
 
@@ -171,7 +173,7 @@ function xkeepa {
 
 	pbcopy <~/.zxalias
 
-	open "https://keep.google.com/u/0/#NOTE/19Up941HW3Lz3Wus5YLUA3tWAK8nSCd297uMbPzmbDQAAnLCkGg8ZoHverMFXBQ"
+	# open "https://keep.google.com/u/0/#NOTE/19Up941HW3Lz3Wus5YLUA3tWAK8nSCd297uMbPzmbDQAAnLCkGg8ZoHverMFXBQ"
 
 }
 
@@ -186,8 +188,9 @@ function xkeepg {
 
 	pbcopy <~/xglasmenu.sh
 
-	open "https://keep.google.com/u/0/#NOTE/1dzBq4kCvpda6GNHBjVAfIC-Lp4-TUN2_Mzyv68xzkHItDA6NYmUdZIeU9_-4lDE"
+	# open "https://keep.google.com/u/0/#NOTE/1dzBq4kCvpda6GNHBjVAfIC-Lp4-TUN2_Mzyv68xzkHItDA6NYmUdZIeU9_-4lDE"
 
+xiradrive
 }
 
 # ------------------------------------------------------------
@@ -201,7 +204,8 @@ function xkeepf {
 
 	pbcopy <~/.zxfunction
 
-	open "https://keep.google.com/u/0/#NOTE/1O8QXdPmSMGasEnlwymtrradJ7mK-7QdzUwKAMSH3IGZDrDdmUg7W8_pu_TsdKpg"
+	# open "https://keep.google.com/u/0/#NOTE/1O8QXdPmSMGasEnlwymtrradJ7mK-7QdzUwKAMSH3IGZDrDdmUg7W8_pu_TsdKpg"
+	xiradrive
 
 }
 
@@ -1253,7 +1257,8 @@ function xgitall {
 		git log -1 &&
 			xzen info "**** Rama actual: $(git branch --show-current)"
 		xzen info "**** Proceso de git completo ..."
-		open https://github.com/
+		# open httpse://github.com/
+		xiragit
 
 		xpausa 5
 
@@ -1297,7 +1302,8 @@ function xgitall {
 		xzen info "Conectar con la pagina de Google Drive para verificar el respaldo ..."
 		xpausa 10
 
-		open https://drive.google.com/drive/u/1/my-drive
+		# open https://drive.google.com/drive/u/1/my-drive
+		xiradrive
 
 		xpausa 10
 
