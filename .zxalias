@@ -313,8 +313,20 @@ alias xiragit='open -a "Brave Browser" https://github.com'
 alias xiradrive='open -a "Brave Browser" https://drive.google.com'
 alias xiraglas='open "http://localhost:4848/common/appServer/serverInstGeneralPe.jsf?instanceName=server"'
 
-alias xcau1='grep -iE "cause"'
-alias xcau2='grep -iE "caused|error"'
-alias xcau3='grep -iE "caused|exception|exist"'
-alias xcau4='grep -iE "caused|exception|exist|fail"'
-alias xcau5='grep -iE "caused|exception|error|fail|package"' 
+# alias xcau1='grep -iE "cause"'
+# alias xcau2='grep -iE "caused|error"'
+# alias xcau3='grep -iE "caused|exception|exist"'
+# alias xcau4='grep -iE "caused|exception|exist|fail"'
+# alias xcau5='grep -iE "caused|exception|error|fail|package"' 
+
+alias xglaslog='tail -f /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/domains/domain1/logs/server.log'
+
+alias xglason='asadmin start-domain && open http://www.localhost:4848/common/applications/applications.jsf'
+alias xglasoff='asadmin stop-domain && open http://localhost:4848/common/index.jsf'
+
+
+# alias xmvnclp1='mvn clean package -X | grep -iE "$1"'
+# alias xmvnclp2='mvn clean package -X | grep -iE "$1"|"$2"'    
+# alias xmvncli3='mvn clean install -X | grep -iE "$1"|"$2"|"$3"' 
+# alias xmvncli3='mvn clean install -X | grep -iE "$1"|"$2"|"$3"' 
+# alias xmvnclp4='mvn clean package -X | grep -iE "$1"|"$2"|"$3"|"$4"'    

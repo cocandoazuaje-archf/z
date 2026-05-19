@@ -96,7 +96,7 @@ export TERMINAL=kitty
 # JAVA 21 CONFIG
 # ============================================================
 
-export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export PATH="$JAVA_HOME/bin:$PATH"
 
 # Verificación rápida
@@ -105,3 +105,5 @@ alias jv='java -version'
 
 GLASSFISH_HOME=/Users/carlosocando/Downloads/glassfish7/glassfish/domains/domain1
 export PATH="$PATH":"$GLASSFISH_HOME/bin"
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"

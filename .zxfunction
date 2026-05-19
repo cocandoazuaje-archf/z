@@ -190,7 +190,7 @@ function xkeepg {
 
 	open "https://keep.google.com/u/0/#NOTE/1dzBq4kCvpda6GNHBjVAfIC-Lp4-TUN2_Mzyv68xzkHItDA6NYmUdZIeU9_-4lDE"
 
-xiradrive
+	xiradrive
 }
 
 # ------------------------------------------------------------
@@ -691,7 +691,7 @@ function xsubir {
 
 	# Abrir consola nuevamente
 
-xiraglas
+	xiraglas
 }
 
 # ____________________________________________________________
@@ -3023,26 +3023,25 @@ function xzen {
 	esac
 }
 
-
 function xgittodo {
-  local MENSAJE="$1"
-  local ARCHIVOS
+	local MENSAJE="$1"
+	local ARCHIVOS
 
-  # Solicitar mensaje si no se pasó como parámetro
-  if [ -z "$MENSAJE" ]; then
-    MENSAJE=$(zenity --entry \
-      --title="Mensaje de commit" \
-      --text="Ingresa el mensaje para git commit:" \
-      2>/dev/null)
+	# Solicitar mensaje si no se pasó como parámetro
+	if [ -z "$MENSAJE" ]; then
+		MENSAJE=$(zenity --entry \
+			--title="Mensaje de commit" \
+			--text="Ingresa el mensaje para git commit:" \
+			2>/dev/null)
 
-    if [ -z "$MENSAJE" ]; then
-      echo "Cancelado: no se ingresó mensaje."
-      return 1
-    fi
-  fi
+		if [ -z "$MENSAJE" ]; then
+			echo "Cancelado: no se ingresó mensaje."
+			return 1
+		fi
+	fi
 
-  # Seleccionar múltiples archivos con Finder
-  ARCHIVOS=$(osascript -e '
+	# Seleccionar múltiples archivos con Finder
+	ARCHIVOS=$(osascript -e '
     set archivos to choose file with prompt "Selecciona los archivos para Git" with multiple selections allowed
     set salida to ""
     repeat with f in archivos
@@ -3051,150 +3050,162 @@ function xgittodo {
     return salida
   ')
 
-  # Validar selección
-  if [ -z "$ARCHIVOS" ]; then
-    echo "Cancelado: no se seleccionaron archivos."
-    return 1
-  fi
+	# Validar selección
+	if [ -z "$ARCHIVOS" ]; then
+		echo "Cancelado: no se seleccionaron archivos."
+		return 1
+	fi
 
-  # Estado
-  gits
+	# Estado
+	gits
 
-  # Agregar archivos seleccionados
-  eval git add $ARCHIVOS || {
-    echo "Error al agregar archivos."
-    return 1
-  }
+	# Agregar archivos seleccionados
+	eval git add $ARCHIVOS || {
+		echo "Error al agregar archivos."
+		return 1
+	}
 
-  # Commit
-  git commit -m "$MENSAJE" || {
-    echo "Error en commit."
-    return 1
-  }
+	# Commit
+	git commit -m "$MENSAJE" || {
+		echo "Error en commit."
+		return 1
+	}
 
-  # Push
-  git push || {
-    echo "Error en push."
-    return 1
-  }
+	# Push
+	git push || {
+		echo "Error en push."
+		return 1
+	}
 
-  echo "Proceso completado correctamente."
+	echo "Proceso completado correctamente."
 }
-
 
 function xgitall {
 
-    xzen entry "'y' para Google Drive? o 'n' para Git (y/n)"
-    xval=$(echo "$xval" | tr '[:upper:]' '[:lower:]')
+	xzen entry "'y' para Google Drive? o 'n' para Git (y/n)"
+	xval=$(echo "$xval" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$xval" = "n" ]; then
-        xzen info "Ejecutando respaldo para Git ...\n"
-        git add ~/.zxalias ~/.zxfunction ~/.zshrc
-        git commit -m "${1:-Actualización ...}"
-        git push
-        git status
-        git log -1 &&
-            xzen info "**** Rama actual: $(git branch --show-current)"
-        xzen info "**** Proceso de git completo ..."
-        # open httpse://github.com/
-        xiragit
+	if [ "$xval" = "n" ]; then
+		xzen info "Ejecutando respaldo para Git ...\n"
+		git add ~/.zxalias ~/.zxfunction ~/.zshrc
+		git commit -m "${1:-Actualización ...}"
+		git push
+		git status
+		git log -1 &&
+			xzen info "**** Rama actual: $(git branch --show-current)"
+		xzen info "**** Proceso de git completo ..."
+		# open httpse://github.com/
+		xiragit
 
-        xpausa 2
+		xpausa 2
 
-    else
+	else
 
-        REMOTO="gdrive"
-        CARPETA_REMOTA="z"
+		REMOTO="gdrive"
+		CARPETA_REMOTA="z"
 
-        ARCHIVOS=(
-            "$HOME/.zxfunction"
-            "$HOME/.zxalias"
-            "$HOME/.zshrc"
-            "/Users/carlosocando/de_todo/Sustituciones de texto.plist"
-        )
+		ARCHIVOS=(
+			"$HOME/.zxfunction"
+			"$HOME/.zxalias"
+			"$HOME/.zshrc"
+			"/Users/carlosocando/de_todo/Sustituciones de texto.plist"
+		)
 
-        for ARCHIVO in "${ARCHIVOS[@]}"; do
+		for ARCHIVO in "${ARCHIVOS[@]}"; do
 
-            if [[ ! -f "$ARCHIVO" ]]; then
-                xzen error "❌ No existe: $ARCHIVO"
-                continue
-            fi
+			if [[ ! -f "$ARCHIVO" ]]; then
+				xzen error "❌ No existe: $ARCHIVO"
+				continue
+			fi
 
-            xzen info "📤 Subiendo: $ARCHIVO"
+			xzen info "📤 Subiendo: $ARCHIVO"
 
-            rclone copy "$ARCHIVO" "$REMOTO:$CARPETA_REMOTA/" >/dev/null 2>&1
+			rclone copy "$ARCHIVO" "$REMOTO:$CARPETA_REMOTA/" >/dev/null 2>&1
 
-            if [[ $? -eq 0 ]]; then
-                xzen info "✅ Subida completada: $ARCHIVO"
-            else
-                xzen error "❌ Error al subir: $ARCHIVO"
-            fi
+			if [[ $? -eq 0 ]]; then
+				xzen info "✅ Subida completada: $ARCHIVO"
+			else
+				xzen error "❌ Error al subir: $ARCHIVO"
+			fi
 
-        done
-        xpausa 2
+		done
+		xpausa 2
 
-        if [[ $? -eq 0 ]]; then
-            xzen info "✅ Subida completada: $ARCHIVO"
-        else
-            xzen error "❌ Error al subir: $ARCHIVO"
-        fi
-        xzen info "Conectar con la pagina de Google Drive para verificar el respaldo ..."
-        xpausa 2
+		if [[ $? -eq 0 ]]; then
+			xzen info "✅ Subida completada: $ARCHIVO"
+		else
+			xzen error "❌ Error al subir: $ARCHIVO"
+		fi
+		xzen info "Conectar con la pagina de Google Drive para verificar el respaldo ..."
+		xpausa 2
 
-        # open https://drive.google.com/drive/u/1/my-drive
-        xiradrive
+		# open https://drive.google.com/drive/u/1/my-drive
+		xiradrive
 
-        xpausa 2
+		xpausa 2
 
-    fi
-    xzen info "🚀 **** Respaldo finalizado."
+	fi
+	xzen info "🚀 **** Respaldo finalizado."
 
 }
 
-function xcau {
+xcau() {
 
-  local NIVEL="$1"
+	local NIVEL="$1"
 
-  if [ -z "$NIVEL" ]; then
-    echo "Uso:"
-    echo "****  xcau 1   -> Busca: cause"
-    echo "****  xcau 2   -> Busca: caused|error"
-    echo "****  xcau 3   -> Busca: caused|exception|exist"
-    echo "****  xcau 4   -> Busca: caused|exception|exist|fail"
-    echo "****  xcau 5   -> Busca: caused|exception|error|fail|package"
-    echo ""
-    echo "Ejemplo:"
-    echo "  cat log.txt | xcau 3"
-    return 1
-  fi
+	function mostrar_ayuda {
 
-  case "$NIVEL" in
-    1)
-	  echo "****  xcau 1   -> Busca: cause"
-      grep -iE "cause"
-      ;;
-    2)
-	 echo "****  xcau 2   -> Busca: caused|error"
-      grep -iE "caused|error"
-      ;;
-    3)
-      echo "****  xcau 3   -> Busca: caused|exception|exist"
-      grep -iE "caused|exception|exist"
-      ;;
-    4)
-	 echo "****  xcau 4   -> Busca: caused|exception|exist|fail"
-      grep -iE "caused|exception|exist|fail"
-      ;;
-    5)
-      echo "****  xcau 5   -> Busca: caused|exception|error|fail|package"
-      grep -iE "caused|exception|error|fail|package"
-      ;;
-    *)
-      echo "Nivel inválido: $NIVEL"
-      echo "Usa valores del 1 al 5"
-      return 1
-      ;;
-  esac
+		echo "**** xcau 1 -> Busca: cause"
+		echo "**** xcau 2 -> Busca: caused|error"
+		echo "**** xcau 3 -> Busca: caused|exception|exist"
+		echo "**** xcau 4 -> Busca: caused|exception|exist|fail"
+		echo "**** xcau 5 -> Busca: caused|exception|error|fail|package"
+
+	}
+
+	case "$NIVEL" in
+
+	1)
+		echo -e "**** xcau 1 -> Busca: cause\n"
+		xread "?\nPresione ENTER para ejecutar el nivel 1 ...\n"
+		mostrar_ayuda
+		xread "?\nPresione ENTER para ejecutar el nivel 1 ...\n"
+		mvn clean package -X | grep -iE "cause"
+		;;
+
+	2)
+		echo -e "**** xcau 2 -> Busca: caused|error\n"
+		mostrar_ayuda
+		xread "?\nPresione ENTER para ejecutar el nivel 2 ...\n"
+		mvn clean package -X | grep -iE "caused|error"
+		;;
+
+	3)
+		echo -e "**** xcau 3 -> Busca: caused|exception|exist\n"
+		mostrar_ayuda
+		xread "?\nPresione ENTER para ejecutar el nivel 3 ...\n"
+		mvn clean package -X | grep -iE "caused|exception|exist"
+		;;
+
+	4)
+		echo -e "**** xcau 4 -> Busca: caused|exception|exist|fail\n"
+		mostrar_ayuda
+		xread "?\nPresione ENTER para ejecutar el nivel 4 ...\n"
+		mvn clean package -X | grep -iE "caused|exception|exist|fail"
+		;;
+
+	5)
+		echo -e "**** xcau 5 -> Busca: caused|exception|error|fail\n|package"
+		mostrar_ayuda
+		xread "?\nPresione ENTER para ejecutar el nivel 5 ...\n"
+		mvn clean package -X | grep -iE "caused|exception|error|fail|package"
+		;;
+
+	*)
+		echo -e "Nivel inválido o no soportado: $NIVEL\n"
+		echo -e "Usa entre 1 y 5 parámetros\n"
+		return 1
+		;;
+
+	esac
 }
-
-
