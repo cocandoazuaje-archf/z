@@ -3167,37 +3167,41 @@ xcau() {
 
 	1)
 		echo -e "**** xcau 1 -> Busca: cause\n"
-		xread "?\nPresione ENTER para ejecutar el nivel 1 ...\n"
 		mostrar_ayuda
-		xread "?\nPresione ENTER para ejecutar el nivel 1 ...\n"
+				xread " ejecutar el nivel 1 ...\n"
+
 		mvn clean package -X | grep -iE "cause"
 		;;
 
 	2)
 		echo -e "**** xcau 2 -> Busca: caused|error\n"
 		mostrar_ayuda
-		xread "?\nPresione ENTER para ejecutar el nivel 2 ...\n"
+				xread " el nivel 2 ...\n"
+
 		mvn clean package -X | grep -iE "caused|error"
 		;;
 
 	3)
 		echo -e "**** xcau 3 -> Busca: caused|exception|exist\n"
 		mostrar_ayuda
-		xread "?\nPresione ENTER para ejecutar el nivel 3 ...\n"
+				xread " el nivel 3 ...\n"
+
 		mvn clean package -X | grep -iE "caused|exception|exist"
 		;;
 
 	4)
 		echo -e "**** xcau 4 -> Busca: caused|exception|exist|fail\n"
 		mostrar_ayuda
-		xread "?\nPresione ENTER para ejecutar el nivel 4 ...\n"
+				xread " el nivel 4 ...\n"
+
 		mvn clean package -X | grep -iE "caused|exception|exist|fail"
 		;;
 
 	5)
 		echo -e "**** xcau 5 -> Busca: caused|exception|error|fail\n|package"
 		mostrar_ayuda
-		xread "?\nPresione ENTER para ejecutar el nivel 5 ...\n"
+				xread " el nivel 5 ...\n"
+
 		mvn clean package -X | grep -iE "caused|exception|error|fail|package"
 		;;
 
