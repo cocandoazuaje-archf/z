@@ -1250,14 +1250,14 @@ function xgitall {
 	xval=$(echo "$xval" | tr '[:upper:]' '[:lower:]')
 
 	if [ "$xval" = "n" ]; then
-		xzen info "Ejecutando respaldo para Git ...\n"
+		xzentime info "Ejecutando respaldo para Git ...\n" 2
 		git add ~/.zxalias ~/.zxfunction ~/.zshrc
 		git commit -m "${1:-Actualización ...}"
 		git push
 		git status
 		git log -1 &&
-			xzen info "**** Rama actual: $(git branch --show-current)"
-		xzen info "**** Proceso de git completo ..."
+			xzentime info "**** Rama actual: $(git branch --show-current)" 2
+		xzentime info "**** Proceso de git completo ..." 2
 		# open httpse://github.com/
 		xiragit
 
@@ -1278,36 +1278,32 @@ function xgitall {
 		for ARCHIVO in "${ARCHIVOS[@]}"; do
 
 			if [[ ! -f "$ARCHIVO" ]]; then
-				xzen error "❌ No existe: $ARCHIVO"
+				xzentime 'error "❌ No existe: $ARCHIVO"' 2
 				continue
 			fi
 
-			xzen info "📤 Subiendo: $ARCHIVO"
+			xzentime info "📤 Subiendo: $ARCHIVO" 2
 
 			rclone copy "$ARCHIVO" "$REMOTO:$CARPETA_REMOTA/" >/dev/null 2>&1
 
 			if [[ $? -eq 0 ]]; then
-				xzen info "✅ Subida completada: $ARCHIVO"
+				xzentime info "✅ Subida completada: $ARCHIVO" 2
 			else
-				xzen error "❌ Error al subir: $ARCHIVO"
+				xzentime error "❌ Error al subir: $ARCHIVO" 2
 			fi
 
 		done
 		xpausa 2
 
 		if [[ $? -eq 0 ]]; then
-			xzen info "✅ Subida completada: $ARCHIVO"
+			xzentime info "✅ Subida completada: $ARCHIVO"  2
 		else
-			xzen error "❌ Error al subir: $ARCHIVO"
+			xzentime error "❌ Error al subir: $ARCHIVO" 2
 		fi
-		xzen info "Conectar con la pagina de Google Drive para verificar el respaldo ..."
-		xpausa 2
+		xzentime info "Conectar con la pagina de Google Drive para verificar el respaldo ..." 2
 
 		# open https://drive.google.com/drive/u/1/my-drive
 		xiradrive
-
-		xpausa 2
-
 	fi
 	xzen info "🚀 **** Respaldo finalizado."
 
@@ -3168,7 +3164,7 @@ xcau() {
 	1)
 		echo -e "**** xcau 1 -> Busca: cause\n"
 		mostrar_ayuda
-				xread " ejecutar el nivel 1 ...\n"
+		xread " ejecutar el nivel 1 ...\n"
 
 		mvn clean package -X | grep -iE "cause"
 		;;
@@ -3176,7 +3172,7 @@ xcau() {
 	2)
 		echo -e "**** xcau 2 -> Busca: caused|error\n"
 		mostrar_ayuda
-				xread " el nivel 2 ...\n"
+		xread " el nivel 2 ...\n"
 
 		mvn clean package -X | grep -iE "caused|error"
 		;;
@@ -3184,7 +3180,7 @@ xcau() {
 	3)
 		echo -e "**** xcau 3 -> Busca: caused|exception|exist\n"
 		mostrar_ayuda
-				xread " el nivel 3 ...\n"
+		xread " el nivel 3 ...\n"
 
 		mvn clean package -X | grep -iE "caused|exception|exist"
 		;;
@@ -3192,7 +3188,7 @@ xcau() {
 	4)
 		echo -e "**** xcau 4 -> Busca: caused|exception|exist|fail\n"
 		mostrar_ayuda
-				xread " el nivel 4 ...\n"
+		xread " el nivel 4 ...\n"
 
 		mvn clean package -X | grep -iE "caused|exception|exist|fail"
 		;;
@@ -3200,7 +3196,7 @@ xcau() {
 	5)
 		echo -e "**** xcau 5 -> Busca: caused|exception|error|fail\n|package"
 		mostrar_ayuda
-				xread " el nivel 5 ...\n"
+		xread " el nivel 5 ...\n"
 
 		mvn clean package -X | grep -iE "caused|exception|error|fail|package"
 		;;
@@ -3212,4 +3208,71 @@ xcau() {
 		;;
 
 	esac
+}
+
+# ------------------------------------------------------------
+# Función: zentime
+# Descripción:
+#   Muestra una ventana Zenity temporal y la cierra automáticamente
+#   después de la cantidad de segundos indicada.
+#
+# Uso:
+#   zentime "mensaje" segundos
+#
+# Ejemplos:
+#   zentime "Proceso completado" 5
+#   zentime "Servidor iniciado correctamente" 30
+# ------------------------------------------------------------
+
+function xzentime {
+
+    # --------------------------------------------------------
+    # Validar parámetros
+    # --------------------------------------------------------
+    if [[ -z "$1" || -z "$2" ]]; then
+        echo
+        echo "Uso:"
+        echo "  zentime \"mensaje\" segundos"
+        echo
+        echo "Ejemplos:"
+        echo "  zentime \"Proceso completado\" 5"
+        echo "  zentime \"Servidor iniciado\" 30"
+        echo
+        return 1
+    fi
+
+    # --------------------------------------------------------
+    # Variables
+    # --------------------------------------------------------
+    local MENSAJE="$1"
+    local TIEMPO="$2"
+
+    # --------------------------------------------------------
+    # Limpiar terminal
+    # --------------------------------------------------------
+    clear
+
+    # --------------------------------------------------------
+    # Mostrar ventana Zenity en segundo plano
+    # --------------------------------------------------------
+    zenity --info \
+        --title="Notificación" \
+        --text="$MENSAJE" \
+        --width=300 \
+        --height=100 \
+        --ok-label="" \
+        2>/dev/null &
+
+    # Guardar PID del proceso Zenity
+    local PID=$!
+
+    # --------------------------------------------------------
+    # Esperar el tiempo indicado
+    # --------------------------------------------------------
+    sleep "$TIEMPO"
+
+    # --------------------------------------------------------
+    # Cerrar ventana Zenity
+    # --------------------------------------------------------
+    kill "$PID" 2>/dev/null
 }
