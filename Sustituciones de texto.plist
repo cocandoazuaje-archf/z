@@ -467,7 +467,7 @@ _ linux diploma-terminal.pd</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>Sermaluc – Consultor Senior - Software FullStack (2 años y 5 meses, Oct 2022 - Mar 2025)
+		<string>Editor Cursor con IA • Geminis IA • Copilot IA • ChatGPT IA • DeepSeek IA • Excel Avanzado con IA * Sermaluc – Consultor Senior - Software FullStack (2 años y 5 meses, Oct 2022 - Mar 2025)
 	•	Axity – AWS(EC2, S3, Cognito, IAM, DynamoDB), Consultor de Tecnología Senior (10 meses, Dic 2021 - Oct 2022)
 	•	Trebol-IT – Líder IT, Líder Azure DevOps (1 año y 9 meses, Mar 2020 - Dic 2021)
 	•	Akzio – Ingeniero en Software (1 año, Mar 2019 - Feb 2020)
@@ -609,7 +609,7 @@ _ linux diploma-terminal.pd</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>clear ; echo "*** buscando ... \n" ; sudo find /  -type f -iname "___" 2>/dev/null > /tmp/ffin.log ; subl /tmp/ffin.log </string>
+		<string>clear ; echo "*** buscando ... \n" ; sudo find /  -type f -iname "___" 2&gt;/dev/null &gt; /tmp/ffin.log ; subl /tmp/ffin.log</string>
 		<key>shortcut</key>
 		<string>ffin</string>
 	</dict>
@@ -1201,6 +1201,12 @@ mmt</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>rg -n --glob "___" "___" ./ &gt; /tmp/rg.log ; subl /tmp/rg.log</string>
+		<key>shortcut</key>
+		<string>rrg</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>Rios</string>
 		<key>shortcut</key>
 		<string>rrio</string>
@@ -1370,6 +1376,12 @@ mmt</string>
 		<string>Ponle Titulo , comentarios , reidenta y Muestrame el codigo completo corregido listo para copiar y pegar  </string>
 		<key>shortcut</key>
 		<string>ttitu</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string>titulo y comentarios  encima de cada instruccion</string>
+		<key>shortcut</key>
+		<string>ttitulo</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
