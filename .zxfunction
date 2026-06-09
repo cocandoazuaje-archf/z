@@ -14,38 +14,41 @@
 # ============================================================
 
 # Ruta base del proyecto
-FUENTES="/Users/carlosocando/Documentos/referidos_elias/1.0-war"
+function constantes {
+	FUENTES="/Users/carlosocando/Documentos/referidos_elias/1.0-war"
 
-# Carpeta target generada por Maven
-TARGET="$FUENTES/target"
+	# Carpeta target generada por Maven
+	TARGET="$FUENTES/target"
 
-# Nombre del proyecto sin extensión
-PROYECTO_SIN_EXTENSION="referidosrrvv-1.0"
+	# Nombre del proyecto sin extensión
+	PROYECTO_SIN_EXTENSION="referidosrrvv-1.0"
 
-# Extensión WAR
-EXTENSION_WAR="war"
+	# Extensión WAR
+	EXTENSION_WAR="war"
 
-# Nombre completo del WAR
-WAR="${PROYECTO_SIN_EXTENSION}.${EXTENSION_WAR}"
+	# Nombre completo del WAR
+	WAR="${PROYECTO_SIN_EXTENSION}.${EXTENSION_WAR}"
 
-# Ruta final del WAR
-WAR_PATH="$TARGET/$WAR"
+	# Ruta final del WAR
+	WAR_PATH="$TARGET/$WAR"
 
-# Ruta del ejecutable asadmin
-ASADMIN="/Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/bin/asadmin"
+	# Ruta del ejecutable asadmin
+	ASADMIN=$(osascript -e '
+    POSIX path of (choose file with prompt "Seleccione el archivo asadmin")
+')
+	# URL administrativa de GlassFish
+	GLASSFISH_ADMIN_URL="http://localhost:4848/common/applications/applications.jsf"
 
-# URL administrativa de GlassFish
-GLASSFISH_ADMIN_URL="http://localhost:4848/common/applications/applications.jsf"
+	# Mensaje estándar para pausas
+	ENTER="**** Presione ENTER para continuar ..."
 
-# Mensaje estándar para pausas
-ENTER="**** Presione ENTER para continuar ..."
+	# Directorio home
+	USERS="$HOME"
 
-# Directorio home
-USERS="$HOME"
-
-# Colores
-RED="\033[1;31m"
-RESET="\033[0m"
+	# Colores
+	RED="\033[1;31m"
+	RESET="\033[0m"
+}
 
 # ============================================================
 # FUNCIÓN: XREQUIRE
@@ -218,17 +221,6 @@ function xkeepf {
 #   - xfd : búsqueda rápida de archivos con fd
 # ____________________________________________________________
 
-# ------------------------------------------------------------
-# XFD2
-# Descripción:
-#   - Busca recursivamente contenido usando grep
-#   - Soporta dos patrones combinados con OR
-#   - Exporta resultados a /tmp/xfd2.txt
-#   - Abre resultados en Sublime Text
-#
-# Uso:
-#   xfd2 <patron1> <patron2>
-# ------------------------------------------------------------
 function xfd2 {
 	echo "**** Procesando ..."
 
@@ -239,10 +231,10 @@ function xfd2 {
 	fi
 
 	# Buscar coincidencias recursivamente
-	grep -R -i -E "$1|$2" . >/tmp/xfd2.txt
+	grep -R -i -E "$1|$2" . >/tmp/xfd2.log
 
 	# Abrir resultados
-	subl /tmp/xfd2.txt
+	subl /tmp/xfd2.log
 }
 
 # ------------------------------------------------------------
@@ -270,10 +262,10 @@ function xfd {
 	fi
 
 	# Ejecutar búsqueda
-	fd -i "$1" >/tmp/xfd.txt
+	fd -i "$1" >/tmp/xfd.log
 
 	# Abrir resultados
-	subl /tmp/xfd.txt
+	subl /tmp/xfd.log
 }
 
 # ____________________________________________________________
@@ -458,39 +450,20 @@ function xbrave {
 	fi
 }
 
-# ____________________________________________________________
-# GLASSFISH
-# CONTROL DE DOMINIO GLASSFISH
-# ____________________________________________________________
-
-# ------------------------------------------------------------
-# XGLASON
-# Descripción:
-#   - Inicia dominio GlassFish
-# ------------------------------------------------------------
-function xglason {
-
-	ASADMIN="/Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/bin/asadmin"
-
-	# Iniciar dominio si recibe parámetro 1
-	if [ "$1" == "1" ]; then
-		sh "$ASADMIN" start-domain
-	fi
+function xgon {
+	sh ./asadmin start-domain
 }
 
-# ------------------------------------------------------------
-# XGLASOFF
-# Descripción:
-#   - Detiene dominio GlassFish
-# ------------------------------------------------------------
-function xglasoff {
+function xgoff {
+	sh ./asadmin stop-domain
+}
 
-	ASADMIN="/Users/carlonsocando/Downloads/glassfish7/glassfish8/glassfish/bin/asadmin"
+function xgres {
+	sh ./asadmin restart-domain
+}
 
-	# Detener dominio si no recibe parámetros
-	if [ -z "$1" ]; then
-		sh "$ASADMIN" stop-domain
-	fi
+function xgver	 {
+	sh ./asadmin version
 }
 
 # ____________________________________________________________
@@ -626,6 +599,7 @@ function undeploy_project {
 # ------------------------------------------------------------
 function deploy_project {
 
+	constantes
 	# Primer intento de deploy por nombre
 	echo -e "$ENTER deploy ... \n" </dev/tty
 	"$ASADMIN" deploy "$PROJECTO_SIN_EXTENCION"
@@ -643,7 +617,7 @@ function deploy_project {
 #   - Elimina archivo WAR generado
 # ------------------------------------------------------------
 function remove_war {
-
+	constantes
 	# Mensaje previo
 	echo -e "$ENTER rm ... \n" </dev/tty
 
@@ -666,7 +640,7 @@ function remove_war {
 #   - Abre panel administrativo
 # ------------------------------------------------------------
 function xsubir {
-
+	constantes
 	# Reiniciar GlassFish
 	xglasoff
 	xglason
@@ -811,43 +785,66 @@ function xgrep {
 # Requiere:
 #   - zenity instalado
 # ------------------------------------------------------------
+# ------------------------------------------------------------
+# Función: xcompare
+# Descripción:
+#   Selecciona dos archivos usando Finder (AppleScript)
+#   y compara si son iguales.
+#
+# Uso:
+#   xcompare
+# ------------------------------------------------------------
+
 function xcompare {
 
-	# Solicitar primer valor
-	valor1=$(zenity --entry \
-		--title="Comparación" \
-		--text="Ingrese el primer valor:" 2>/dev/null) || return 1
+	# --------------------------------------------------------
+	# Seleccionar primer archivo con Finder
+	# --------------------------------------------------------
+	local archivo1
+	archivo1=$(osascript -e '
+        POSIX path of (choose file with prompt "Seleccione el primer archivo")
+    ') || return 1
 
-	# Solicitar segundo valor
-	valor2=$(zenity --entry \
-		--title="Comparación" \
-		--text="Ingrese el segundo valor:" 2>/dev/null) || return 1
+	# --------------------------------------------------------
+	# Seleccionar segundo archivo con Finder
+	# --------------------------------------------------------
+	local archivo2
+	archivo2=$(osascript -e '
+        POSIX path of (choose file with prompt "Seleccione el segundo archivo")
+    ') || return 1
 
-	# Validar campos obligatorios
-	if [ -z "$valor1" ] || [ -z "$valor2" ]; then
+	# --------------------------------------------------------
+	# Validar selección
+	# --------------------------------------------------------
+	if [[ -z "$archivo1" || -z "$archivo2" ]]; then
 
-		# Advertencia por campos vacíos
-		zenity --warning \
-			--title="Error" \
-			--text="No puedes dejar campos vacíos" 2>/dev/null
+		osascript -e '
+            display dialog "Debes seleccionar ambos archivos" buttons {"OK"} default button 1 with icon caution
+        '
 
 		return 1
 	fi
 
-	# Comparar resultados
-	if [ "$valor1" = "$valor2" ]; then
+	# --------------------------------------------------------
+	# Comparar archivos
+	# --------------------------------------------------------
+	if cmp -s "$archivo1" "$archivo2"; then
 
-		# Resultado positivo
-		zenity --info \
-			--title="Resultado" \
-			--text="Son iguales" 2>/dev/null
+		# ----------------------------------------------------
+		# Archivos iguales
+		# ----------------------------------------------------
+		osascript -e '
+            display dialog "Los archivos son iguales" buttons {"OK"} default button 1 with icon note
+        '
 
 	else
 
-		# Resultado negativo
-		zenity --error \
-			--title="Resultado" \
-			--text="Son diferentes" 2>/dev/null
+		# ----------------------------------------------------
+		# Archivos diferentes
+		# ----------------------------------------------------
+		osascript -e '
+            display dialog "Los archivos son diferentes" buttons {"OK"} default button 1 with icon stop
+        '
 	fi
 }
 
@@ -1244,14 +1241,20 @@ function xclose {
 #   xgitall "actualización de funciones bash"
 # ============================================================
 
-function xgitall {
+
+
+function xgitall2 {
+
+		SUSTITUCIONES='/Users/carlosocando/de_todo/Sustituciones de texto.plist'
 
 	xzen entry "'y' para Google Drive? o 'n' para Git (y/n)"
 	xval=$(echo "$xval" | tr '[:upper:]' '[:lower:]')
 
 	if [ "$xval" = "n" ]; then
 		xzentime info "Ejecutando respaldo para Git ...\n" 2
-		git add ~/.zxalias ~/.zxfunction ~/.zshrc
+		cp -v "$SUSTITUCIONES" .
+		open .
+		git add ~/.zxalias ~/.zxfunction ~/.zshrc "$SUSTITUCIONES"
 		git commit -m "${1:-Actualización ...}"
 		git push
 		git status
@@ -1272,7 +1275,7 @@ function xgitall {
 			"$HOME/.zxfunction"
 			"$HOME/.zxalias"
 			"$HOME/.zshrc"
-			"/Users/carlosocando/de_todo/Sustituciones de texto.plist"
+			"$HOME/$SUSTITUCIONES"
 		)
 
 		for ARCHIVO in "${ARCHIVOS[@]}"; do
@@ -1296,7 +1299,7 @@ function xgitall {
 		xpausa 2
 
 		if [[ $? -eq 0 ]]; then
-			xzentime info "✅ Subida completada: $ARCHIVO"  2
+			xzentime info "✅ Subida completada: $ARCHIVO" 2
 		else
 			xzentime error "❌ Error al subir: $ARCHIVO" 2
 		fi
@@ -1308,6 +1311,13 @@ function xgitall {
 	xzen info "🚀 **** Respaldo finalizado."
 
 }
+
+function  xsusti {
+	open "x-apple.systempreferences:com.apple.Keyboard-Settings.extension" &&
+	wait
+xgitall2
+}
+
 
 # ============================================================
 # FUNCIÓN: cread
@@ -3076,6 +3086,8 @@ function xgittodo {
 	echo "Proceso completado correctamente."
 }
 
+SUSTITUCIONES="Users/carlosocando/de_todo/Sustituciones de texto.plist"
+
 function xgitall {
 
 	xzen entry "'y' para Google Drive? o 'n' para Git (y/n)"
@@ -3083,8 +3095,11 @@ function xgitall {
 
 	if [ "$xval" = "n" ]; then
 		xzen info "Ejecutando respaldo para Git ...\n"
-		git add ~/.zxalias ~/.zxfunction ~/.zshrc
+		cp -v "/$SUSTITUCIONES" .
+		git add "~/.zxalias ~/.zxfunction ~/.zshrc /$SUSTITUCIONES"
 		git commit -m "${1:-Actualización ...}"
+		git ls-files | xargs du -h | sort -hr | head -20
+		xread ".."
 		git push
 		git status
 		git log -1 &&
@@ -3104,7 +3119,7 @@ function xgitall {
 			"$HOME/.zxfunction"
 			"$HOME/.zxalias"
 			"$HOME/.zshrc"
-			"/Users/carlosocando/de_todo/Sustituciones de texto.plist"
+			"$HOME/$SUSTITUCIONES"
 		)
 
 		for ARCHIVO in "${ARCHIVOS[@]}"; do
@@ -3134,18 +3149,13 @@ function xgitall {
 		fi
 		xzen info "Conectar con la pagina de Google Drive para verificar el respaldo ..."
 		xpausa 2
-
-		# open https://drive.google.com/drive/u/1/my-drive
 		xiradrive
-
 		xpausa 2
-
 	fi
 	xzen info "🚀 **** Respaldo finalizado."
-
 }
 
-xcau() {
+function xcau {
 
 	local NIVEL="$1"
 
@@ -3226,53 +3236,997 @@ xcau() {
 
 function xzentime {
 
-    # --------------------------------------------------------
-    # Validar parámetros
-    # --------------------------------------------------------
-    if [[ -z "$1" || -z "$2" ]]; then
-        echo
+	# --------------------------------------------------------
+	# Validar parámetros
+	# --------------------------------------------------------
+	if [[ -z "$1" || -z "$2" ]]; then
+		echo
+		echo "Uso:"
+		echo "  zentime \"mensaje\" segundos"
+		echo
+		echo "Ejemplos:"
+		echo "  zentime \"Proceso completado\" 5"
+		echo "  zentime \"Servidor iniciado\" 30"
+		echo
+		return 1
+	fi
+
+	# --------------------------------------------------------
+	# Variables
+	# --------------------------------------------------------
+	local MENSAJE="$1"
+	local TIEMPO="$2"
+
+	# --------------------------------------------------------
+	# Limpiar terminal
+	# --------------------------------------------------------
+	clear
+
+	# --------------------------------------------------------
+	# Mostrar ventana Zenity en segundo plano
+	# --------------------------------------------------------
+	zenity --info \
+		--title="Notificación" \
+		--text="$MENSAJE" \
+		--width=300 \
+		--height=100 \
+		--ok-label="" \
+		2>/dev/null &
+
+	# Guardar PID del proceso Zenity
+	local PID=$!
+
+	# --------------------------------------------------------
+	# Esperar el tiempo indicado
+	# --------------------------------------------------------
+	sleep "$TIEMPO"
+
+	# --------------------------------------------------------
+	# Cerrar ventana Zenity
+	# --------------------------------------------------------
+	kill "$PID" 2>/dev/null
+}
+
+
+function xformatalljava {
+	find . -name "*.java" -exec google-java-format -i {} \;
+}
+
+
+function p {
+  if [ -z "$1" ]; then
+    echo "Uso: p 192.168.1.<último_octeto>"
+    return 1
+  fi
+
+  local ip="192.168.1.$1"
+
+  ping -c 3 "$ip"
+}
+
+
+# =========================================================
+# GlassFish Toolkit
+# Administración avanzada de GlassFish usando asadmin
+#
+# Compatible con:
+# - GlassFish 5
+# - GlassFish 6
+# - GlassFish 7
+# - GlassFish 8
+#
+# Uso:
+#   gf start
+#   gf stop
+#   gf deploy app.war
+#   gf logs
+#
+# Autor: Carlos
+# =========================================================
+
+# function gf {
+
+#     # =====================================================
+#     # Variables de entorno
+#     # =====================================================
+
+#     export GLASSFISH_HOME=/opt/homebrew/opt/glassfish@7/libexec/glassfish
+#     export PATH="$GLASSFISH_HOME/bin:$PATH"
+
+#     export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+#     export AS_JAVA=$JAVA_HOME
+
+#     # =====================================================
+#     # Validar que exista asadmin
+#     # =====================================================
+
+#     if ! command -v asadmin >/dev/null 2>&1; then
+#         echo ""
+#         echo "ERROR: asadmin no encontrado"
+#         echo ""
+#         echo "GLASSFISH_HOME actual:"
+#         echo "$GLASSFISH_HOME"
+#         echo ""
+#         return 1
+#     fi
+
+#     # =====================================================
+#     # Router principal de comandos
+#     # =====================================================
+
+#     case "$1" in
+
+#         # =================================================
+#         # Información general
+#         # =================================================
+
+#         version)
+
+#             sh ./asadmin version
+#         ;;
+
+#         help)
+
+#             sh ./asadmin help
+#         ;;
+
+#         commands)
+
+#             sh ./asadmin list-commands
+#         ;;
+
+#         # =================================================
+#         # Domains
+#         # =================================================
+
+#         start)
+
+#             sh ./asadmin start-domain
+#         ;;
+
+#         stop)
+
+#             sh ./asadmin stop-domain
+#         ;;
+
+#         restart)
+
+#             sh ./asadmin restart-domain
+#         ;;
+
+#         domains)
+
+#             sh ./asadmin list-domains
+#         ;;
+
+#         create-domain)
+
+#             sh ./asadmin create-domain "$2"
+#         ;;
+
+#         delete-domain)
+
+#             sh ./asadmin delete-domain "$2"
+#         ;;
+
+#         # =================================================
+#         # Deploy de aplicaciones
+#         # =================================================
+
+#         deploy)
+
+#             sh ./asadmin deploy "$2"
+#         ;;
+
+#         redeploy)
+
+#             sh ./asadmin redeploy "$2"
+#         ;;
+
+#         undeploy)
+
+#             sh ./asadmin undeploy "$2"
+#         ;;
+
+#         apps)
+
+#             sh ./asadmin list-applications
+#         ;;
+
+#         # =================================================
+#         # JDBC Pools
+#         # =================================================
+
+#         jdbc-pools)
+
+#             sh ./asadmin list-jdbc-connection-pools
+#         ;;
+
+#         jdbc-resources)
+
+#             sh ./asadmin list-jdbc-resources
+#         ;;
+
+#         # =================================================
+#         # Crear pool PostgreSQL
+#         #
+#         # Uso:
+#         # gf create-postgres-pool Pool user pass db
+#         # =================================================
+
+#         create-postgres-pool)
+
+#             sh ./asadmin create-jdbc-connection-pool \
+#                 --datasourceclassname org.postgresql.ds.PGSimpleDataSource \
+#                 --restype javax.sql.DataSource \
+#                 --property \
+#                 user="$3":password="$4":DatabaseName="$5":ServerName=localhost:PortNumber=5432 \
+#                 "$2"
+#         ;;
+
+#         # =================================================
+#         # Crear JDBC Resource
+#         #
+#         # Uso:
+#         # gf create-jdbc-resource Pool recurso
+#         # =================================================
+
+#         create-jdbc-resource)
+
+#             sh ./asadmin create-jdbc-resource \
+#                 --connectionpoolid "$2" \
+#                 "jdbc/$3"
+#         ;;
+
+#         # =================================================
+#         # Ping pool JDBC
+#         # =================================================
+
+#         ping-pool)
+
+#             sh ./asadmin ping-connection-pool "$2"
+#         ;;
+
+#         # =================================================
+#         # JVM Options
+#         # =================================================
+
+#         jvm-options)
+
+#             sh ./asadmin list-jvm-options
+#         ;;
+
+#         add-jvm-option)
+
+#             sh ./asadmin create-jvm-options "$2"
+#         ;;
+
+#         delete-jvm-option)
+
+#             sh ./asadmin delete-jvm-options "$2"
+#         ;;
+
+#         # =================================================
+#         # Logs
+#         # =================================================
+
+#         logs)
+
+#             tail -f \
+#                 "$GLASSFISH_HOME/domains/domain1/logs/server.log"
+#         ;;
+
+#         clean-logs)
+
+#             rm -rf \
+#                 "$GLASSFISH_HOME/domains/domain1/logs/"*
+#         ;;
+
+#         # =================================================
+#         # Librerías
+#         # =================================================
+
+#         add-lib)
+
+#             sh ./asadmin add-library "$2"
+#         ;;
+
+#         libs)
+
+#             sh ./asadmin list-libraries
+#         ;;
+
+#         # =================================================
+#         # Seguridad
+#         # =================================================
+
+#         realms)
+
+#             sh ./asadmin list-auth-realms
+#         ;;
+
+#         change-admin-pass)
+
+#             sh ./asadmin change-admin-password
+#         ;;
+
+#         # =================================================
+#         # HTTP Listeners
+#         # =================================================
+
+#         http-listeners)
+
+#             sh ./asadmin list-http-listeners
+#         ;;
+
+#         # =================================================
+#         # Recursos
+#         # =================================================
+
+#         resources)
+
+#             sh ./asadmin list-resources
+#         ;;
+
+#         # =================================================
+#         # Instancias
+#         # =================================================
+
+#         instances)
+
+#             sh ./asadmin list-instances
+#         ;;
+
+#         create-instance)
+
+#             sh ./asadmin create-local-instance "$2"
+#         ;;
+
+#         # =================================================
+#         # Diagnóstico de puertos
+#         # =================================================
+
+#         ports)
+
+#             lsof -i -P | grep LISTEN | grep java
+#         ;;
+
+#         # =================================================
+#         # Ver procesos Java
+#         # =================================================
+
+#         java)
+
+#             ps aux | grep java
+#         ;;
+
+#         # =================================================
+#         # Ver procesos GlassFish
+#         # =================================================
+
+#         ps)
+
+#             ps aux | grep glassfish
+#         ;;
+
+#         # =================================================
+#         # Reset completo del domain
+#         # =================================================
+
+#         reset-domain)
+
+#             echo ""
+#             echo "Deteniendo domain..."
+#             echo ""
+
+#             sh ./asadmin stop-domain
+
+#             echo ""
+#             echo "Limpiando cache..."
+#             echo ""
+
+#             rm -rf \
+#                 "$GLASSFISH_HOME/domains/domain1/generated/"*
+
+#             rm -rf \
+#                 "$GLASSFISH_HOME/domains/domain1/osgi-cache/"*
+
+#             rm -rf \
+#                 "$GLASSFISH_HOME/domains/domain1/logs/"*
+
+#             echo ""
+#             echo "Iniciando domain..."
+#             echo ""
+
+#             sh ./asadmin start-domain
+#         ;;
+
+#         # =================================================
+#         # Ayuda principal
+#         # =================================================
+
+#         *)
+
+#             echo ""
+#             echo "=================================================="
+#             echo "              GlassFish Toolkit"
+#             echo "=================================================="
+#             echo ""
+
+#             echo "INFORMACIÓN"
+#             echo "----------------------------------------------"
+#             echo "gf version"
+#             echo "gf help"
+#             echo "gf commands"
+#             echo ""
+
+#             echo "DOMAINS"
+#             echo "----------------------------------------------"
+#             echo "gf start"
+#             echo "gf stop"
+#             echo "gf restart"
+#             echo "gf domains"
+#             echo "gf create-domain dominio"
+#             echo "gf delete-domain dominio"
+#             echo ""
+
+#             echo "DEPLOY"
+#             echo "----------------------------------------------"
+#             echo "gf deploy archivo.war"
+#             echo "gf redeploy app"
+#             echo "gf undeploy app"
+#             echo "gf apps"
+#             echo ""
+
+#             echo "JDBC"
+#             echo "----------------------------------------------"
+#             echo "gf jdbc-pools"
+#             echo "gf jdbc-resources"
+#             echo "gf create-postgres-pool Pool user pass db"
+#             echo "gf create-jdbc-resource Pool recurso"
+#             echo "gf ping-pool Pool"
+#             echo ""
+
+#             echo "JVM"
+#             echo "----------------------------------------------"
+#             echo "gf jvm-options"
+#             echo "gf add-jvm-option -Xmx2g"
+#             echo "gf delete-jvm-option -Xmx2g"
+#             echo ""
+
+#             echo "LOGS"
+#             echo "----------------------------------------------"
+#             echo "gf logs"
+#             echo "gf clean-logs"
+#             echo ""
+
+#             echo "LIBRERÍAS"
+#             echo "----------------------------------------------"
+#             echo "gf add-lib postgresql.jar"
+#             echo "gf libs"
+#             echo ""
+
+#             echo "SEGURIDAD"
+#             echo "----------------------------------------------"
+#             echo "gf realms"
+#             echo "gf change-admin-pass"
+#             echo ""
+
+#             echo "RECURSOS"
+#             echo "----------------------------------------------"
+#             echo "gf resources"
+#             echo "gf http-listeners"
+#             echo ""
+
+#             echo "INSTANCIAS"
+#             echo "----------------------------------------------"
+#             echo "gf instances"
+#             echo "gf create-instance instancia1"
+#             echo ""
+
+#             echo "DIAGNÓSTICO"
+#             echo "----------------------------------------------"
+#             echo "gf ports"
+#             echo "gf java"
+#             echo "gf ps"
+#             echo "gf reset-domain"
+#             echo ""
+#         ;;
+
+#     esac
+# }
+
+
+###############################################################################
+# Función: p
+#
+# Descripción:
+#   Realiza un ping de 3 paquetes a una dirección IP de la red 192.168.1.x.
+#
+# Uso:
+#   p <último_octeto>
+#
+# Ejemplos:
+#   p 10     -> ping -c3 192.168.1.10
+#   p 100    -> ping -c3 192.168.1.100
+#   p 254    -> ping -c3 192.168.1.254
+###############################################################################
+
+function p {
+
+    # Validar que se haya recibido el último octeto
+    if [ -z "$1" ]; then
+
+        echo "========================================"
+        echo " Función: p"
+        echo "========================================"
+        echo ""
+        echo "Realiza un ping de 3 paquetes a una IP"
+        echo "de la red 192.168.1.x."
+        echo ""
         echo "Uso:"
-        echo "  zentime \"mensaje\" segundos"
-        echo
+        echo "  p <último_octeto>"
+        echo ""
         echo "Ejemplos:"
-        echo "  zentime \"Proceso completado\" 5"
-        echo "  zentime \"Servidor iniciado\" 30"
-        echo
+        echo "  p 10"
+        echo "  p 100"
+        echo "  p 254"
+        echo ""
+        echo "Ejemplo generado:"
+        echo "  p 10 -> ping -c3 192.168.1.10"
+        echo ""
+
         return 1
     fi
 
-    # --------------------------------------------------------
-    # Variables
-    # --------------------------------------------------------
-    local MENSAJE="$1"
-    local TIEMPO="$2"
+    # Ejecutar ping
+    ping -c3 "192.168.1.$1"
+}
 
-    # --------------------------------------------------------
-    # Limpiar terminal
-    # --------------------------------------------------------
-    clear
 
-    # --------------------------------------------------------
-    # Mostrar ventana Zenity en segundo plano
-    # --------------------------------------------------------
-    zenity --info \
-        --title="Notificación" \
-        --text="$MENSAJE" \
-        --width=300 \
-        --height=100 \
-        --ok-label="" \
-        2>/dev/null &
 
-    # Guardar PID del proceso Zenity
-    local PID=$!
 
-    # --------------------------------------------------------
-    # Esperar el tiempo indicado
-    # --------------------------------------------------------
-    sleep "$TIEMPO"
+###############################################################################
+# Función: xw
+#
+# Descripción:
+#   Monitorea continuamente un archivo mostrando:
+#   - Nombre
+#   - Tamaño en MB
+#   - Fecha de última modificación
+#   - Hora actual
+#
+# Uso:
+#   xw <ruta_archivo>
+#
+# Ejemplo:
+#   xw "/Users/carlosocando/mnt/referidosrrvv/target/referidosrrvv.war"
+###############################################################################
 
-    # --------------------------------------------------------
-    # Cerrar ventana Zenity
-    # --------------------------------------------------------
-    kill "$PID" 2>/dev/null
+function xw {
+
+    # Verifica que se haya recibido un parámetro
+    if [ -z "$1" ]; then
+
+        echo "========================================="
+        echo " xw - Monitoreo continuo de un archivo"
+        echo "========================================="
+        echo
+
+        echo "Uso:"
+        echo "  xw <ruta_archivo>"
+        echo
+
+        echo "Ejemplo:"
+        echo '  xw "/Users/carlosocando/mnt/referidosrrvv/target/referidosrrvv.war"'
+        echo
+
+        return 1
+    fi
+
+    # Guarda la ruta enviada por parámetro
+    local archivo="$1"
+
+    # Inicia monitoreo permanente
+    while true
+    do
+
+        # Limpia la pantalla
+        clear
+
+        # Muestra un título
+        echo "========================================="
+        echo " Monitoreando archivo"
+        echo "========================================="
+        echo "$archivo"
+        echo
+
+        # Verifica si el archivo existe
+        if [ -f "$archivo" ]; then
+
+            nombre=$(basename "$archivo")
+            tamano_bytes=$(stat -f%z "$archivo")
+            tamano_mb=$(awk "BEGIN { printf \"%.2f\", $tamano_bytes / 1048576 }")
+            fecha=$(stat -f "%Sm" "$archivo")
+
+            echo "Nombre             : $nombre"
+            echo "Tamaño (MB)        : $tamano_mb"
+            echo "Última modificación: $fecha"
+
+        else
+
+            echo "ERROR: El archivo no existe."
+
+        fi
+
+        echo
+        echo "Hora actual: $(date '+%H:%M:%S')"
+
+        sleep 1
+
+    done
+}
+
+
+
+
+    # ============================================================
+    # TÍTULO: Ping al servidor 172.21.31.103
+    # ============================================================
+    #
+    # DESCRIPCIÓN:
+    # Ejecuta un ping continuo al servidor 172.21.31.103 para
+    # verificar conectividad de red.
+    #
+    # USO:
+    #   pwsl
+    #
+    # FINALIZAR:
+    #   Ctrl + C
+    #
+    # ============================================================
+function pwsl {
+
+    # Ejecuta un ping continuo al servidor especificado
+    ping 172.21.31.103
+}
+
+
+    # ============================================================
+    # TÍTULO: Ping a una IP del segmento 192.168.1.X
+    # ============================================================
+    #
+    # DESCRIPCIÓN:
+    # Ejecuta un ping continuo a una IP del segmento
+    # 192.168.1.X, donde X se recibe como parámetro.
+    #
+    # USO:
+    #   pw11 10
+    #   pw11 100
+    #
+    # ============================================================
+function pw11 {
+
+    param(
+        [string]$UltimoOcteto
+    )
+
+    # Verifica que se haya recibido el último octeto
+    if (-not $UltimoOcteto) {
+
+        # Muestra ayuda de uso
+        Write-Host "Uso: pw11 <ultimo_octeto>"
+        Write-Host ""
+        Write-Host "Ejemplos:"
+        Write-Host "  pw11 10"
+        Write-Host "  pw11 100"
+
+        return
+    }
+
+    # Ejecuta un ping continuo a la IP construida
+    ping "192.168.1.$UltimoOcteto" -t
+}
+
+
+
+
+function xmvnclpx {
+    # Validar que se haya recibido un patrón
+    if [ $# -eq 0 ]; then
+        cat <<EOF
+
+============================================================
+ xmvnclpx - Buscador de patrones usando ripgrep (rg)
+============================================================
+
+Uso:
+    xmvnclpx '<patron>'
+
+Ejemplos:
+    xmvnclpx 'ORA-[0-9]+'
+    xmvnclpx 'SQLException'
+    xmvnclpx 'ORA-[0-9]+|SQLException|pool/ora'
+    xmvnclpx 'jdbc|datasource|persistence'
+
+Descripción:
+    Ejecuta una búsqueda recursiva desde el directorio actual
+    utilizando ripgrep (rg) y expresiones regulares.
+
+EOF
+        return 1
+    fi
+
+    # Guardar el patrón recibido
+    local patron="$1"
+
+    echo "============================================================"
+    echo " Buscando patrón: $patron"
+    echo " Directorio      : $(pwd)"
+    echo "============================================================"
+
+    # Ejecutar búsqueda
+    xmvnclp|grep -iE "$1"
+}
+
+
+
+###############################################################################
+# xasadmin
+#
+# Muestra todos los comandos disponibles de asadmin.
+#
+# Uso:
+#   xasadmin
+#   xasadmin 0
+###############################################################################
+xasadmin() {
+
+    ###########################################################################
+    # Mostrar ayuda
+    ###########################################################################
+    if [[ "$1" == "0" || "$1" == "-h" || "$1" == "--help" ]]; then
+        cat <<'EOF'
+xasadmin
+
+Muestra todos los comandos disponibles de asadmin.
+
+Uso:
+  xasadmin
+
+Ejemplos:
+  xasadmin
+EOF
+        return 0
+    fi
+
+    ###########################################################################
+    # Mostrar versión de GlassFish
+    ###########################################################################
+    echo "=== VERSION ==="
+    asadmin version
+
+    echo
+
+    ###########################################################################
+    # Mostrar todos los subcomandos disponibles
+    ###########################################################################
+    echo "=== COMANDOS DISPONIBLES ==="
+    asadmin help commands
+}
+
+
+# ============================================================
+# Nombre    : ipxy
+# Autor     : Carlos Ocando
+# Descripción:
+#   Realiza 3 pings a cada dirección IP de un rango.
+#   Escanea las direcciones IP desde .80 hasta .90
+#   y muestra si cada host responde o no.
+#
+# Uso:
+#   ipxy 192.168.1
+#
+# Ejemplos:
+#   ipxy 192.168.1
+#   ipxy 10.0.0
+#   ipxy 172.16.1
+#
+# Requisitos:
+#   - bash
+#   - ping disponible en el sistema
+#
+# Salida:
+#   - ACTIVO
+#   - SIN RESPUESTA
+#
+# Rango evaluado:
+#   .80 hasta .90
+# ============================================================
+
+function xipxy {
+
+    if [ -z "$1" ]; then
+        echo ""
+        echo "============================================================"
+        echo "Uso: xipxy 192.168.1"
+        echo "============================================================"
+        echo "Ejemplos:"
+        echo "  xipxy 192.168.1"
+        echo "  xipxy 10.0.0"
+        echo ""
+        echo "Escanea del .80 al .90 haciendo 3 pings por IP"
+        echo "============================================================"
+        return 1
+    fi
+
+    base="$1"
+
+    # Colores ANSI
+    GREEN="\033[0;32m"
+    RED="\033[0;31m"
+    NC="\033[0m"
+
+    for i in $(seq 80 90); do
+
+        ip="$base.$i"
+
+        printf "\nConsultando: %s\n" "$ip"
+        echo "$ip" | pb
+        if ping -c 3 -W 1 "$ip" > /dev/null 2>&1; then
+            printf "${GREEN}%s - ACTIVO${NC}\n" "$ip"
+        else
+            printf "${RED}%s - SIN RESPUESTA${NC}\n" "$ip"
+        fi
+        xread "?"
+    done
+}
+
+
+# ============================================================
+# Nombre    : xfinddir
+# Autor     : Carlos Ocando
+# Descripción:
+#   Busca directorios por nombre utilizando find.
+#   Resalta las coincidencias encontradas en color verde.
+#
+# Uso:
+#   xfinddir <nombre_directorio>
+#
+# Ejemplos:
+#   xfinddir glassfish
+#   xfinddir target
+#   xfinddir autodeploy
+#   xfinddir domain1
+#
+# Requisitos:
+#   - bash o zsh
+#   - comando find
+#
+# Salida:
+#   Muestra las rutas de los directorios encontrados.
+#   Resalta en verde la coincidencia buscada.
+# ============================================================
+
+function xfinddir {
+
+    ## Valida que se haya recibido un parámetro
+if [ -z "$1" ]; then
+    echo ""
+    echo "============================================================"
+    echo "Uso: xfinddir <nombre_directorio>"
+    echo "============================================================"
+    echo "Ejemplos:"
+    echo "  xfinddir glassfish"
+    echo "  xfinddir target"
+    echo "  xfinddir autodeploy"
+    echo "  xfinddir domain1"
+    echo ""
+    echo "Busca directorios de forma recursiva"
+    echo "desde la raíz del sistema (/)."
+    echo "============================================================"
+    return 1
+fi
+
+# Nombre a buscar
+directorio="$1"
+
+# Colores ANSI
+GREEN=$'\033[0;32m'
+NC=$'\033[0m'
+
+# Busca directorios y colorea la coincidencia
+find / -type d -iname "*${directorio}*" 2>/dev/null | while read -r ruta
+do
+    ruta_coloreada=$(printf '%s\n' "$ruta" | perl -pe "s/(\Q$directorio\E)/${GREEN}\$1${NC}/ig")
+    printf '%b\n' "$ruta_coloreada"
+done
+
+}
+
+
+###############################################################################
+# xfree
+#
+# Libera (mata) el proceso que esté utilizando un puerto TCP.
+#
+# Uso:
+#   xfree <puerto>
+#
+# Ejemplos:
+#   xfree 4949
+#   xfree 8080
+#   xfree 4848
+###############################################################################
+
+function xfree {
+
+    # Validar que se haya recibido exactamente un parámetro
+    if [ $# -ne 1 ]; then
+        echo "Uso: xfree <puerto>"
+        return 1
+    fi
+
+    local puerto="$1"
+    local pids
+
+    # Obtener los PID asociados al puerto
+    pids=$(lsof -ti:"$puerto")
+
+    # Verificar si se encontró algún proceso
+    if [ -z "$pids" ]; then
+        echo "Puerto $puerto libre."
+        return 0
+    fi
+
+    echo "Liberando puerto $puerto..."
+    echo "PID(s) encontrados: $pids"
+
+    # Finalizar los procesos
+    kill -9 $pids
+
+    # Verificar resultado
+    if [ $? -eq 0 ]; then
+        echo "Puerto $puerto liberado correctamente."
+    else
+        echo "Error al intentar liberar el puerto $puerto."
+        return 1
+    fi
+}
+
+
+###############################################################################
+# xkeka
+#
+# Abre un archivo o carpeta con Keka.
+#
+# Uso:
+#   xkeka <archivo_o_carpeta>
+#
+# Ejemplos:
+#   xkeka archivo.zip
+#   xkeka respaldo.7z
+#   xkeka ~/Descargas/mi_archivo.rar
+###############################################################################
+
+function xkeka {
+
+    # Validar que se haya recibido un parámetro
+    if [ $# -ne 1 ]; then
+        echo "Uso: xkeka <archivo_o_carpeta>"
+        echo
+        echo "Ejemplos:"
+        echo "  xkeka archivo.zip"
+        echo "  xkeka respaldo.7z"
+        echo "  xkeka ~/Descargas/mi_archivo.rar"
+        return 1
+    fi
+
+    open -a Keka "$1"
+}
+
+function tmconf
+{
+	tmux source-file ~/.tmux.conf \; display-message "tmux.conf recargado"
+
 }
