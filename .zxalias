@@ -13,7 +13,7 @@ RESET="\033[0m"
 # SISTEMA Y TERMINAL
 # ============================================================
 
-alias xun='unalias'
+alias un='unalias'
 
 alias grep='grep --color=auto'
 
@@ -21,7 +21,7 @@ alias grep='grep --color=auto'
 alias terminal='open -a kitty.app'
 
 # Nueva ventana Kitty
-alias xter='open -na kitty'
+alias ter='open -na kitty'
 
 # Recargar configuración zsh
 alias x='source ~/.zshrc'
@@ -30,7 +30,7 @@ alias x='source ~/.zshrc'
 alias s='source'
 
 # Mostrar variable PATH
-alias xph='echo "$PATH"'
+alias ph='echo "$PATH"'
 
 # Mostrar definición comando
 alias t='type'
@@ -43,33 +43,32 @@ alias pw='pwd'
 # ============================================================
 
 # Ejecutar Angular en modo desarrollo
-alias xngs='ng serve'
+alias ngs='ng serve'
 
 # Compilar proyecto Angular
-alias xngb='ng build'
+alias ngb='ng build'
 
 # Maven clean install con salida debug
-alias xmvncli='mvn clean install -X'
+alias mvncli='mvn clean install -X'
 
 # Maven clean package debug
-alias xmvnclp='mvn clean package -X'
+alias mvnclp='mvn clean package -X'
 
 # Ejecutar aplicación Spring Boot
-alias xmvnsp='mvn spring-boot:run'
+alias mvnsp='mvn spring-boot:run'
 
 # Ejecutar Node.js
-alias nno='node'
+alias no='node'
 
 # Mostrar versión Node.js
-alias xn3v='node -v'
+alias n3v='node -v'
 
 # Python3 acceso rápido
-alias xp3='python3'
 alias p3='python3'
 
 # Pip3 acceso rápido
-alias xpi3='pip3'
-alias xp3v='pip3 -V'
+alias pi3='pip3'
+alias p3v='pip3 -V'
 
 # Dotnet CLI acceso rápido
 alias dt='dotnet'
@@ -87,13 +86,13 @@ alias ndm='nodemon'
 # Git acceso rápido
 
 # Git add, commit y push total
-# alias xgitall='git add . && git commit -m "$1" && git push'
+# alias gitall='git add . && git commit -m "$1" && git push'
 
 # Git push solo tar
-alias xgittar='git add ./todo_git.tar.gz && git commit -m "$1" && git push'
+alias gittar='git add ./todo_git.tar.gz && git commit -m "$1" && git push'
 
 # Git clone
-alias xgc='git clone'
+alias gc='git clone'
 
 # ============================================================
 # DOCKER, VAGRANT, TERRAFORM
@@ -103,7 +102,7 @@ alias xgc='git clone'
 alias dk='docker'
 
 # Limpiar Docker completamente
-alias dka='docker system prune -a'
+alias dksp='docker system prune -a'
 
 # Vagrant acceso rápido
 alias vg='vagrant'
@@ -115,26 +114,23 @@ alias tf='terraform'
 # GLASSFISH
 # ============================================================
 
-# Iniciar GlassFish y abrir consola
-alias xglason='sh /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/bin/asadmin start-domain ; open http://www.localhost:4848/common/applications/applications.jsf'
-
-# Detener GlassFish
-alias xglasoff='sh /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/bin/stopserv'
-
 # Detener GlassFish domain1
-alias xglasoff='/Users/carlosocando/Downloads/glassfish7/glassfish/domains/domain1/glassfish/bin/asadmin stop-domain && open http://localhost:4848/common/index.jsf'
+alias glaso='./start-domain && open http://nlocalhost:4848/common/index.jsf'
+
+alias glasoff='./stop-domain && open http://localhost:4848/common/index.jsf'
+
 
 # Editar configuración GlassFish
-alias xglasconfig='code /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/domains/domain1/config/domain.xml'
+alias glasconfig='code /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/domains/domain1/config/domain.xml'
 
 # Ir a config GlassFish
-alias xglasconfigcd='cd /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/domains/domain1/config/'
+alias glasconfigcd='cd /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/domains/domain1/config/'
 
 # Ir a librerías GlassFish
-alias xglaslib='cd /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/domains/domain1/lib'
+alias glaslib='cd /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/domains/domain1/lib'
 
 # Ir a binarios GlassFish
-alias xglasbin='cd /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/bin'
+alias glasbin='cd /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/bin'
 
 # ============================================================
 # NAVEGACIÓN DE DIRECTORIOS
@@ -158,79 +154,79 @@ alias .-='cd - && ll && pwd'
 alias pw='pwd'
 
 # Ir a /tmp
-alias xtmp='cd /tmp && ls -lah && pwd'
+alias tmp='cd /tmp && ls -lah && pwd'
 
 # Ir a tarjeta SD
-alias xssd='cd "/Volumes/tarjeta SD" && ls -lah && pwd'
+alias ssd='cd "/Volumes/tarjeta SD" && ls -lah && pwd'
 
 # Ir a carpeta pre_
-alias xpre='cd "$HOME/Documents/pre_" && ls -lah && pwd'
+alias pre='cd "$HOME/Documents/pre_" && ls -lah && pwd'
 
 # Ir a desarrollo Ionix
-alias xio='cd "$HOME/Documentos/ionix/Desarrollando" && ll && pwd'
+alias io='cd "$HOME/Documentos/ionix/Desarrollando" && ll && pwd'
 
 # Ir a shell Linux
-alias xshell='cd /usr/local/shell2/shell2/linux/shell && ls -lah && pwd'
+alias shell='cd /usr/local/shell2/shell2/linux/shell && ls -lah && pwd'
 
 # Ir a shell2 local
-alias xshell2ls='cd /Users/carlosocando/Documentos/ionix/Desarrollando/linux/shell && ls -lah && pwd'
+alias shell2ls='cd /Users/carlosocando/Documentos/ionix/Desarrollando/linux/shell && ls -lah && pwd'
 
 # Ir a proyecto Elias
-alias xeli='cd /Users/carlosocando/Documentos/referidos_elias ; ll ;pwd'
+alias eli='cd /Users/carlosocando/Documentos/referidos_elias ; ll ;pwd'
 
 # Ir a carpeta jars
-alias xjar='cd /Users/carlosocando/Desktop/jars'
+alias jar='cd /Users/carlosocando/Desktop/jars'
 
 # Ir a Java downloads
-alias xcdjava='cd ~/Downloads/java'
+alias cdjava='cd ~/Downloads/java'
 
 # Ir a Downloads
-alias xcddow='cd ~/Downloads/'
+alias cddow='cd ~/Downloads/'
 
 # Ir a Desktop
-alias cdd='cd /Users/carlosocando/Desktop'
-alias xcdd='cd ~/Desktop/'
+alias ucd='cd /Users/carlosocando/Desktop'
+alias cdd='cd ~/Desktop/'
 
 # Ir a repositorio Maven local
-alias xcdm2='cd ~/.m2'
+alias cdm2='cd ~/.m2'
 
 # ============================================================
 # UTILIDADES Y SISTEMA
 # ============================================================
 
 # Mostrar archivos ocultos
-alias xvisible='chflags nohidden'
+alias visible='chflags nohidden'
 
-alias xviz='vim $HOME/.zxfunction'
-alias xvia='vim $HOME/.zxalias'
-alias xvif='vim $HOME/.zxfunction'
+alias viz='vim $HOME/.zxfunction'
+alias via='vim $HOME/.zxalias'
+alias vif='vim $HOME/.zxfunction'
 
-alias xsubz='subl $HOME/.zshrc'
-alias xsuba='subl $HOME/.zxalias'
-alias xsubf='subl $HOME/.zxfunction'
+alias subz='subl $HOME/.zshrc'
+alias suba='subl $HOME/.zxalias'
+alias subf='subl $HOME/.zxfunction'
 
-alias xcodz='code $HOME/.zshrc'
-alias xcoda='code $HOME/.zxalias'
-alias xcodf='code $HOME/.zxfunction'
+alias codz='code $HOME/.zshrc'
+alias coda='code $HOME/.zxalias'
+alias codf='code $HOME/.zxfunction'
 
-alias xcodh='code /etc/hosts'
-alias xsubh='subl /etc/hosts'
-alias xvih='vim /etc/hosts'
+alias codh='code /etc/hosts'
+alias subh='subl /etc/hosts'
+alias vih='vim /etc/hosts'
 
-alias xviz='vim $HOME/.zshrc'
-alias xvia='vim $HOME/.zxalias'
-alias xvif='vim $HOME/.zxfunction'
+alias viz='vim $HOME/.zshrc'
+alias via='vim $HOME/.zxalias'
+alias vif='vim $HOME/.zxfunction'
 
-alias xvih='vim /etc/hosts'
+alias vih='vim /etc/hosts'
 
 # Editar script principal shell
-alias xcod_x='code /Users/carlosocando/Documentos/ionix/Desarrollando/linux/shell/_xuplinuxshell.sh'
+alias cod_x='code /Users/carlosocando/Documentos/ionix/Desarrollando/linux/shell/_xuplinuxshell.sh'
 
 # Editar script actualización
-alias xviup='vim /Users/carlosocando/Documentos/ionix/Desarrollando/linux/shell/_xuplinuxshell.sh'
+alias viup='vim /Users/carlosocando/Documentos/ionix/Desarrollando/linux/shell/_xuplinuxshell.sh'
 
 # Sublime acceso rápido
-alias xsub='subl'
+alias sub='subl'
 
 # Abrir VS Code
 alias code="open -a 'Visual Studio Code'"
@@ -239,7 +235,7 @@ alias code="open -a 'Visual Studio Code'"
 alias cursor='open -a Cursor.app'
 
 # Abrir Google Keep
-alias xkeep='open https://keep.google.com/u/1/'
+alias keep='open https://keep.google.com/u/1/'
 
 # Abrir teclado en configuración
 alias teclado='open "x-apple.systempreferences:com.apple.Keyboard-Settings.extension"'
@@ -253,80 +249,98 @@ alias notifica='open "x-apple.systempreferences:com.apple.Notifications-Settings
 alias pass='open "x-apple.systempreferences:com.apple.Passwords-Settings.extension"'
 
 # Copiar al portapapeles
-alias xporta='pbcopy'
+alias porta='pbcopy'
 
 # ============================================================
 # REDES Y PING
 # ============================================================
 
-# Ping corto
-alias p='ping -c3'
-
 # Ping a Google Chile
-alias xti='ping -c3 www.google.cl'
+alias ti='ping -c3 www.google.cl'
 
 # ============================================================
 # HORA Y FECHA
 # ============================================================
 
 # Mostrar hora en formato 12h
-alias xh12='date +"%I:%M:%S %p"'
+alias h12='date +"%I:%M:%S %p"'
 
 # Mostrar hora gráfica con figlet
-alias xh12gra='date +"%H:%M:%S"| xba'
+alias h12gra='date +"%H:%M:%S"| xba'
 
 # Mostrar hora completa (texto + gráfico)
-alias xh='xh12&&xh12gra'
+alias h='xh12&&xh12gra'
 
 # ============================================================
 # TEXTO Y LOGS
 # ============================================================
 
 # Texto grande con figlet
-alias xba='figlet'
+alias ba='figlet'
 
 # Filtrar causas
-alias xg1='grep -iE "cause"'
+alias g1='grep -iE "cause"'
 
 # Filtrar errores comunes
-alias xg4='grep -iE "cause|exception|failure|error|package"'
+alias g4='grep -iE "cause|exception|failure|error|package"'
 
 # Abrir log temporal en Sublime Text
-alias l='subl /tmp/x.log'
+# alias l='subl /tmp/x.log'
 
-alias xld='ls -lah |grep dr'
+alias ld='ls -lah |grep dr'
 
 alias o='open'
 
-alias xgits='git status'
-alias xgit='git'
-alias xgitr='git remote -v'
-alias xgitp='git push'
-alias xgitb='git branch'
-alias xgitbn='git -m'
-alias xgitrn='git remote set-url origin'
-alias xsintax='bash -n'
-alias xformathtml='prettier --write  '
-alias xg='grep'
-alias xgitl='git log -1 --oneline --graph --all --decorate'
-alias xiragit='open -a "Brave Browser" https://github.com'
-alias xiradrive='open -a "Brave Browser" https://drive.google.com'
-alias xiraglas='open "http://localhost:4848/common/appServer/serverInstGeneralPe.jsf?instanceName=server"'
+alias gits='git status'
+alias git='git'
+alias gitr='git remote -v'
+alias gitp='git push'
+alias gitb='git branch'
+alias gitbn='git -m'
+alias gitrn='git remote set-url origin'
+alias sintax='bash -n'
+alias formathtml='prettier --write  '
+alias g='grep -i'
+alias gitl='git log -1 --oneline --graph --all --decorate'
+alias iragit='open -a "Brave Browser" https://github.com'
+alias iradrive='open -a "Brave Browser" https://drive.google.com'
+alias iraglas='open "http://localhost:4848/common/appServer/serverInstGeneralPe.jsf?instanceName=server"'
 
-# alias xcau1='grep -iE "cause"'
-# alias xcau2='grep -iE "caused|error"'
-# alias xcau3='grep -iE "caused|exception|exist"'
-# alias xcau4='grep -iE "caused|exception|exist|fail"'
-# alias xcau5='grep -iE "caused|exception|error|fail|package"' 
+# alias cau1='grep -iE "cause"'
+# alias cau2='grep -iE "caused|error"'
+# alias cau3='grep -iE "caused|exception|exist"'
+# alias cau4='grep -iE "caused|exception|exist|fail"'
+# alias cau5='grep -iE "caused|exception|error|fail|package"'
 
-alias xglaslog='tail -f /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/domains/domain1/logs/server.log'
+alias glaslog='tail -f /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/domains/domain1/logs/server.log'
 
-alias xglason='asadmin start-domain && open http://www.localhost:4848/common/applications/applications.jsf'
-alias xglasoff='asadmin stop-domain && open http://localhost:4848/common/index.jsf'
+alias glason='asadmin start-domain && open http://www.localhost:4848/common/applications/applications.jsf'
+alias glasoff='asadmin stop-domain && open http://localhost:4848/common/index.jsf'
 
 
-# alias xmvnclp1='mvn clean package -X | grep -iE "$1"'
-# alias xmvnclp2='mvn clean package -X | grep -iE "$1"|"$2"'    
-# alias xmvncli3='mvn clean install -X | grep -iE "$1"|"$2"|"$3"' 
-# alias xmvncli3='mvn clean install -X | grep -iE "$1"|"$2"|"$3"' 
-# alias xmvnclp4='mvn clean package -X | grep -iE "$1"|"$2"|"$3"|"$4"'    
+# alias mvnclp1='mvn clean package -X | grep -iE "$1"'
+# alias mvnclp2='mvn clean package -X | grep -iE "$1"|"$2"'
+# alias mvncli3='mvn clean install -X | grep -iE "$1"|"$2"|"$3"'
+# alias mvncli3='mvn clean install -X | grep -iE "$1"|"$2"|"$3"'
+# alias mvnclp4='mvn clean package -X | grep -iE "$1"|"$2"|"$3"|"$4"'
+
+alias gv="./asadmin version"
+ unalias l
+
+alias subl=' open -a "Sublime Text"'
+
+alias glasver='./asadmin version'
+
+alias pb='pbcopy'
+
+alias gapp='./asadmin list-domains'
+
+alias cl='clear'
+
+alias ex='exit'
+
+alias tm='tmux'
+
+alias ban='figlet'
+
+alias ec='echo'
