@@ -240,6 +240,12 @@ carloseocando@gmail.com</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>• AngularJS • Java • JUnit • Spring Boot • SQL • Docker • Terraform • Groovy • Bash • Git • CI/CD • AWS (EC2,S3,IAM,RDS) • Linux • macOS • Vagrant • VirtualBox • VMware • PowerShell • Tomcat</string>
+		<key>shortcut</key>
+		<string>ccarg</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>* linux diploma-terminal
 * Bash
 * Powershell * Fundamentos en DevOps y Arquitectura de Microservicios
