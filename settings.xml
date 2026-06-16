@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.1.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0
+          http://maven.apache.org/xsd/settings-1.1.0.xsd">
+
+  <!-- ========================= -->
+  <!-- SERVIDORES (Nexus si aplica auth) -->
+  <!-- ========================= -->
+  <servers>
+    <server>
+      <id>consorcio-nexus</id>
+    </server>
+  </servers>
+
+  <!-- ========================= -->
+  <!-- NO MIRROR GLOBAL (evita bloqueo de fallback) -->
+  <!-- ========================= -->
+  <mirrors>
+     <mirror>
+
+    <id>allow-http</id>
+
+    <mirrorOf>external:http:*</mirrorOf>
+
+    <url>http://nexus.ic.cnsv.cl/repository/maven-public/</url>
+
+    <blocked>false</blocked>
+
+  </mirror>
+  </mirrors>
+
+  <!-- ========================= -->
+  <!-- PERFILES (fallback controlado) -->
+  <!-- ========================= -->
+  <profiles>
+
+    <!-- PERFIL 1: NEXUS -->
+    <profile>
+      <id>nexus-profile</id>
+
+      <repositories>
+        <repository>
+          <id>consorcio-nexus</id>
+          <name>Nexus Repository</name>
+          <url>http://nexus.ic.cnsv.cl/repository/maven-public/</url>
+
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>daily</updatePolicy>
+          </snapshots>
+
+        </repository>
+      </repositories>
+
+      <pluginRepositories>
+        <pluginRepository>
+          <id>consorcio-nexus-plugins</id>
+          <name>Nexus Plugins</name>
+          <url>https://nexus.ic.cnsv.cl/repository/maven-public/</url>
+
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+
+        </pluginRepository>
+      </pluginRepositories>
+
+    </profile>
+
+    <!-- PERFIL 2: MAVEN CENTRAL (fallback) -->
+    <profile>
+      <id>central-profile</id>
+
+      <repositories>
+        <repository>
+          <id>central</id>
+          <name>Maven Central</name>
+          <url>https://repo1.maven.org/maven2/</url>
+
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>daily</updatePolicy>
+          </releases>
+
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+
+        </repository>
+      </repositories>
+
+      <pluginRepositories>
+        <pluginRepository>
+          <id>central-plugins</id>
+          <name>Maven Central Plugins</name>
+          <url>https://repo1.maven.org/maven2/</url>
+
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+
+        </pluginRepository>
+      </pluginRepositories>
+
+    </profile>
+
+  </profiles>
+
+  <!-- ========================= -->
+  <!-- ACTIVAR AMBOS PERFILES -->
+  <!-- ========================= -->
+  <activeProfiles>
+    <activeProfile>nexus-profile</activeProfile>
+    <activeProfile>central-profile</activeProfile>
+  </activeProfiles>
+
+</settings>
