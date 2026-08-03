@@ -3089,3 +3089,5 @@ function xcp () {
     fi
 }
 
+# Ejemplo de cómo invocarla:
+xcp "/ruta/al/origen/" "/ruta/al/destino/"
