@@ -5,7 +5,7 @@
 	<dict>
 		<key>phrase</key>
 		<string>HASME 20 PERGUNTAS DE SELECCION SIMPLE Y DESPUES DE CADA RESPUESTA DIME SI E
-S CORRECTA O NO , AL FINAL DEBE PERSENTARME EN RESUMEN O SCORE: TEMA: 	_________________</string>
+S CORRECTA O NO , AL FINAL DEBE PERSENTARME EN RESUMEN O SCORE: TEMA: 	_________________ , segun el porcentaje de respeto cuanto equivaldría una note del 1 al 7</string>
 		<key>shortcut</key>
 		<string>_20ss</string>
 	</dict>
