@@ -4,6 +4,13 @@
 <array>
 	<dict>
 		<key>phrase</key>
+		<string>HASME 20 PERGUNTAS DE SELECCION SIMPLE Y DESPUES DE CADA RESPUESTA DIME SI E
+S CORRECTA O NO , AL FINAL DEBE PERSENTARME EN RESUMEN O SCORE: TEMA: 	_________________</string>
+		<key>shortcut</key>
+		<string>_20ss</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>jja</string>
 		<key>shortcut</key>
 		<string>(java-avascript-SpringBoot)</string>
@@ -16,6 +23,12 @@
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>&gt; /tmp/log.lis ; subcode /tmp/log.lis</string>
+		<key>shortcut</key>
+		<string>&gt;&gt;</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>hho</string>
 		<key>shortcut</key>
 		<string>~/</string>
@@ -25,12 +38,6 @@
 		<string>rre</string>
 		<key>shortcut</key>
 		<string>2500.000</string>
-	</dict>
-	<dict>
-		<key>phrase</key>
-		<string>Abcdefghij</string>
-		<key>shortcut</key>
-		<string>AA</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
@@ -246,6 +253,16 @@ carloseocando@gmail.com</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>"Como Consultor Senior - Software FullStack en Sermaluc, colaboro en soluciones tecnológicas avanzadas utilizando herramientas como Spring Boot, Angular y servidores GlassFish y Tomcat. Mi enfoque está en el desarrollo de software que optimice procesos y genere resultados efectivos para nuestros clientes.  "
+Cuento con más de 10 años de experiencia en desarrollo FullStack, con habilidades en PowerShell, MySQL y ChatGPT, además de certificaciones en Azure DevOps y otras herramientas,  Mi objetivo es contribuir al éxito de proyectos tecnológicos mediante la integración de soluciones innovadoras y eficientes. “
+
+
+Cuento con más de 10 años de experiencia en desarrollo FullStack, con habilidades en PowerShell, MySQL y ChatGPT, además de certificaciones en Azure DevOps y otras herramientas,  Mi objetivo es contribuir al éxito de proyectos tecnológicos mediante la integración de soluciones innovadoras y eficientes.</string>
+		<key>shortcut</key>
+		<string>ccart</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>* linux diploma-terminal
 * Bash
 * Powershell * Fundamentos en DevOps y Arquitectura de Microservicios
@@ -348,6 +365,12 @@ system_profiler SPPowerDataType |grep -i 'Cycle Count'
 		<string>Hola hermana, Como  durmio y amanecio  papi</string>
 		<key>shortcut</key>
 		<string>ccomo</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string>(• Claude code • Angular • AngularJS • Java • JUnit • Spring Boot • SQL • Docker • Terraform • Groovy • Bash • Git • CI/CD • AWS (EC2,S3,IAM,RDS) • Linux • macOS • Vagrant • VirtualBox • VMware • PowerShell • Tomcat)</string>
+		<key>shortcut</key>
+		<string>ccompe</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
@@ -513,12 +536,6 @@ _ linux diploma-terminal.pd</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>devops</string>
-		<key>shortcut</key>
-		<string>dd</string>
-	</dict>
-	<dict>
-		<key>phrase</key>
 		<string>20-01-2026</string>
 		<key>shortcut</key>
 		<string>dda</string>
@@ -534,6 +551,12 @@ _ linux diploma-terminal.pd</string>
 		<string>Desempleado</string>
 		<key>shortcut</key>
 		<string>ddes</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string>df -h /dev/disk3s3s1</string>
+		<key>shortcut</key>
+		<string>ddf</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
@@ -621,6 +644,12 @@ _ linux diploma-terminal.pd</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>echo "**** Buscado ..." ; find / -type d -iname "*___*" 2&gt;/dev/null &gt; /tmp/ffind.log ; subl /tmp/ffind.log</string>
+		<key>shortcut</key>
+		<string>ffind</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>AngularJs,Java,JUnit_Spring_Boot,Azure_Pipeline,Vagrant,Docker,SQL,Linux,JenkinsAngularJs,Java,JUnit,Spring_Boot,Azure,Pipeline,Vagrant,Docker,SQL,Linux,Jenkins</string>
 		<key>shortcut</key>
 		<string>ffo</string>
@@ -633,16 +662,16 @@ _ linux diploma-terminal.pd</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>Crea una función llamada. : ___ que haga ___ ,  Debes usar function, agregar título y comentarios, La salida de errores debe redirigirse a /dev/null, Al finalizar, debe enviar la salida sin errores a un archivo ubicado en /tmp/nombre de la funcion.txt,  luego debe abrir dicho archivo con la aplicación code. </string>
-		<key>shortcut</key>
-		<string>ffu</string>
-	</dict>
-	<dict>
-		<key>phrase</key>
 		<string>Crea una función llamada  : ___ que haga ___ y que reciba ___ como parámetros.
 Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agregar título y comentarios, La salida de errores debe redirigirse a /dev/null, Al finalizar, debe enviar la salida sin errores a un archivo ubicado en /tmp/nombre de la funcion.txt,  luego debe abrir dicho archivo con la aplicación code. </string>
 		<key>shortcut</key>
 		<string>ffup</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string>https://github.com/cocandoazuaje-archf</string>
+		<key>shortcut</key>
+		<string>ggith</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
@@ -1027,6 +1056,12 @@ mmt</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>; echo "Buscando ... " ; &gt; /tmp/log.txt ;  subl /tmp/log.txt</string>
+		<key>shortcut</key>
+		<string>oop</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>oracle</string>
 		<key>shortcut</key>
 		<string>oor</string>
@@ -1159,6 +1194,12 @@ mmt</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>rclone lsl gdrive:_____</string>
+		<key>shortcut</key>
+		<string>rrclone</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>Remoto</string>
 		<key>shortcut</key>
 		<string>rre</string>
@@ -1201,15 +1242,27 @@ mmt</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>Pretensiones de Renta:  2500.000 clp </string>
+		<key>shortcut</key>
+		<string>rrent</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>Revisar y corregir</string>
 		<key>shortcut</key>
 		<string>rrev</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>rg -n --glob "___" "___" ./ &gt; /tmp/rg.log ; subl /tmp/rg.log</string>
+		<string>Echo " **** buscando texto dentro de estos archivos ..." ; rg -n --glob "___" "___" ./ &gt; /tmp/rg.log ; subl /tmp/rg.log</string>
 		<key>shortcut</key>
 		<string>rrg</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string>echo "**** Buscando patron ..." ;  rg "____" &gt; /tmp/rrg.log ; subl /tmp/rrg.log</string>
+		<key>shortcut</key>
+		<string>rrg2</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
@@ -1297,6 +1350,12 @@ mmt</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>df -h /dev/disk3s3s1</string>
+		<key>shortcut</key>
+		<string>sspa</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>Spring Boot: 4 a 5 años </string>
 		<key>shortcut</key>
 		<string>sspbx</string>
@@ -1334,6 +1393,12 @@ mmt</string>
 		<string>titulo y comentarios</string>
 		<key>shortcut</key>
 		<string>tc</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string>alias todo='rclone copy ~/.zxfunction gdrive: --progress ; rclone copy ~/.zxalias gdrive: --progress ; rclone copy ~/.zshrc gdrive: --progress'</string>
+		<key>shortcut</key>
+		<string>tt</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
@@ -1394,6 +1459,12 @@ mmt</string>
 		<string>5176085144841036</string>
 		<key>shortcut</key>
 		<string>ttn</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string>rclone copy gdrive:_7z_todo . --include </string>
+		<key>shortcut</key>
+		<string>ttod</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
@@ -1514,6 +1585,12 @@ mmt</string>
 		<string>cd /tmp</string>
 		<key>shortcut</key>
 		<string>xt</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string>echo "Buscando ..." ; fd "*__*" / 2&gt;/dev/null &gt; /tmp/xfd.log;code /tmp/xfd.log</string>
+		<key>shortcut</key>
+		<string>xxfd</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
