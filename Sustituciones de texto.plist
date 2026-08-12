@@ -760,6 +760,12 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>echo "up_$(date)"|pb</string>
+		<key>shortcut</key>
+		<string>hhoy</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>~/.profile</string>
 		<key>shortcut</key>
 		<string>hhp</string>
