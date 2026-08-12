@@ -669,6 +669,12 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>hola gigia cuando puedas le comemtas a puchi q se asome al telegram</string>
+		<key>shortcut</key>
+		<string>ggi</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>https://github.com/cocandoazuaje-archf</string>
 		<key>shortcut</key>
 		<string>ggith</string>
@@ -793,6 +799,12 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 		<string>cd /Users/carlosocando/Downloads/grails/ingepanelapp/</string>
 		<key>shortcut</key>
 		<string>iinge</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string> Ingeniero en Computación</string>
+		<key>shortcut</key>
+		<string>iingec</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
