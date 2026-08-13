@@ -675,6 +675,12 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>git add . ; git commit -m "commit inicial" ; git push</string>
+		<key>shortcut</key>
+		<string>ggit</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>https://github.com/cocandoazuaje-archf</string>
 		<key>shortcut</key>
 		<string>ggith</string>
