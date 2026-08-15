@@ -485,11 +485,13 @@ _ linux diploma-terminal.pd</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>	 ITC Services (2017-2019): AngularJS.
-	•	Akzio (2019-2020): Angular.
-	•	Trebol-IT (2020-2021): Angular.
-	•	Axity (2021-2022): AWS (EC2, S3), Angular e Ionic.
-	•	Sermaluc (2022-2025): Angular.</string>
+		<string>	
+* Sermaluc (2022-2025): Angular.
+* Axity (2021-2022): Spring Boot - Angular
+* AWS (EC2, S3), Angular e Ionic.
+* Trebol-IT (2020-2021): Angular.
+* Akzio (2019-2020): Angular.
+* ITC Services (2017-2019): AngularJS.</string>
 		<key>shortcut</key>
 		<string>ccura</string>
 	</dict>
