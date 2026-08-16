@@ -74,13 +74,13 @@ S CORRECTA O NO , AL FINAL DEBE PERSENTARME EN RESUMEN O SCORE: TEMA: 	nutriente
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>@</string>
+		<string>arch linux</string>
 		<key>shortcut</key>
 		<string>aar</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>arch linux</string>
+		<string>@</string>
 		<key>shortcut</key>
 		<string>aar</string>
 	</dict>
@@ -225,7 +225,7 @@ Carlos Ocando
 
 +56 9 68002846
 
-cocandoazuaje@gmail.com</string>
+carloseocando@gmail.com</string>
 		<key>shortcut</key>
 		<string>ccap</string>
 	</dict>
@@ -262,7 +262,7 @@ Carlos Ocando
 
 +56 9 68002846
 
-carloseocando@gmail.com</string>
+cocandoazuaje@gmail.com</string>
 		<key>shortcut</key>
 		<string>ccap</string>
 	</dict>
@@ -497,6 +497,16 @@ _ linux diploma-terminal.pd</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>	 ITC Services (2017-2019): AngularJS.
+	•	Akzio (2019-2020): Angular.
+	•	Trebol-IT (2020-2021): Angular.
+	•	Axity (2021-2022): AWS (EC2, S3), Angular e Ionic.
+	•	Sermaluc (2022-2025): Angular.</string>
+		<key>shortcut</key>
+		<string>ccura</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>➡️  Años de experiencia con Spring Boot: aproximadamente 3 años.
     Años de experiencia con Java: aproximadamente 7 años.
     Aproximadamente 4 años de experiencia con Angular </string>
@@ -698,7 +708,7 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>git add . ; git commit -m "commit inicial" ; git push</string>
+		<string>git add -f . ; git commit -m "commit inicial" ; git push</string>
 		<key>shortcut</key>
 		<string>ggit</string>
 	</dict>
@@ -710,7 +720,7 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>git add . ; git commit -m "actualización" ; git push</string>
+		<string>git add -f . ; git commit -m "actualización" ; git push</string>
 		<key>shortcut</key>
 		<string>ggitu</string>
 	</dict>
@@ -776,14 +786,14 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>$HOME</string>
+		<string>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+			</string>
 		<key>shortcut</key>
 		<string>hhom</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-			</string>
+		<string>$HOME</string>
 		<key>shortcut</key>
 		<string>hhom</string>
 	</dict>
@@ -957,13 +967,13 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>cocandoazuaje@gmail.com</string>
+		<string>carloseocando@gmail.com</string>
 		<key>shortcut</key>
 		<string>mmail</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>carloseocando@gmail.com</string>
+		<string>cocandoazuaje@gmail.com</string>
 		<key>shortcut</key>
 		<string>mmail</string>
 	</dict>
@@ -1042,14 +1052,14 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>+56 9 68002846 + cocandoazuaje@gmail.com</string>
+		<string>+56 9 68002846 + carloseocando@gmail.com</string>
 		<key>shortcut</key>
 		<string>mmt
 mmt</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>+56 9 68002846 + carloseocando@gmail.com</string>
+		<string>+56 9 68002846 + cocandoazuaje@gmail.com</string>
 		<key>shortcut</key>
 		<string>mmt
 mmt</string>
