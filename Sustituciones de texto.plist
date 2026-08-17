@@ -1673,5 +1673,11 @@ mmt</string>
 		<key>shortcut</key>
 		<string>yyor</string>
 	</dict>
+<dict>
+		<key>phrase</key>
+		<string>youtube</string>
+		<key>shortcut</key>
+		<string>yyu</string>
+	</dict>
 </array>
 </plist>
