@@ -42,9 +42,9 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 # ===============================
 # Configuración de Oh My Posh
 # ===============================
-mkdir -p ~/.poshthemes
+# mkdir -p ~/.poshthemes
 # eval "$(oh-my-posh init zsh --config ~/.poshthemes/jandedobbeleer.omp.json)"
-eval "$(oh-my-posh init zsh --config capr4n)"
+# eval "$(oh-my-posh init zsh --config capr4n)"
 
 # ===============================
 # Prompt básico (fallback)
@@ -110,18 +110,18 @@ export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 
 
 # Path de Oh My Zsh
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 
 # Desactivar tema predeterminado para usar nuestro prompt customizado de 2 líneas
-ZSH_THEME=""
+# ZSH_THEME=""
 
 # Plugins esenciales de Oh My Zsh
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+# plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 # Cargar Oh My Zsh si existe
-if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
-  source "$ZSH/oh-my-zsh.sh"
-fi
+# if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
+  # source "$ZSH/oh-my-zsh.sh"
+# fi
 
 # --- PROMPT DE 2 LÍNEAS PARA OH MY ZSH ---
 setopt PROMPT_SUBST
