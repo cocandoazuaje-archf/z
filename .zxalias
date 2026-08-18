@@ -289,7 +289,7 @@ alias g4='grep -iE "cause|exception|failure|error|package"'
 
 alias ld='ls -lah |grep dr'
 
-alias o='open'
+# alias o='open'
 
 alias gits='git status'
 alias git='git'
@@ -383,3 +383,4 @@ alias a='open -a Safari'
 alias v='open -a vlc'
 alias b='open -a "Brave Browser"'
 alias h='htop'
+alias t='open -a "typora"'

@@ -88,8 +88,8 @@ export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-ZSH_THEME="random"
-ZSH_THEME_RANDOM_CANDIDATES=("robbyrussell" "blueish")
+# ZSH_THEME="random"
+# ZSH_THEME_RANDOM_CANDIDATES=("robbyrussell" "blueish")
 export TERMINAL=kitty
 
 # ============================================================
@@ -107,3 +107,30 @@ GLASSFISH_HOME=/Users/carlosocando/Downloads/glassfish7/glassfish/domains/domain
 export PATH="$PATH":"$GLASSFISH_HOME/bin"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+
+
+# Path de Oh My Zsh
+export ZSH="$HOME/.oh-my-zsh"
+
+# Desactivar tema predeterminado para usar nuestro prompt customizado de 2 líneas
+ZSH_THEME=""
+
+# Plugins esenciales de Oh My Zsh
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+
+# Cargar Oh My Zsh si existe
+if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
+  source "$ZSH/oh-my-zsh.sh"
+fi
+
+# --- PROMPT DE 2 LÍNEAS PARA OH MY ZSH ---
+setopt PROMPT_SUBST
+
+# Obtener información de Git
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats '%F{magenta}(%b)%f'
+
+# Configuración de 2 líneas
+PROMPT='%F{cyan}%n@%m%f:%F{yellow}%~%f ${vcs_info_msg_0_}
+%F{green}❯%f '

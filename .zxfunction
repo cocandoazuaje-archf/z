@@ -6,7 +6,7 @@
 #   - Variables globales para despliegue GlassFish
 #   - Función avanzada de búsqueda de archivos
 #   - Soporte para filtrado interactivo
-#   - Exportación automática de resultados
+#   - Exportación automática dxfde resultados
 # ============================================================
 
 # ============================================================
@@ -3089,13 +3089,7 @@ function xcp () {
     fi
 }
 
-# Ejemplo de cómo invocarla:
-xcp "/ruta/al/origen/" "/ruta/al/destino/"
 
-
-#!/bin/bash
-
-# Definición de la función 'xoff' sin paréntesis
 function xoff {
     echo "⚠️  ATENCIÓN: El sistema se apagará en 1 segundo."
     echo "⚠️  No se guardarán cambios pendientes."
@@ -3104,5 +3098,127 @@ function xoff {
     sudo shutdown -P 1
 }
 
-# Llamada a la función
-xoff
+
+
+# ==========================================
+# TÍTULO: Función para Convertir Markdown a PDF (xmd2pdf)
+# Descripión: Automatiza la conversión de archivos .md a .pdf usando Pandoc y wkhtmltopdf.
+# ==========================================
+function xmd2pdf  {
+
+    # 1. Validar que el usuario haya pasado un argumento por la línea de comandos
+    if [ -z "$1" ]; then
+        echo "Error: Debes proporcionar un archivo Markdown (.md)."
+        echo "Uso: convert_md_to_pdf <archivo.md>"
+        return 1
+    fi
+
+    # 2. Definir variables locales para las rutas de los archivos de entrada y salida
+    local input_file="$1"
+    # Reemplaza la extensión .md por .pdf para nombrar el archivo de salida
+    local output_file="${input_file%.md}.pdf"
+
+    # 3. Comprobar si el archivo físico de entrada existe realmente en el sistema
+    if [ ! -f "$input_file" ]; then
+        echo "Error: El archivo '$input_file' no existe."
+        return 1
+    fi
+
+    # 4. Asegurar que la herramienta de conversión 'pandoc' esté disponible en el sistema
+    if ! command -v pandoc &> /dev/null; then
+        echo "Error: pandoc no está instalado. Instálalo con: brew install pandoc wkhtmltopdf"
+        return 1
+    fi
+
+    # 5. Asegurar que el motor PDF 'wkhtmltopdf' esté disponible en el sistema
+    if ! command -v wkhtmltopdf &> /dev/null; then
+        echo "Error: wkhtmltopdf no está instalado. Instálalo con: brew install wkhtmltopdf"
+        return 1
+    fi
+
+    # 6. Mostrar mensaje informativo sobre el inicio del proceso de conversión
+    echo "Convirtiendo '$input_file' a '$output_file'..."
+
+    # 7. Ejecutar Pandoc con el motor indicado y validar el resultado de la operación
+    if pandoc "$input_file" --pdf-engine=wkhtmltopdf -o "$output_file"; then
+        # Se ejecuta si pandoc finaliza con éxito (código de salida 0)
+        echo "✅ Éxito: El archivo PDF '$output_file' ha sido creado."
+    else
+        # Se ejecuta si pandoc encuentra algún problema durante la conversión
+        echo "❌ Error: La conversión falló."
+        return 1
+    fi
+}
+
+#Falta terminar Instalacion
+# Convertir PDF a MD usando pypdf en venv aislado
+# ==============================================================================
+# TÍTULO: Convertidor de PDF a Markdown para Bash (pdf2md)
+# DESCRIPCIÓN: Extrae el texto plano de un archivo PDF usando la librería `pypdf`
+#              de Python en un entorno virtual aislado en `/tmp` y genera un
+#              archivo .md con el mismo nombre.
+# ==============================================================================
+
+function pdf2md {
+  # 1. Validar que se haya proporcionado un argumento
+  if [ -z "$1" ]; then
+    echo "Error: No se proporcionó ningún archivo."
+    echo "Uso: pdf2md /ruta/al/archivo.pdf"
+    return 1
+  fi
+
+  local pdf_path="$1"
+
+  # 2. Validar que el archivo PDF realmente exista en el sistema
+  if [ ! -f "$pdf_path" ]; then
+    echo "Error: El archivo '$pdf_path' no existe."
+    return 1
+  fi
+
+  local output_md="${pdf_path%.*}.md"
+  local venv_dir="/tmp/pdf2md_venv"
+
+  # 3. Comprobar e instalar el entorno virtual si no existe
+  if [ ! -d "$venv_dir" ]; then
+    if ! command -v python3 &> /dev/null; then
+      echo "Error: python3 no está instalado en este sistema."
+      return 1
+    fi
+
+    echo "Creando entorno virtual en $venv_dir..."
+    python3 -m venv "$venv_dir" || {
+      echo "Error: Falló la creación del entorno virtual."
+      return 1
+    }
+
+    echo "Instalando la dependencia 'pypdf'..."
+    "$venv_dir/bin/pip" install --quiet pypdf
+  fi
+
+  # 4. Extraer texto e imprimirlo en el archivo Markdown
+  echo "Procesando archivo: $pdf_path..."
+  "$venv_dir/bin/python3" -c "
+import pypdf, sys
+try:
+    reader = pypdf.PdfReader(sys.argv[1])
+    pages_text = [page.extract_text() or '' for page in reader.pages]
+    print('\n\n'.join(pages_text))
+except Exception as e:
+    sys.stderr.write(f'Error al procesar el PDF: {e}\n')
+    sys.exit(1)
+" "$pdf_path" > "$output_md"
+
+  # 5. Confirmar el estado de la conversión
+  if [ $? -eq 0 ]; then
+    echo "✅ Convertido exitosamente: $output_md"
+  else
+    echo "❌ Falló la conversión del archivo."
+    [ -f "$output_md" ] && rm "$output_md"
+    return 1
+  fi
+
+  # 6. Abrir automáticamente en Cursor si el comando está disponible
+  if command -v cursor &> /dev/null; then
+    cursor "$output_md"
+  fi
+}
