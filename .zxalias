@@ -197,33 +197,33 @@ alias cdm2='cd ~/.m2'
 # Mostrar archivos ocultos
 alias visible='chflags nohidden'
 
-alias viz='vim $HOME/.zxfunction'
-alias via='vim $HOME/.zxalias'
-alias vif='vim $HOME/.zxfunction'
+alias xviz='vim $HOME/.zxfunction'
+alias xvia='vim $HOME/.zxalias'
+alias xvif='vim $HOME/.zxfunction'
 
-alias subz='subl $HOME/.zshrc'
-alias suba='subl $HOME/.zxalias'
-alias subf='subl $HOME/.zxfunction'
+alias xsubz='subl $HOME/.zshrc'
+alias xsuba='subl $HOME/.zxalias'
+alias xsubf='subl $HOME/.zxfunction'
 
-alias codz='code $HOME/.zshrc'
-alias coda='code $HOME/.zxalias'
-alias codf='code $HOME/.zxfunction'
+alias xcodz='code $HOME/.zshrc'
+alias xcoda='code $HOME/.zxalias'
+alias xcodf='code $HOME/.zxfunction'
 
-alias codh='code /etc/hosts'
-alias subh='subl /etc/hosts'
-alias vih='vim /etc/hosts'
+alias xcodh='code /etc/hosts'
+alias xsubh='subl /etc/hosts'
+alias xvih='vim /etc/hosts'
 
-alias viz='vim $HOME/.zshrc'
-alias via='vim $HOME/.zxalias'
-alias vif='vim $HOME/.zxfunction'
+alias xviz='vim $HOME/.zshrc'
+alias xvia='vim $HOME/.zxalias'
+alias xvif='vim $HOME/.zxfunction'
 
-alias vih='vim /etc/hosts'
+alias xvih='vim /etc/hosts'
 
 # Editar script principal shell
-alias cod_x='code /Users/carlosocando/Documentos/ionix/Desarrollando/linux/shell/_xuplinuxshell.sh'
+alias xcod_x='code /Users/carlosocando/Documentos/ionix/Desarrollando/linux/shell/_xuplinuxshell.sh'
 
 # Editar script actualización
-alias viup='vim /Users/carlosocando/Documentos/ionix/Desarrollando/linux/shell/_xuplinuxshell.sh'
+alias xviup='vim /Users/carlosocando/Documentos/ionix/Desarrollando/linux/shell/_xuplinuxshell.sh'
 
 # Sublime acceso rápido
 alias sub='subl'
@@ -300,10 +300,13 @@ alias gitbn='git -m'
 alias gitrn='git remote set-url origin'
 alias sintax='bash -n'
 alias formathtml='prettier --write  '
+alias xformatall='find . -name "*.sh" -exec shfmt -w {} \;'
+alias xformatsx='find . -type f -perm -111 -exec shfmt -w {} \;'
+alias xformat='shfmt -w '
 alias g='grep -i'
 alias gitl='git log -1 --oneline --graph --all --decorate'
-alias iragit='open -a "Brave Browser" https://github.com'
-alias iradrive='open -a "Brave Browser" https://drive.google.com'
+alias xiragit='open -a "Brave Browser" https://github.com'
+alias xiradrive='open -a "Brave Browser" https://drive.google.com'
 alias iraglas='open "http://localhost:4848/common/appServer/serverInstGeneralPe.jsf?instanceName=server"'
 
 # alias cau1='grep -iE "cause"'
@@ -324,16 +327,13 @@ alias glasoff='asadmin stop-domain && open http://localhost:4848/common/index.js
 # alias mvncli3='mvn clean install -X | grep -iE "$1"|"$2"|"$3"'
 # alias mvnclp4='mvn clean package -X | grep -iE "$1"|"$2"|"$3"|"$4"'
 
-alias gv="./asadmin version"
- unalias l
-
 alias subl=' open -a "Sublime Text"'
 
 alias glasver='./asadmin version'
 
 alias pb='pbcopy'
 
-alias gapp='./asadmin list-domains'
+alias glasapp='./asadmin list-domains'
 
 alias cl='clear'
 
@@ -342,5 +342,44 @@ alias ex='exit'
 alias tm='tmux'
 
 alias ban='figlet'
+alias xban='ban'
 
 alias ec='echo'
+
+alias m='mvn clean package -X'
+
+alias ......='cd ..;cd ..;cd ..'
+
+# alias ll='command ls -lahSr "${1:-.}"'
+alias ll='ls -lah'
+
+alias xchis='history'
+
+alias glasres='./asadmin restart-domain'
+
+alias glasapp='./asadmin list-applications'
+
+alias gund='./asadmin undeploy referidosrrvv'
+
+alias gdep='./asadmin deploy'
+
+# alias mmm='rm target/*war ; ll target/  ; m ; ll target/'
+
+alias oo='open -na Safari "http://localhost:4848/common/appServer/serverInstGeneralPe.jsf?instanceName=server"'
+
+alias uun='/Users/carlosocando/mnt/originales/glassfish4/glassfish4/glassfish/bin/asadmin undeploy referidosrrvv'
+
+alias oos='open -a Safari "http://localhost:4848/common/appServer/serverInstGeneralPe.jsf?instanceName=server"'
+
+alias oot='open "/Users/carlosocando/Desktop/original_javier_funciona_full 2/referidosrrvv/referidosrrvv/referidosrrvv/referidosrrvv/target/"'
+
+alias ddd='/Users/carlosocando/mnt/originales/glassfish4/glassfish4/glassfish/bin/asadmin deploy "/Users/carlosocando/Desktop/original_javier_funciona_full 2/referidosrrvv/referidosrrvv/referidosrrvv/referidosrrvv/target/referidosrrvv.war"'
+
+alias m='mvn clean package -X | g cause'
+alias xoff='sudo shutdown -h now'
+alias o='open'
+alias e='echo '
+alias a='open -a Safari'
+alias v='open -a vlc'
+alias b='open -a "Brave Browser"'
+alias h='htop'
