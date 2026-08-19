@@ -415,4 +415,4 @@ alias xban='figlet'
 alias d12='date "+%A, %d de %B de %Y a las %I:%M %p"'
 
 # Graba video directamente desde la primera cámara de la Mac (dispositivo 0) a 30 FPS usando FFmpeg
-alias gg='ffmpeg -f avfoundation -framerate 30 -i ":0" /tmp/salida.mp3'
+alias gg='ffmpeg -f avfoundation -i ":0" /tmp/salida.mp3'
