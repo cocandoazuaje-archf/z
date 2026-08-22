@@ -266,7 +266,7 @@ function xfd {
     fi
 
     # Ejecutar búsqueda
-    fd -i "$1" >/tmp/xfd.txt
+    fd -i "$1" / >/tmp/xfd.txt
 
     # Abrir resultados
     subl /tmp/xfd.txt
@@ -3296,64 +3296,20 @@ function gg {
     fi
 
     # Definir la ruta de salida con el argumento recibido
-    local archivo_salida="/tmp/salida$1.mp3"
+    local archivo_salida="/tmp/.e/salida$1.mp3"
 
     echo "Iniciando grabación en: $archivo_salida"
     echo "Presiona 'q' o 'Ctrl + C' para detener la grabación..."
 
     # Iniciar la captura de audio con FFmpeg
     ffmpeg -f avfoundation -i ":0" "$archivo_salida"
-}
-
-# ==============================================================================
-# Título:     Conversión de Audio OPUS a Texto con Whisper (con Validaciones)
-# Función:    opus2txt
-# Descripción: Procesa un archivo de audio .opus con Whisper, genera la
-#              transcripción en TXT (silenciando errores), guarda la salida limpia
-#              en /tmp/opus2txt.txt y la abre en VS Code. Incluye comprobación
-#              de dependencias (whisper y code).
-# ==============================================================================
-
-function opus2txt {
-  # Archivo temporal para la salida limpia
-  local tmp_file="/tmp/opus2txt.txt"
-
-  # Verificar si las herramientas necesarias están instaladas
-  if ! command -v whisper &> /dev/null; then
-    echo "Error: 'whisper' no está instalado o no se encuentra en el PATH."
-    return 1
-  fi
-
-  if ! command -v code &> /dev/null; then
-    echo "Error: 'code' (VS Code) no está instalado o no se encuentra en el PATH."
-    return 1
-  fi
-
-  # Verificar si se proporcionó un parámetro de archivo
-  if [ -z "$1" ]; then
-    echo "Uso: opus2txt <archivo_de_audio.opus>"
-    echo "Ejemplo: opus2txt \"WhatsApp Audio 2026-08-21 at 20.52.58.opus\""
-    return 1
-  fi
-
-  # Verificar si el archivo existe antes de procesarlo
-  if [ ! -f "$1" ]; then
-    echo "Error: El archivo '$1' no existe."
-    return 1
-  fi
-
-  # Ejecutar whisper redirigiendo la salida de errores (stderr) a /dev/null
-  # La salida estándar sin errores se guarda en el archivo /tmp/opus2txt.txt
-  whisper "$1" --model base --output_format txt 2>/dev/null > "$tmp_file"
-
-  # Abrir el archivo resultante con VS Code
-  code "$tmp_file"
+    xfinder .
 }
 
 
 function opus2txt {
     echo "**** Procesando . . .  "
-    ffmpeg -i WhatsApp\ Audio\ 2026-08-21\ at\ 20.52.58.opus -ar 16000 -ac 1 -c:a pcm_s16le temp.wav && whisper temp.wav --language Spanish --model base
-    code .
+    ffmpeg -i "$1" -ar 16000 -ac 1 -c:a pcm_s16le temp.wav && whisper temp.wav --language Spanish --model base --output_dir /tmp/.e/
+    xfinder .
     echo "**** Listo !"
 }
