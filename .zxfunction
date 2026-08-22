@@ -3307,9 +3307,35 @@ function gg {
 }
 
 
+# ==============================================================================
+# Script: Extraer y Transcribir Audio de Video a Texto (gg2t)
+# Descripción: Convierte el audio de un archivo a WAV (16kHz, mono) y lo transcribe
+#              a texto en español usando OpenAI Whisper, guardando la salida en /tmp/.e/
+# ==============================================================================
+
 function gg2t {
+    # Validar que se pase al menos un argumento (el archivo de entrada)
+    if [ -z "$1" ]; then
+        echo "❌ Error: Debes proporcionar la ruta de un archivo."
+        echo "Uso: gg2t <archivo_video_o_audio>"
+        return 1
+    fi
+
     echo "**** Procesando . . .  "
-    ffmpeg -i "$1" -ar 16000 -ac 1 -c:a pcm_s16le temp.wav && whisper temp.wav --language Spanish --model base --output_dir /tmp/.e/
+
+    # Definir ruta temporal para el archivo WAV generado
+    local temp_wav="/tmp/temp_gg2t_$$.wav"
+
+    # 1. Convertir el archivo de entrada a WAV (16 kHz, 1 canal, PCM 16-bit)
+    # 2. Transcribir el audio generado usando Whisper (Modelo: base, Idioma: Español)
+    ffmpeg -y -i "$1" -ar 16000 -ac 1 -c:a pcm_s16le "$temp_wav" && \
+    whisper "$temp_wav" --language Spanish --model base --output_dir /tmp/.e/
+
+    # Limpiar el archivo de audio temporal
+    rm -f "$temp_wav"
+
+    # Abrir el directorio actual en Finder
     xfinder .
+
     echo "**** Listo !"
 }
