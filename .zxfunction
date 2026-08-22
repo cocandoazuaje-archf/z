@@ -3307,7 +3307,7 @@ function gg {
 }
 
 
-function opus2txt {
+function gg2t {
     echo "**** Procesando . . .  "
     ffmpeg -i "$1" -ar 16000 -ac 1 -c:a pcm_s16le temp.wav && whisper temp.wav --language Spanish --model base --output_dir /tmp/.e/
     xfinder .
