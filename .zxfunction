@@ -3303,7 +3303,7 @@ function gg {
 
     # Iniciar la captura de audio con FFmpeg
     ffmpeg -f avfoundation -i ":0" "$archivo_salida"
-    xfinder .
+    xfinder /tmp/.e
 }
 
 
@@ -3335,7 +3335,7 @@ function gg2t {
     rm -f "$temp_wav"
 
     # Abrir el directorio actual en Finder
-    xfinder .
+    xfinder /tmp/.e
 
     echo "**** Listo !"
 }
