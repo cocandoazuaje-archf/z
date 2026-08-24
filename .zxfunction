@@ -3296,7 +3296,7 @@ function gg {
     fi
 
     # Definir la ruta de salida con el argumento recibido
-    local archivo_salida="/tmp/.e/salida$1.mp3"
+    local archivo_salida="/tmp/.e/e$1.mp3"
 
     echo "Iniciando grabación en: $archivo_salida"
     echo "Presiona 'q' o 'Ctrl + C' para detener la grabación..."
@@ -3338,4 +3338,78 @@ function gg2t {
     xfinder /tmp/.e
 
     echo "**** Listo !"
+}
+
+
+#!/usr/bin/env bash
+
+# ==============================================================================
+# Título: Conversor de PDF a JPEG con pdftoppm
+# Descripción: Función en Bash para convertir todas las páginas de un archivo
+#              PDF en imágenes formato JPEG con resolución (DPI) personalizable.
+#              Muestra una guía completa de uso si se ejecuta sin parámetros.
+# Uso: pdf2jpeg <archivo.pdf> [DPI]
+# Ejemplo: pdf2jpeg documento.pdf 300
+# ==============================================================================
+
+function pdf2jpeg {
+    # 1. Validar si se enviaron argumentos; si no, mostrar ayuda explicativa completa
+    if [ -z "$1" ]; then
+        echo "========================================================"
+        echo "           CONVERSOR DE PDF A JPEG (pdftoppm)          "
+        echo "========================================================"
+        echo "Descripción:"
+        echo "  Esta función convierte cada página de un archivo PDF en"
+        echo "  una imagen individual en formato JPEG."
+        echo ""
+        echo "Uso:"
+        echo "  pdf2jpeg <archivo.pdf> [DPI]"
+        echo ""
+        echo "Parámetros:"
+        echo "  <archivo.pdf>  (Requerido) Ruta del archivo PDF a convertir."
+        echo "  [DPI]          (Opcional) Calidad/Resolución en DPI."
+        echo "                 Por defecto es 300 DPI."
+        echo ""
+        echo "Ejemplos de uso:"
+        echo "  pdf2jpeg documento.pdf         # Convierte a 300 DPI (por defecto)"
+        echo "  pdf2jpeg documento.pdf 150     # Convierte a 150 DPI (menor peso)"
+        echo "  pdf2jpeg \"mi archivo.pdf\" 600 # Convierte a 600 DPI (alta calidad)"
+        echo ""
+        echo "Requisito:"
+        echo "  Requiere 'poppler-utils' instalado en el sistema."
+        echo "  Instalar en Ubuntu/Debian: sudo apt install poppler-utils"
+        echo "  Instalar en macOS:         brew install poppler"
+        echo "========================================================"
+        return 1 2>/dev/null || exit 1
+    fi
+
+    # 2. Asignación de parámetros de entrada
+    local INPUT_PDF="$1"
+    local DPI="${2:-300}"  # Valor de resolución por defecto: 300 DPI
+
+    # 3. Comprobar que el archivo indicado realmente existe en el sistema
+    if [ ! -f "$INPUT_PDF" ]; then
+        echo "Error: El archivo '$INPUT_PDF' no existe."
+        return 1 2>/dev/null || exit 1
+    fi
+
+    # 4. Extraer el nombre base sin ruta ni extensión para los archivos de salida
+    local FILENAME
+    local BASENAME
+    FILENAME=$(basename -- "$INPUT_PDF")
+    BASENAME="${FILENAME%.*}"
+
+    echo "Convirtiendo '$INPUT_PDF' a JPEG ($DPI DPI)..."
+
+    # 5. Ejecutar la conversión mediante pdftoppm
+    pdftoppm -jpeg -r "$DPI" "$INPUT_PDF" "${BASENAME}_pagina"
+
+    # 6. Comprobar el código de estado devuelto por el proceso ($?)
+    if [ $? -eq 0 ]; then
+        echo "¡Conversión completada con éxito!"
+        echo "Imágenes guardadas como: ${BASENAME}_pagina-1.jpg, ${BASENAME}_pagina-2.jpg, ..."
+    else
+        echo "Ocurrió un error durante la conversión."
+        return 1 2>/dev/null || exit 1
+    fi
 }
