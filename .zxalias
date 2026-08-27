@@ -1,3 +1,4 @@
+
 #!/usr/bin/env zsh
 # ============================================================
 # ALIAS Y FUNCIONES VARIOS
@@ -416,3 +417,9 @@ alias d12='date "+%A, %d de %B de %Y a las %I:%M %p"'
 
 # Graba video directamente desde la primera cámara de la Mac (dispositivo 0) a 30 FPS usando FFmpeg
 # alias gg='ffmpeg -f avfoundation -i ":0" /tmp/salida.mp3'
+
+# Atajo 'j': Abre la aplicación gráfica JDownloader 2 en macOS
+alias j='open "/Applications/JDownloader2.app"'
+
+# Atajo 'j2': Ejecuta el descargador por línea de comandos yt-dlp
+alias j2='yt-dlp'

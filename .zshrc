@@ -134,3 +134,6 @@ zstyle ':vcs_info:git:*' formats '%F{magenta}(%b)%f'
 # Configuración de 2 líneas
 PROMPT='%F{cyan}%n@%m%f:%F{yellow}%~%f ${vcs_info_msg_0_}
 %F{green}❯%f '
+export PATH="$(npm prefix -g)/bin:$PATH"
+export VISUAL="$HOME/.vscode-cron.sh"
+export EDITOR="$VISUAL"
