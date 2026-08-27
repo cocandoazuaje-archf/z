@@ -3296,14 +3296,14 @@ function gg {
     fi
 
     # Definir la ruta de salida con el argumento recibido
-    local archivo_salida="/tmp/.e/e$1.mp3"
+    local archivo_salida="/Users/carlosocando/.e/e$1.mp3"
 
     echo "Iniciando grabación en: $archivo_salida"
     echo "Presiona 'q' o 'Ctrl + C' para detener la grabación..."
 
     # Iniciar la captura de audio con FFmpeg
     ffmpeg -f avfoundation -i ":0" "$archivo_salida"
-    xfinder /tmp/.e
+    xfinder /Users/carlosocando/.e
 }
 
 
@@ -3324,7 +3324,7 @@ function gg2t {
     echo "**** Procesando . . .  "
 
     # Definir ruta temporal para el archivo WAV generado
-    local temp_wav="/tmp/temp_gg2t_$$.wav"
+    local temp_wav="/Users/carlosocando/.e$$.wav"
 
     # 1. Convertir el archivo de entrada a WAV (16 kHz, 1 canal, PCM 16-bit)
     # 2. Transcribir el audio generado usando Whisper (Modelo: base, Idioma: Español)
@@ -3335,7 +3335,7 @@ function gg2t {
     rm -f "$temp_wav"
 
     # Abrir el directorio actual en Finder
-    xfinder /tmp/.e
+    xfinder /Users/carlosocando/.e
 
     echo "**** Listo !"
 }
