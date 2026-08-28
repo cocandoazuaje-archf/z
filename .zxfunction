@@ -3415,19 +3415,32 @@ function pdf2jpeg {
 }
 
 
+#!/usr/bin/env bash
+# ==============================================================================
+# Script: Funciones de Utilidad para Terminal - Captura de Entrada
+# Autor: Carlos Ocando
+# Descripción: Función para capturar un texto pasado como argumento y mostrarlo
+#              formateado en pantalla usando un bloque heredoc.
+# ==============================================================================
+
 function inputt2 {
-    # Validar si el primer parámetro ($1) está vacío
+    # Validar que se haya proporcionado al menos un argumento
     if [ -z "$1" ]; then
-        echo "Error: Debe proporcionar un texto como parámetro."
+        echo "Error: Debe proporcionar un texto como parámetro." >&2
         return 1
     fi
 
+    # Guardar el primer parámetro en una variable local
     local contenido="$1"
+    local variable
 
-    variable=$(cat << EOF
+    # Asignar el contenido a la variable utilizando heredoc
+    variable=$(cat <<EOF
 $contenido
 EOF
     )
 
-    echo "**** Resultado -> $variable"
+    # Mostrar el resultado procesado en la consola
+    echo "\n\n**** Resultado -> \n\n
+    $variable"
 }
