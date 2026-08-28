@@ -3224,11 +3224,6 @@ except Exception as e:
 }
 
 
-# function d12 {
-#     date "+%A, %d de %B de %Y a las %I:%M %p"
-# }
-
-
 # ==============================================================================
 # Título: Eliminar la última página de un archivo PDF (rmlp)
 # Descripción: Función en Bash que utiliza 'qpdf' para generar un nuevo PDF
@@ -3447,4 +3442,41 @@ EOF
     "$variable"
 
     echo "$variable"|pb
+}
+
+
+# ==============================================================================
+# Transcripción de Audio (MP3 a Texto) con OpenAI Whisper
+# ==============================================================================
+# Descripción: Transcribe un archivo de audio/video a texto en español usando
+#              el modelo 'medium' de Whisper ejecutado localmente.
+# Uso:         ggmp32t "ruta/al/archivo.mp3"
+# ==============================================================================
+
+function ggmp32t {
+    # Si no recibe parámetros, explica en detalle el uso y los requisitos
+    if [ -z "$1" ]; then
+        echo "Uso incorrecto: No se indicó ningún archivo de audio."
+        echo ""
+        echo "Descripción:"
+        echo "  Esta función utiliza OpenAI Whisper para transcribir archivos de audio"
+        echo "  o video (MP3, WAV, M4A, etc.) a texto de forma local utilizando el modelo 'medium'."
+        echo ""
+        echo "Modo de empleo:"
+        echo "  ggmp32t \"ruta/al/archivo.mp3\""
+        echo ""
+        echo "Requisitos previos:"
+        echo "  - Tener instalado whisper (pip install openai-whisper)"
+        echo "  - Tener instalado ffmpeg en el sistema"
+        return 1
+    fi
+
+    # Verificar si el archivo ingresado existe en el disco
+    if [ ! -f "$1" ]; then
+        echo "Error: El archivo '$1' no existe."
+        return 1
+    fi
+
+    # Ejecutar la transcripción con Whisper
+    whisper "$1" --model medium --language Spanish
 }
