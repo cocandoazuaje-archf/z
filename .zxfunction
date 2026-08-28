@@ -3445,4 +3445,6 @@ EOF
     echo "**** Resultado ->"
     echo "**** Resultado ->\n"
     "$variable"
+
+    echo "$variable"|pb
 }
