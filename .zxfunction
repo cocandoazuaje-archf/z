@@ -3512,11 +3512,11 @@ function ggmp32t {
 # Descripción: Abre un archivo o carpeta en la aplicación IINA. Valida que se
 #              haya proporcionado un parámetro y muestra mensajes de estado
 #              durante y al finalizar la ejecución.
-# Uso:         j3 "/ruta/al/archivo_o_video"
+# Uso:         jiina "/ruta/al/archivo_o_video"
 # ==============================================================================
-function j3 {
+function jiina {
     if [ -z "$1" ]; then
-        echo "Uso: j3 <ruta_al_archivo_o_carpeta>"
+        echo "Uso: jiina <ruta_al_archivo_o_carpeta>"
         return 1
     fi
 
@@ -3528,4 +3528,24 @@ function j3 {
     echo "Listo . . . "
     echo "Listo . . . "
     echo "Listo . . . \n"
+}
+
+
+# ==============================================================================
+# Título: Buscar texto con ripgrep y abrir resultados en Sublime Text
+# Descripción: Busca un texto usando 'rg', guarda el resultado en /tmp/log.txt
+#              y lo abre en Sublime Text. Valida que se proporcione un parámetro.
+# Uso: xrg "texto_a_buscar"
+# ==============================================================================
+
+function xrg {
+    if [ -z "$1" ]; then
+        echo "Error: Debes proporcionar un término de búsqueda."
+        echo "Uso: xrg \"texto_a_buscar\""
+        return 1
+    fi
+
+    echo "Buscando ..."
+    rg "$1" > /tmp/log.txt
+    subl /tmp/log.txt
 }
