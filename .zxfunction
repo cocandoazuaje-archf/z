@@ -3441,6 +3441,8 @@ EOF
     )
 
     # Mostrar el resultado procesado en la consola
-    echo "\n\n**** Resultado -> \n\n
-    $variable"
+    echo "\n**** Resultado ->"
+    echo "**** Resultado ->"
+    echo "**** Resultado ->\n"
+    "$variable"
 }
