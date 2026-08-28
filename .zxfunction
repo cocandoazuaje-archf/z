@@ -3290,6 +3290,11 @@ function gg {
         return 0
     fi
 
+    echo "\nGenerando . . . "
+    echo "Generando . . . "
+    echo "Generando . . . \n"
+
+
     # Definir la ruta de salida con el argumento recibido
     local archivo_salida="/Users/carlosocando/.e/e$1.mp3"
 
@@ -3299,6 +3304,8 @@ function gg {
     # Iniciar la captura de audio con FFmpeg
     ffmpeg -f avfoundation -i ":0" "$archivo_salida"
     xfinder /Users/carlosocando/.e
+
+    echo "Listo . . . "
 }
 
 
@@ -3316,7 +3323,9 @@ function gg2t {
         return 1
     fi
 
-    echo "**** Procesando . . .  "
+    echo "\nGenerando . . .  "
+    echo "Generando . . .  "
+    echo "Generando . . .  \n"
 
     # Definir ruta temporal para el archivo WAV generado
     local temp_wav="/Users/carlosocando/.e$$.wav"
@@ -3324,19 +3333,18 @@ function gg2t {
     # 1. Convertir el archivo de entrada a WAV (16 kHz, 1 canal, PCM 16-bit)
     # 2. Transcribir el audio generado usando Whisper (Modelo: base, Idioma: Español)
     ffmpeg -y -i "$1" -ar 16000 -ac 1 -c:a pcm_s16le "$temp_wav" && \
-    whisper "$temp_wav" --language Spanish --model base --output_dir /tmp/.e/
+    whisper "$temp_wav" --language Spanish --model base --output_dir "/Users/carlosocando/.e/"
 
     # Limpiar el archivo de audio temporal
-    rm -f "$temp_wav"
+    # rm -f "$temp_wav"
 
     # Abrir el directorio actual en Finder
     xfinder /Users/carlosocando/.e
 
-    echo "**** Listo !"
+    echo "\n**** Listo . . . "
+    echo "**** Listo . . . "
+    echo "**** Listo . . .  \n"
 }
-
-
-#!/usr/bin/env bash
 
 # ==============================================================================
 # Título: Conversor de PDF a JPEG con pdftoppm
@@ -3378,6 +3386,9 @@ function pdf2jpeg {
         return 1 2>/dev/null || exit 1
     fi
 
+    echo "Generando . . . "
+
+
     # 2. Asignación de parámetros de entrada
     local INPUT_PDF="$1"
     local DPI="${2:-300}"  # Valor de resolución por defecto: 300 DPI
@@ -3407,10 +3418,11 @@ function pdf2jpeg {
         echo "Ocurrió un error durante la conversión."
         return 1 2>/dev/null || exit 1
     fi
+
+    echo "Listo . . . "
 }
 
 
-#!/usr/bin/env bash
 # ==============================================================================
 # Script: Funciones de Utilidad para Terminal - Captura de Entrada
 # Autor: Carlos Ocando
@@ -3424,6 +3436,9 @@ function inputt2 {
         echo "Error: Debe proporcionar un texto como parámetro." >&2
         return 1
     fi
+
+    echo "Generando . . . "
+
 
     # Guardar el primer parámetro en una variable local
     local contenido="$1"
@@ -3442,6 +3457,9 @@ EOF
     "$variable"
 
     echo "$variable"|pb
+
+        echo "Listo. . . "
+
 }
 
 
@@ -3471,6 +3489,8 @@ function ggmp32t {
         return 1
     fi
 
+    echo "Generando . . . "
+
     # Verificar si el archivo ingresado existe en el disco
     if [ ! -f "$1" ]; then
         echo "Error: El archivo '$1' no existe."
@@ -3478,5 +3498,9 @@ function ggmp32t {
     fi
 
     # Ejecutar la transcripción con Whisper
-    whisper "$1" --model medium --language Spanish
+    whisper "$1" --model medium --language Spanish --output_dir ~
+    o ~/.e
+
+    echo "Listo. . . "
+
 }
