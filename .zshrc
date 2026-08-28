@@ -137,3 +137,4 @@ PROMPT='%F{cyan}%n@%m%f:%F{yellow}%~%f ${vcs_info_msg_0_}
 export PATH="$(npm prefix -g)/bin:$PATH"
 export VISUAL="$HOME/.vscode-cron.sh"
 export EDITOR="$VISUAL"
+export PATH="/opt/homebrew/opt/trash-cli/bin:$PATH"

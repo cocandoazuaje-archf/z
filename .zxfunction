@@ -3413,3 +3413,21 @@ function pdf2jpeg {
         return 1 2>/dev/null || exit 1
     fi
 }
+
+
+function inputt2 {
+    # Validar si el primer parámetro ($1) está vacío
+    if [ -z "$1" ]; then
+        echo "Error: Debe proporcionar un texto como parámetro."
+        return 1
+    fi
+
+    local contenido="$1"
+
+    variable=$(cat << EOF
+$contenido
+EOF
+    )
+
+    echo "**** Resultado -> $variable"
+}
