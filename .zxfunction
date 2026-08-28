@@ -3504,3 +3504,28 @@ function ggmp32t {
     echo "Listo. . . "
 
 }
+
+
+# ==============================================================================
+# Reproducción de Medios con IINA (con Feedback Visual)
+# ==============================================================================
+# Descripción: Abre un archivo o carpeta en la aplicación IINA. Valida que se
+#              haya proporcionado un parámetro y muestra mensajes de estado
+#              durante y al finalizar la ejecución.
+# Uso:         j3 "/ruta/al/archivo_o_video"
+# ==============================================================================
+function j3 {
+    if [ -z "$1" ]; then
+        echo "Uso: j3 <ruta_al_archivo_o_carpeta>"
+        return 1
+    fi
+
+    echo "\nProcesando . . . "
+    echo "Procesando . . . "
+    echo "Procesando . . .\n"
+    open -a "IINA" "$1"
+    echo "\nListo . . . "
+    echo "Listo . . . "
+    echo "Listo . . . "
+    echo "Listo . . . \n"
+}
