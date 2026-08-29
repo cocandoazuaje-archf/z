@@ -268,7 +268,7 @@ cocandoazuaje@gmail.com</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>• Claude IA • AngularJS • Java • JUnit • Spring Boot • SQL • Docker • Terraform • Groovy • Bash • Git • CI/CD • AWS (EC2,S3,IAM,RDS) • Linux • macOS • Vagrant • VirtualBox • VMware • PowerShell • Tomcat</string>
+		<string>• Claude IA • AngularJS • Java • JUnit • Spring Boot • SQL • Docker • Terraform • Groovy • Bash • Git • CI/CD • AWS (EC2,S3,IAM,RDS) • Linux • macOS • Vagrant • VirtualBox • VMware • PowerShell • Tomcat, Power BI</string>
 		<key>shortcut</key>
 		<string>ccarg</string>
 	</dict>
@@ -436,7 +436,7 @@ Disponilidad : inmediata</string>
 		<key>phrase</key>
 		<string>Hola ____ gusto en saludarte te dejo mis datos por si te interesa y si me ajusto al perfil:</string>
 		<key>shortcut</key>
-		<string>ccur</string>
+		<string>hhol</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
@@ -493,7 +493,7 @@ _ linux diploma-terminal.pd</string>
 * Akzio (2019-2020): Angular.
 * ITC Services (2017-2019): AngularJS.</string>
 		<key>shortcut</key>
-		<string>ccura</string>
+		<string>eexp</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
@@ -756,7 +756,7 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>Azure Pipelines (CI/CD), Azure Repos, Git, Vagrant, Jenkins, Terraform, AWS (EC2, S3, Grupos de Seguridad, IAM, AMI, RDS), Linux (Debian, Ubuntu, Kubuntu, Xubuntu, Lubuntu, Linux Mint, Kali Linux, Arch Linux, Fedora), Bash, PowerShell, VirtualBox, VMware, Docker, Java, Spring Boot, Postman, MySQL, PostgreSQL, Nginx</string>
+		<string>Azure Pipelines (CI/CD), Azure Repos, Git, Vagrant, Jenkins, Terraform, AWS (EC2, S3, Grupos de Seguridad, IAM, AMI, RDS), , Bash, PowerShell, VirtualBox, VMware, Docker, Java, Spring Boot, Postman, MySQL, PostgreSQL, Nginx</string>
 		<key>shortcut</key>
 		<string>hher</string>
 	</dict>
@@ -1673,11 +1673,31 @@ mmt</string>
 		<key>shortcut</key>
 		<string>yyor</string>
 	</dict>
-<dict>
+
+	<dict>
 		<key>phrase</key>
-		<string>youtube</string>
+		<string>Linux (Debian, Ubuntu, Kubuntu, Xubuntu, Lubuntu, Linux Mint, Kali Linux, Arch Linux, Fedora)</string>
 		<key>shortcut</key>
-		<string>yyu</string>
+		<string>llinux</string>
 	</dict>
+
+	<dict>
+		<key>phrase</key>
+		<string>* Sermaluc (2022-2025): Angular.
+* Axity (2021-2022): Spring Boot - Angular
+* AWS (EC2, S3), Angular e Ionic.
+* Trebol-IT (2020-2021): Angular.
+* Akzio (2019-2020): Angular.
+* ITC Services (2017-2019): AngularJS.
+
+Desarrolle un Dashboard Interactivo con Java Web y AngularJS</string>
+		<key>shortcut</key>
+		<string>eexp2</string>
+	</dict>
+
+
+	 
+
+	
 </array>
 </plist>
