@@ -3549,3 +3549,79 @@ function xrg {
     rg "$1" > /tmp/log.txt
     subl /tmp/log.txt
 }
+
+
+function xciclos {
+BOLD='\033[1m'
+RED='\033[0;31m'
+CYAN='\033[0;36m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RESET='\033[0m'
+
+print_header() {
+    echo -e "\n${BOLD}${CYAN}=== $1 ===${RESET}"
+}
+
+print_item() {
+    printf "${GREEN}%-20s${RESET} : %s\n" "$1" "$2"
+}
+
+clear
+echo -e "${BOLD}${YELLOW}    INFORMACIÓN COMPLETA DEL SISTEMA    ${RESET}"
+echo -e "${YELLOW}========================================${RESET}"
+
+# 1. Sistema Operativo
+print_header "SISTEMA OPERATIVO"
+print_item "Nombre SO" "$(sw_vers -productName)"
+print_item "Versión macOS" "$(sw_vers -productVersion)"
+print_item "Build" "$(sw_vers -buildVersion)"
+print_item "Kernel" "$(uname -r)"
+print_item "Host Name" "$(hostname)"
+print_item "Tiempo encendido" "$(uptime | awk -F'up ' '{print $2}' | awk -F',' '{print $1}')"
+
+# 2. Hardware Principal
+print_header "HARDWARE Y PROCESADOR"
+print_item "Modelo" "$(sysctl -n hw.model)"
+print_item "Arquitectura" "$(uname -m)"
+print_item "Procesador / Chip" "$(sysctl -n machdep.cpu.brand_string 2>/dev/null || sysctl -n hw.optional.arm64 2>/dev/null && echo "Apple Silicon" || echo "Desconocido")"
+print_item "Núcleos Totales" "$(sysctl -n hw.ncpu)"
+
+# 3. Memoria RAM
+print_header "MEMORIA RAM"
+RAM_BYTES=$(sysctl -n hw.memsize)
+RAM_GB=$((RAM_BYTES / 1024 / 1024 / 1024))
+print_item "RAM Total" "${RAM_GB} GB"
+
+# 4. Almacenamiento
+print_header "ALMACENAMIENTO (Disco Principal)"
+df -h / | awk 'NR==2 {printf "\033[0;32m%-20s\033[0m : Total: %s | Usado: %s (%s) | Libre: %s\n", "Espacio en disco", $2, $3, $5, $4}'
+
+# 5. Red
+print_header "RED Y CONECTIVIDAD"
+IP_LOCAL=$(ipconfig getifaddr en0 2>/dev/null || ipconfig getifaddr en1 2>/dev/null || echo "No disponible")
+print_item "IP Local" "$IP_LOCAL"
+IP_PUB=$(curl -s --max-time 2 https://ifconfig.me 2>/dev/null || echo "Sin conexión / No disponible")
+print_item "IP Pública" "$IP_PUB"
+
+# 6. Batería Detallada
+if pmset -g batt | grep -q "InternalBattery"; then
+    print_header "BATERÍA Y SALUD"
+    
+    # Carga actual y estado (cargando/descargando)
+    BATT_CHARGE=$(pmset -g batt | grep -o "[0-9]*%; [a-zA-Z]*" | head -n 1)
+    
+    # Extraer información de ciclos y salud desde system_profiler
+    BATT_CYCLES=$(system_profiler SPPowerDataType 2>/dev/null | awk -F': ' '/Cycle Count/ {print $2}')
+    BATT_CONDITION=$(system_profiler SPPowerDataType 2>/dev/null | awk -F': ' '/Condition/ {print $2}')
+    BATT_MAX_CAP=$(system_profiler SPPowerDataType 2>/dev/null | awk -F': ' '/Maximum Capacity/ {print $2}')
+
+    print_item "Carga / Estado" "${BATT_CHARGE:-No disponible}"
+    printf "${RED}%-20s${RESET} : %s\n" "Ciclos de carga" "${BATT_CYCLES:-No disponible}"
+    print_item "Condición" "${BATT_CONDITION:-No disponible}"
+    [ -n "$BATT_MAX_CAP" ] && print_item "Capacidad Máxima" "$BATT_MAX_CAP"
+fi
+
+echo -e "\n${YELLOW}========================================${RESET}\n"
+
+}
