@@ -402,7 +402,6 @@ alias g4='grep -iE "cause|exception|failure|error|package"'
 
 # Envía 3 paquetes ICMP (ping) a Google Chile para verificar conectividad a internet
 alias ti='ping -c3 www.google.cl'
-
 # Muestra la hora actual en formato de 12 horas (ej. 08:30:15 PM)
 alias h12='date +"%I:%M:%S %p"'
 
@@ -420,3 +419,4 @@ alias jdw='open "/Applications/JDownloader2.app"'
 
 # Atajo 'jyt': Ejecuta el descargador por línea de comandos yt-dlp
 alias jyt='yt-dlp'
+alias xcixlo='system_profiler SPPowerDataType -json|g cycle'
