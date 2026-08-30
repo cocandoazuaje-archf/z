@@ -74,13 +74,13 @@ S CORRECTA O NO , AL FINAL DEBE PERSENTARME EN RESUMEN O SCORE: TEMA: 	nutriente
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>arch linux</string>
+		<string>@</string>
 		<key>shortcut</key>
 		<string>aar</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>@</string>
+		<string>arch linux</string>
 		<key>shortcut</key>
 		<string>aar</string>
 	</dict>
@@ -225,7 +225,7 @@ Carlos Ocando
 
 +56 9 68002846
 
-carloseocando@gmail.com</string>
+cocandoazuaje@gmail.com</string>
 		<key>shortcut</key>
 		<string>ccap</string>
 	</dict>
@@ -262,7 +262,7 @@ Carlos Ocando
 
 +56 9 68002846
 
-cocandoazuaje@gmail.com</string>
+carloseocando@gmail.com</string>
 		<key>shortcut</key>
 		<string>ccap</string>
 	</dict>
@@ -434,12 +434,6 @@ Disponilidad : inmediata</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>Hola ____ gusto en saludarte te dejo mis datos por si te interesa y si me ajusto al perfil:</string>
-		<key>shortcut</key>
-		<string>hhol</string>
-	</dict>
-	<dict>
-		<key>phrase</key>
 		<string>_ Fundamentos en DevOps y Arquitectura de Microservicios.pdf
 _ Microservicios con Spring Boot y Spring Cloud Netflix Eureka
 _ Carlos Ocando.pdf
@@ -482,18 +476,6 @@ _ diploma-php-2017.pdf
 _ linux diploma-terminal.pd</string>
 		<key>shortcut</key>
 		<string>ccur3</string>
-	</dict>
-	<dict>
-		<key>phrase</key>
-		<string>	
-* Sermaluc (2022-2025): Angular.
-* Axity (2021-2022): Spring Boot - Angular
-* AWS (EC2, S3), Angular e Ionic.
-* Trebol-IT (2020-2021): Angular.
-* Akzio (2019-2020): Angular.
-* ITC Services (2017-2019): AngularJS.</string>
-		<key>shortcut</key>
-		<string>eexp</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
@@ -635,9 +617,39 @@ _ linux diploma-terminal.pd</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>Español</string>
+		<key>shortcut</key>
+		<string>eesp</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>Explicamelo</string>
 		<key>shortcut</key>
 		<string>eex</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string>* Sermaluc (2022-2025): Angular.
+* Axity (2021-2022): Spring Boot - Angular
+* AWS (EC2, S3), Angular e Ionic.
+* Trebol-IT (2020-2021): Angular.
+* Akzio (2019-2020): Angular.
+* ITC Services (2017-2019): AngularJS.</string>
+		<key>shortcut</key>
+		<string>eexp</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string>* Sermaluc (2022-2025): Angular.
+* Axity (2021-2022): Spring Boot - Angular
+* AWS (EC2, S3), Angular e Ionic.
+* Trebol-IT (2020-2021): Angular.
+* Akzio (2019-2020): Angular.
+* ITC Services (2017-2019): AngularJS.
+
+Desarrolle un Dashboard Interactivo con Java Web y AngularJS</string>
+		<key>shortcut</key>
+		<string>eexp2</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
@@ -786,14 +798,20 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-			</string>
+		<string>Hola ____ gusto en saludarte te dejo mis datos por si te interesa y si me ajusto al perfil:</string>
+		<key>shortcut</key>
+		<string>hhol</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string>$HOME</string>
 		<key>shortcut</key>
 		<string>hhom</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>$HOME</string>
+		<string>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+			</string>
 		<key>shortcut</key>
 		<string>hhom</string>
 	</dict>
@@ -937,6 +955,12 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>Linux (Debian, Ubuntu, Kubuntu, Xubuntu, Lubuntu, Linux Mint, Kali Linux, Arch Linux, Fedora)</string>
+		<key>shortcut</key>
+		<string>llinux</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>Ubuntu, Fedora, OpenSUSE, Arch,Debian, Manjaro</string>
 		<key>shortcut</key>
 		<string>llx2</string>
@@ -967,13 +991,13 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>carloseocando@gmail.com</string>
+		<string>cocandoazuaje@gmail.com</string>
 		<key>shortcut</key>
 		<string>mmail</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>cocandoazuaje@gmail.com</string>
+		<string>carloseocando@gmail.com</string>
 		<key>shortcut</key>
 		<string>mmail</string>
 	</dict>
@@ -1052,14 +1076,14 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>+56 9 68002846 + carloseocando@gmail.com</string>
+		<string>+56 9 68002846 + cocandoazuaje@gmail.com</string>
 		<key>shortcut</key>
 		<string>mmt
 mmt</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>+56 9 68002846 + cocandoazuaje@gmail.com</string>
+		<string>+56 9 68002846 + carloseocando@gmail.com</string>
 		<key>shortcut</key>
 		<string>mmt
 mmt</string>
@@ -1673,31 +1697,5 @@ mmt</string>
 		<key>shortcut</key>
 		<string>yyor</string>
 	</dict>
-
-	<dict>
-		<key>phrase</key>
-		<string>Linux (Debian, Ubuntu, Kubuntu, Xubuntu, Lubuntu, Linux Mint, Kali Linux, Arch Linux, Fedora)</string>
-		<key>shortcut</key>
-		<string>llinux</string>
-	</dict>
-
-	<dict>
-		<key>phrase</key>
-		<string>* Sermaluc (2022-2025): Angular.
-* Axity (2021-2022): Spring Boot - Angular
-* AWS (EC2, S3), Angular e Ionic.
-* Trebol-IT (2020-2021): Angular.
-* Akzio (2019-2020): Angular.
-* ITC Services (2017-2019): AngularJS.
-
-Desarrolle un Dashboard Interactivo con Java Web y AngularJS</string>
-		<key>shortcut</key>
-		<string>eexp2</string>
-	</dict>
-
-
-	 
-
-	
 </array>
 </plist>
