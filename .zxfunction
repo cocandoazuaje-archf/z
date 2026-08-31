@@ -3658,6 +3658,7 @@ function xciclos {
         batt_max_cap=$(echo "$power_data" | awk -F': ' '/Maximum Capacity/ {print $2}' | xargs)
 
         print_item "Carga / Estado" "${batt_charge:-No disponible}"
+        printf "${YELLOW}%-20s${RESET} : %s\n" "Ciclos restantes" "$((1000 - batt_cycles))"
         printf "${RED}%-20s${RESET} : %s\n" "Ciclos de carga" "${batt_cycles:-No disponible}"
         print_item "Condición" "${batt_condition:-No disponible}"
         [ -n "$batt_max_cap" ] && print_item "Capacidad Máxima" "$batt_max_cap"
