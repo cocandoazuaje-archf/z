@@ -732,6 +732,12 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>git rev-parse --show-toplevel</string>
+		<key>shortcut</key>
+		<string>ggitp</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>git add -f . ; git commit -m "actualización" ; git push</string>
 		<key>shortcut</key>
 		<string>ggitu</string>
@@ -1049,6 +1055,12 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 		<string>075</string>
 		<key>shortcut</key>
 		<string>mmc</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string>Mejoralo </string>
+		<key>shortcut</key>
+		<string>mme</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
