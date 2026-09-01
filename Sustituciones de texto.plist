@@ -1058,7 +1058,7 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>Mejoralo </string>
+		<string>Mejoralo  "__” </string>
 		<key>shortcut</key>
 		<string>mme</string>
 	</dict>
