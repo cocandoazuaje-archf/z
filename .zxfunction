@@ -3668,8 +3668,20 @@ function xciclos {
 }
 
 
+# ==============================================================================
+# Título: Función hhoyp para generar texto con fecha y copiar al portapapeles
+# Descripción: Genera un texto con el prefijo "up_" seguido de la fecha actual,
+#              lo copia automáticamente al portapapeles de macOS y muestra
+#              un mensaje de confirmación en la terminal.
+# ==============================================================================
+
 function hhoyp {
+    # Genera la cadena de texto combinando el prefijo y la fecha actual del sistema
     local texto="up_$(date)"
+    
+    # Envía el texto generado al portapapeles utilizando la herramienta nativa de macOS
     echo "$texto" | pbcopy
+    
+    # Imprime un mensaje visual de confirmación para el usuario en la terminal
     echo "¡Copiado al portapapeles: $texto!"
 }
