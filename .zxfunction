@@ -3772,3 +3772,38 @@ function ggitup {
     # Mensaje de confirmación visual en la terminal
     echo "¡Comando copiado al portapapeles exitosamente!"
 }
+
+function ggitup2 {
+    # Cadena que contiene los comandos de Git encadenados
+    local git_commands='git add -f . && git commit -m "update commit " && git push'
+    
+    # Envía el texto al portapapeles utilizando la utilidad pbcopy (exclusiva de macOS)
+    echo "$git_commands" | pbcopy
+    
+    # Mensaje de confirmación visual en la terminal
+    echo "¡Comando copiado al portapapeles exitosamente!"
+}
+
+# ==============================================================================
+# Título: Función para copiar texto mejorado al portapapeles en macOS
+# Descripción: Valida si se recibió un argumento. Si existe, lo procesa y lo 
+#              copia al portapapeles; si no, muestra una advertencia de uso.
+# ==============================================================================
+
+function mejoralo {
+    # Verifica si el primer argumento está vacío (-z)
+    if [ -z "$1" ]; then
+        echo "⚠️ Error: No se proporcionó ningún texto."
+        echo "Uso correcto: mejoralo <tu_texto>"
+        return 1
+    fi
+
+    # Muestra un mensaje de estado en la terminal
+    echo "Generando . . . "
+    
+    # Concatena la palabra "mejoralo" con el argumento recibido ($1) 
+    # y lo envía al portapapeles usando pbcopy
+    echo "mejoralo $1" | pbcopy
+    
+    echo "✅ ¡Copiado al portapapeles con éxito!"
+}
