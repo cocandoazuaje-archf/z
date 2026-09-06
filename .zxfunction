@@ -3669,19 +3669,35 @@ function xciclos {
 
 
 # ==============================================================================
-# Título: Función hhoyp para generar texto con fecha y copiar al portapapeles
-# Descripción: Genera un texto con el prefijo "up_" seguido de la fecha actual,
-#              lo copia automáticamente al portapapeles de macOS y muestra
-#              un mensaje de confirmación en la terminal.
+# Título: Función hhoyp con ayuda interactiva (?)
+# Descripción: Genera un texto con "up_" y la fecha, lo copia al portapapeles 
+#              o muestra una explicación detallada si se pasa "?" como parámetro.
 # ==============================================================================
 
 function hhoyp {
-    # Genera la cadena de texto combinando el prefijo y la fecha actual del sistema
+    # Verifica si el primer argumento recibido es un signo de interrogación
+    if [ "$1" = "0" ]; then
+        echo "=============================================================="
+        echo " Ayuda de la función: hhoyp"
+        echo "=============================================================="
+        echo " Qué hace:"
+        echo "   Genera una cadena de texto con el formato 'up_' seguido de la"
+        echo "   fecha y hora actual del sistema, la copia automáticamente al"
+        echo "   portapapeles de macOS y muestra un mensaje de confirmación."
+        echo "--------------------------------------------------------------"
+        echo " Uso:"
+        echo "   hhoyp    -> Ejecuta la acción y copia el texto al portapapeles."
+        echo "   hhoyp ?  -> Muestra esta ayuda explicativa."
+        echo "=============================================================="
+        return 0
+    fi
+
+    # Lógica normal de la función si no recibe '?'
     local texto="up_$(date)"
     
-    # Envía el texto generado al portapapeles utilizando la herramienta nativa de macOS
+    # Envía el texto generado al portapapeles usando la herramienta de macOS
     echo "$texto" | pbcopy
     
-    # Imprime un mensaje visual de confirmación para el usuario en la terminal
+    # Imprime el mensaje de confirmación en la terminal
     echo "¡Copiado al portapapeles: $texto!"
 }
