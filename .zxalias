@@ -422,7 +422,4 @@ alias jyt='yt-dlp'
 
 alias hhoy='up_$(date)dd|pb'
 
-alias hhoy='echo "up_$(date)"|pb'
-
-alias ggitp='echo "git add -f . && git commit -m \"commit inicial\" && git push" | pbcopy'
 alias ggitup='echo "git add -f . && git commit -m \"update commit \" && git push" | pbcopy'

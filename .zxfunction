@@ -3666,3 +3666,10 @@ function xciclos {
 
     echo -e "\n${YELLOW}========================================${RESET}\n"
 }
+
+
+function hhoyp {
+    local texto="up_$(date)"
+    echo "$texto" | pbcopy
+    echo "¡Copiado al portapapeles: $texto!"
+}
