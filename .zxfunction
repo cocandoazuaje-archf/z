@@ -3701,3 +3701,55 @@ function hhoyp {
     # Imprime el mensaje de confirmación en la terminal
     echo "¡Copiado al portapapeles: $texto!"
 }
+
+# ==============================================================================
+# Título: Función pulgararriba para copiar el emoji 👍 al portapapeles
+# Descripción: Copia el emoji de pulgar hacia arriba al portapapeles de macOS
+#              o muestra ayuda si recibe "?" como parámetro.
+# ==============================================================================
+
+function par {
+    if [ "$1" = "?" ]; then
+        echo "=============================================================="
+        echo " Ayuda de la función: pulgararriba"
+        echo "=============================================================="
+        echo " Qué hace:"
+        echo "   Copia automáticamente el emoji de pulgar hacia arriba (👍)"
+        echo "   al portapapeles de macOS."
+        echo "--------------------------------------------------------------"
+        echo " Uso:"
+        echo "   pulgararriba    -> Copia '👍' al portapapeles."
+        echo "   pulgararriba ?  -> Muestra esta ayuda explicativa."
+        echo "=============================================================="
+        return 0
+    fi
+
+    echo "👍" | pbcopy
+    echo "¡Copiado al portapapeles: 👍!"
+}
+
+# ==============================================================================
+# Título: Función pulgarabajo para copiar el emoji 👎 al portapapeles
+# Descripción: Copia el emoji de pulgar hacia abajo al portapapeles de macOS
+#              o muestra ayuda si recibe "?" como parámetro.
+# ==============================================================================
+
+function pab {
+    if [ "$1" = "?" ]; then
+        echo "=============================================================="
+        echo " Ayuda de la función: pulgarabajo"
+        echo "=============================================================="
+        echo " Qué hace:"
+        echo "   Copia automáticamente el emoji de pulgar hacia abajo (👎)"
+        echo "   al portapapeles de macOS."
+        echo "--------------------------------------------------------------"
+        echo " Uso:"
+        echo "   pulgarabajo    -> Copia '👎' al portapapeles."
+        echo "   pulgarabajo ?  -> Muestra esta ayuda explicativa."
+        echo "=============================================================="
+        return 0
+    fi
+
+    echo "👎" | pbcopy
+    echo "¡Copiado al portapapeles: 👎!"
+}
