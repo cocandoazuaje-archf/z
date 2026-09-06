@@ -421,5 +421,3 @@ alias jdw='open "/Applications/JDownloader2.app"'
 alias jyt='yt-dlp'
 
 alias hhoy='up_$(date)dd|pb'
-
-alias ggitup='echo "git add -f . && git commit -m \"update commit \" && git push" | pbcopy'

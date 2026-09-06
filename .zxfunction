@@ -1,5 +1,5 @@
-#!/bin/bash
 # ============================================================
+#!/bin/bash
 # UTILIDADES PERSONALIZADAS PARA TERMINAL
 # Autor: Carlos Eduardo Ocando Azuaje
 # Descripción:
@@ -3752,4 +3752,23 @@ function pab {
 
     echo "👎" | pbcopy
     echo "¡Copiado al portapapeles: 👎!"
+}
+
+# ==============================================================================
+# Función: ggitup
+# Descripción: Copia al portapapeles (macOS) un comando listo para forzar 
+#              la adición de todos los archivos, hacer commit con un mensaje 
+#              predeterminado y subir los cambios al repositorio remoto.
+# Uso: Escribe 'ggitup' en la terminal y luego pega (Cmd + V) donde lo necesites.
+# ==============================================================================
+
+function ggitup {
+    # Cadena que contiene los comandos de Git encadenados
+    local git_commands='git add -f . && git commit -m "update commit " && git push'
+    
+    # Envía el texto al portapapeles utilizando la utilidad pbcopy (exclusiva de macOS)
+    echo "$git_commands" | pbcopy
+    
+    # Mensaje de confirmación visual en la terminal
+    echo "¡Comando copiado al portapapeles exitosamente!"
 }
