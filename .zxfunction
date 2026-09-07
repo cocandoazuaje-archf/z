@@ -3785,25 +3785,67 @@ function ggitup2 {
 }
 
 # ==============================================================================
-# Título: Función para copiar texto mejorado al portapapeles en macOS
-# Descripción: Valida si se recibió un argumento. Si existe, lo procesa y lo 
-#              copia al portapapeles; si no, muestra una advertencia de uso.
+# Título: Función mejoralo con Gemini para macOS
+# Descripción: Envía un texto a la API de Gemini, procesa la respuesta de forma 
+#              segura con jq y la copia automáticamente al portapapeles.
 # ==============================================================================
 
+# function mejoralo {
+#     # Validar si se pasó un texto como argumento
+#     if [ -z "$1" ]; then
+#         echo "⚠️ Error: No proporcionaste ningún texto."
+#         echo "Uso correcto: mejoralo \"Tu mensaje o instrucción aquí\""
+#         return 1
+#     fi
+
+#     # Validar si la variable de entorno de Gemini está definida
+#     if [ -z "$GEMINI_API_KEY" ]; then
+#         echo "⚠️ Error: La variable de entorno GEMINI_API_KEY no está definida."
+#         echo "Ejecuta: export GEMINI_API_KEY='tu_clave_de_api'"
+#         return 1
+#     fi
+
+#     local MODELO="gemini-1.5-flash"
+#     local URL="https://generativelanguage.googleapis.com/v1beta/models/${MODELO}:generateContent?key=${GEMINI_API_KEY}"
+
+#     echo "🤖 Consultando a Gemini..."
+
+#     # Construir el JSON de forma segura usando jq
+#     local payload
+#     payload=$(jq -n \
+#                   --arg text "Mejora, corrige y pule el siguiente texto para que suene natural: $1" \
+#                   '{contents: [{parts: [{text: $text}]}]}')
+
+#     # Realizar la petición POST a la API
+#     local response
+#     response=$(curl -s -X POST "$URL" \
+#          -H "Content-Type: application/json" \
+#          -d "$payload")
+
+#     # Extraer la respuesta usando jq
+#     local respuesta
+#     respuesta=$(echo "$response" | jq -r '.candidates[0].content.parts[0].text // empty')
+
+#     if [ -n "$respuesta" ] && [ "$respuesta" != "null" ]; then
+#         echo "$respuesta" | pbcopy
+#         echo "✅ ¡Texto mejorado y copiado al portapapeles con éxito!"
+#         echo "---"
+#         echo "$respuesta"
+#     else
+#         echo "⚠️ Error: Gemini rechazó la solicitud o hubo un fallo."
+#         echo "Respuesta del servidor:"
+#         echo "$response"
+#         return 1
+#     fi
+# }
+
 function mejoralo {
-    # Verifica si el primer argumento está vacío (-z)
     if [ -z "$1" ]; then
-        echo "⚠️ Error: No se proporcionó ningún texto."
-        echo "Uso correcto: mejoralo <tu_texto>"
+        echo "⚠️ Error: No proporcionaste ningún texto."
+        echo "Uso correcto: mejoralo \"Tu texto aquí\""
         return 1
     fi
 
-    # Muestra un mensaje de estado en la terminal
-    echo "Generando . . . "
-    
-    # Concatena la palabra "mejoralo" con el argumento recibido ($1) 
-    # y lo envía al portapapeles usando pbcopy
-    echo "mejoralo $1" | pbcopy
-    
-    echo "✅ ¡Copiado al portapapeles con éxito!"
+    echo "mejoralo \"$1\"" | pbcopy
+    echo "✅ ¡Copiado al portapapeles!"
 }
