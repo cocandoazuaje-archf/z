@@ -875,6 +875,12 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>ingles</string>
+		<key>shortcut</key>
+		<string>iingl</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>Instagram</string>
 		<key>shortcut</key>
 		<string>iins</string>
