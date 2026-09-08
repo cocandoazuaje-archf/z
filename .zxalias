@@ -418,6 +418,6 @@ alias d12='date "+%A, %d de %B de %Y a las %I:%M %p"'
 alias jdw='open "/Applications/JDownloader2.app"'
 
 # Atajo 'jyt': Ejecuta el descargador por línea de comandos yt-dlp
-alias jyt='yt-dlp'
+alias jyt='yt-dlp -S "res,ext:mp4:m4a" --recode mp4'
 
 alias hhoy='up_$(date)dd|pb'
