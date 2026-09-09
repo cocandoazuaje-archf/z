@@ -3839,13 +3839,27 @@ function ggitup2 {
 #     fi
 # }
 
+
+# ============================================================
+# Script: mejoralo.sh
+# Autor: Carlos
+# Descripción:
+#   Esta función toma un texto como argumento, valida que exista
+#   y lo copia al portapapeles usando pbcopy en macOS.
+#   Además, muestra mensajes claros de error o confirmación.
+# ============================================================
+
 function mejoralo {
+    # Verificar si se proporcionó un argumento
     if [ -z "$1" ]; then
         echo "⚠️ Error: No proporcionaste ningún texto."
         echo "Uso correcto: mejoralo \"Tu texto aquí\""
         return 1
     fi
 
+    # Copiar el texto al portapapeles
     echo "mejoralo \"$1\"" | pbcopy
+
+    # Confirmar la acción
     echo "✅ ¡Copiado al portapapeles!"
 }
