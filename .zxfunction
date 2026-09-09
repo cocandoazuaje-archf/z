@@ -3866,7 +3866,7 @@ function mejoralo {
 
 
 # ============================================================
-# Script: mejoralo.sh
+# Script: dormir9
 # Autor: Carlos
 # Descripción:
 #   Esta función gestiona la programación de reposo automático
@@ -3875,7 +3875,10 @@ function mejoralo {
 #   Si no recibe parámetros, muestra la ayuda.
 # ============================================================
 function dormir9 {
+    # Definimos la acción por defecto como 'help' si no se provee ningún argumento
     local action="${1:-help}"
+    
+    # Definimos la hora por defecto a las 02:00:00 si no se especifica la segunda
     local time="${2:-02:00:00}"
 
     case "$action" in
