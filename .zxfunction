@@ -3866,7 +3866,7 @@ function mejoralo {
 
 
 # ============================================================
-# Script: dormir9
+# Script: dormir2a
 # Autor: Carlos
 # Descripción:
 #   Esta función gestiona la programación de reposo automático
@@ -3874,7 +3874,7 @@ function mejoralo {
 #   revisar el estado actual o cancelar la programación.
 #   Si no recibe parámetros, muestra la ayuda.
 # ============================================================
-function dormir9 {
+function dormir2a {
     # Definimos la acción por defecto como 'help' si no se provee ningún argumento
     local action="${1:-help}"
     
@@ -3895,12 +3895,12 @@ function dormir9 {
             sudo pmset repeat cancel
             ;;
         help|*)
-            echo "Uso: dormir9 {set|check|cancel} [HH:MM:SS]"
+            echo "Uso: dormir2a {set|check|cancel} [HH:MM:SS]"
             echo "  Ejemplos:"
-            echo "    dormir9 set 02:00:00   (Configura el reposo a las 2 AM)"
-            echo "    dormir9 set            (Usa las 02:00:00 por defecto)"
-            echo "    dormir9 check          (Revisa el estado actual)"
-            echo "    dormir9 cancel         (Desactiva la programación)"
+            echo "    dormir2a set 02:00:00   (Configura el reposo a las 2 AM)"
+            echo "    dormir2a set            (Usa las 02:00:00 por defecto)"
+            echo "    dormir2a check          (Revisa el estado actual)"
+            echo "    dormir2a cancel         (Desactiva la programación)"
             ;;
     esac
 }
