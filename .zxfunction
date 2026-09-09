@@ -3863,3 +3863,41 @@ function mejoralo {
     # Confirmar la acción
     echo "✅ ¡Copiado al portapapeles!"
 }
+
+
+# ============================================================
+# Script: mejoralo.sh
+# Autor: Carlos
+# Descripción:
+#   Esta función gestiona la programación de reposo automático
+#   en macOS usando pmset. Permite configurar la hora de reposo,
+#   revisar el estado actual o cancelar la programación.
+#   Si no recibe parámetros, muestra la ayuda.
+# ============================================================
+function dormir9 {
+    local action="${1:-help}"
+    local time="${2:-02:00:00}"
+
+    case "$action" in
+        set)
+            echo "-> Programando Mac para entrar en reposo a las $time todos los días..."
+            sudo pmset repeat sleep MTWRFSU "$time"
+            ;;
+        check)
+            echo "-> Estado actual de la programación de energía:"
+            pmset -g sched
+            ;;
+        cancel)
+            echo "-> Cancelando todas las programaciones de reposo/encendido..."
+            sudo pmset repeat cancel
+            ;;
+        help|*)
+            echo "Uso: dormir9 {set|check|cancel} [HH:MM:SS]"
+            echo "  Ejemplos:"
+            echo "    dormir9 set 02:00:00   (Configura el reposo a las 2 AM)"
+            echo "    dormir9 set            (Usa las 02:00:00 por defecto)"
+            echo "    dormir9 check          (Revisa el estado actual)"
+            echo "    dormir9 cancel         (Desactiva la programación)"
+            ;;
+    esac
+}
