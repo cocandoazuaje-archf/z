@@ -3904,3 +3904,24 @@ function dormir2a {
             ;;
     esac
 }
+
+# ============================================================
+# Script: kittyconf
+# Autor: Carlos
+# Descripción:
+#   Esta función copia al portapapeles de macOS (usando pbcopy)
+#   el comando necesario para abrir la configuración de Kitty
+#   (code ~/.config/kitty/kitty.conf), permitiéndote pegarlo
+#   rápidamente en la terminal.
+# ============================================================
+function kittyconf {
+    # Definimos el texto que queremos enviar al portapapeles
+    local comando="code ~/.config/kitty/kitty.conf"
+    
+    # Copiamos el texto al portapapeles usando pbcopy
+    echo -n "$comando" | pbcopy
+    
+    # Mensaje de confirmación en la terminal
+    echo "-> ¡Comando copiado al portapapeles!"
+    echo "   (Presiona Cmd + V en la terminal para ejecutarlo: $comando)"
+}
