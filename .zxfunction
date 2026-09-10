@@ -3928,11 +3928,19 @@ function kittyconf {
 
 # ==============================================================================
 # Título: Programar apagado automático de la Mac a las 2:00 AM
-# Descripción: Función de Bash/Zsh para programar el apagado del sistema
-#              utilizando privilegios de administrador.
+# Descripción: Programa el apagado a las 2:00 AM. Si recibe '?' como parámetro,
+#              muestra la explicación en lugar de apagarse.
 # ==============================================================================
 
-off2a() {
+function off2a {
+    # Si el primer parámetro es '?', muestra la ayuda y termina
+    if [ "$1" = "?" ]; then
+        echo "Uso: off2a"
+        echo "Descripción: Programa automáticamente el apagado de la Mac a las 2:00 AM."
+        echo "Requiere privilegios de administrador (sudo)."
+        return 0
+    fi
+
     # Solicita permisos de administrador y programa el apagado para las 02:00 AM
     sudo shutdown -h 02:00
 }
