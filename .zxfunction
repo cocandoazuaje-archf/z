@@ -3928,16 +3928,17 @@ function kittyconf {
 
 # ==============================================================================
 # Título: Programar apagado automático de la Mac a las 2:00 AM
-# Descripción: Programa el apagado a las 2:00 AM. Si recibe '?' como parámetro,
-#              muestra la explicación en lugar de apagarse.
+# Descripción: Programa el apagado a las 2:00 AM. Si recibe '?' o '0' 
+#              como parámetro, muestra la explicación en lugar de apagarse.
 # ==============================================================================
 
 function off2a {
-    # Si el primer parámetro es '?', muestra la ayuda y termina
-    if [ "$1" = "?" ]; then
+    # Si el primer parámetro es '?' o '0', muestra la ayuda y termina
+    if [ "$1" = "?" ] || [ "$1" = "0" ]; then
         echo "Uso: off2a"
         echo "Descripción: Programa automáticamente el apagado de la Mac a las 2:00 AM."
-        echo "Requiere privilegios de administrador (sudo)."
+        echo "Requiere privilegios de administrador (sudo), debes ingresar ? entre comillas ('?') \
+        si deseas ver esta ayuda."
         return 0
     fi
 
