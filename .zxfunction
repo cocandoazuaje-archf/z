@@ -3677,7 +3677,7 @@ function xciclos {
 
 function hhoyp {
     # Verifica si el primer argumento recibido es un signo de interrogación
-    if [ "$1" = "0" ] || [ "$1" = "0" ]; then
+    if [ "$1" = "0" ] || [ "$1" = "?" ]; then
         echo "=============================================================="
         echo " Ayuda de la función: hhoyp"
         echo "=============================================================="
