@@ -3993,7 +3993,45 @@ function ppap {
     echo "Linea copiada al portapapeles ... "
 }
 
- function vvep() {
-        echo "venezuela" | pbcopy
-        echo "¡'venezuela' copiado al portapapeles con éxito!";
+# ============================================================
+# Script: iing
+# Autor: Carlos
+# Descripción:
+#   Esta función copia la palabra "venezuela" al portapapeles.
+#   Si recibe como parámetro "?" o "0", explica su uso.
+#   Si no recibe parámetros, también muestra la ayuda.
+# ============================================================
+function iing {
+    if [[ "$1" == "?" || "$1" == "0" ]]; then
+        echo "Uso: iing"
+        echo "Copia la palabra 'inglés  ' al portapapeles."
+        echo "Parámetros:"
+        echo "  ? o 0   Muestra esta ayuda."
+        return 0
+    fi
+
+    echo -n "ingles" | pbcopy
+    echo "¡'ingles' copiado al portapapeles con éxito!"
+}
+
+
+# ============================================================
+# Script: vvep
+# Autor: Carlos
+# Descripción:
+#   Esta función copia la palabra "venezuela" al portapapeles.
+#   Si recibe como parámetro "?" o "0", explica su uso.
+#   Si no recibe parámetros, también muestra la ayuda.
+# ============================================================
+function eespp {
+    if [[ "$1" == "?" || "$1" == "0" ]]; then
+        echo "Uso: eespp"
+        echo "Copia la palabra 'español' al portapapeles."
+        echo "Parámetros:"
+        echo "  ? o 0   Muestra esta ayuda."
+        return 0
+    fi
+
+    echo -n "español" | pbcopy
+    echo "¡'español' copiado al portapapeles con éxito!"
 }
