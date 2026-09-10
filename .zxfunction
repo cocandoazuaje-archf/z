@@ -3992,3 +3992,8 @@ function ppap {
     echo -n "Hola papi buenos días cómo amaneciste cómo dormiste por aquí todo bien" | pbcopy 2>/dev/null
     echo "Linea copiada al portapapeles ... "
 }
+
+ function vvep() {
+        echo "venezuela" | pbcopy
+        echo "¡'venezuela' copiado al portapapeles con éxito!";
+}
