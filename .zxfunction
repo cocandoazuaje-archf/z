@@ -3671,12 +3671,13 @@ function xciclos {
 # ==============================================================================
 # Título: Función hhoyp con ayuda interactiva (?)
 # Descripción: Genera un texto con "up_" y la fecha, lo copia al portapapeles 
-#              o muestra una explicación detallada si se pasa "?" como parámetro.
+#              o muestra una explicación detallada Si recibe '?' o '0' 
+#              como parámetro, muestra la explicación.
 # ==============================================================================
 
 function hhoyp {
     # Verifica si el primer argumento recibido es un signo de interrogación
-    if [ "$1" = "0" ]; then
+    if [ "$1" = "0" ] || [ "$1" = "0" ]; then
         echo "=============================================================="
         echo " Ayuda de la función: hhoyp"
         echo "=============================================================="
