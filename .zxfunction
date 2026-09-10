@@ -3925,3 +3925,14 @@ function kittyconf {
     echo "-> ¡Comando copiado al portapapeles!"
     echo "   (Presiona Cmd + V en la terminal para ejecutarlo: $comando)"
 }
+
+# ==============================================================================
+# Título: Programar apagado automático de la Mac a las 2:00 AM
+# Descripción: Función de Bash/Zsh para programar el apagado del sistema
+#              utilizando privilegios de administrador.
+# ==============================================================================
+
+off2a() {
+    # Solicita permisos de administrador y programa el apagado para las 02:00 AM
+    sudo shutdown -h 02:00
+}
