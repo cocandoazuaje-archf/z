@@ -3946,3 +3946,49 @@ function off2a {
     # Solicita permisos de administrador y programa el apagado para las 02:00 AM
     sudo shutdown -h 02:00
 }
+
+function ccreap() {
+# ============================================================
+# Script: ccreap
+# Autor: Carlos
+# Descripción:
+#   Esta función copia al portapapeles una plantilla de texto 
+#   para la creación de funciones personalizadas en Bash.
+#   Si recibe como parámetro "?" o "0", explica su uso.
+# ============================================================
+
+    # Verificar si recibe "?" o "0" como parámetro
+    if [[ "$1" == "?" || "$1" == "0" ]]; then
+        echo "Uso: ccreap"
+        echo "Descripción: Copia el texto predeterminado al portapapeles de macOS."
+        return 0
+    fi
+
+    local texto="Crea una función llamada  : ___ que haga ___ y que reciba ___ o 0 como parámetros. Si no recibe parámetros, debe explicar cómo se usa, Debes usar functionaw y no (), agregar título y comentarios, La salida de errores debe redirigirse a /dev/null, Al finalizar, debe enviar la salida sin errores a un archivo ubicado en /tmp/nombre de la funcion.txt,   luego debe abrir dicho archivo con la aplicación code."
+
+    # Copiar al portapapeles redirigiendo posibles errores a /dev/null
+    echo -n "$texto" | pbcopy 2>/dev/null
+
+    echo "¡Texto copiado al portapapeles exitosamente!"
+}
+
+# ============================================================
+# Script: ppap
+# Autor: Carlos
+# Descripción:
+#   Esta función copia un saludo matutino al portapapeles y 
+#   guarda el registro.
+#   Si recibe como parámetro "?" o "0", explica su uso.
+# ============================================================
+function ppap {
+    # Verificar si se pasó el parámetro de ayuda ('?' o '0')
+    if [[ "$1" == "?" ]] || [[ "$1" == "0" ]]; then
+        echo "Uso: ppap [?|0]"
+        echo "Descripción: Copia un saludo al portapapeles y guarda el registro."
+        return 0
+    fi
+
+    # Ejecutar la acción principal y redirigir errores a /dev/null
+    echo -n "Hola papi buenos días cómo amaneciste cómo dormiste por aquí todo bien" | pbcopy 2>/dev/null
+    echo "Linea copiada al portapapeles ... "
+}
