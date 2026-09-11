@@ -4062,7 +4062,7 @@ function mejoralon {
         echo "Opción no válida. Usa 'mejoralon ?' para ver la ayuda."
     fi
 
-        # cat /tmp/mejoralon.msg|pbcopy
+        cat /tmp/mejoralon.msg|pbcopy
 
 
     # Retorna con éxito (sin errores) al finalizar
