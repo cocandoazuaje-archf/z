@@ -4056,7 +4056,7 @@ function mejoralon {
 
     # Si recibe 'e', ejecuta vi para editar el archivo temporal
     if [ "$1" = "e" ] ; then
-        echo "mejoralon" > /tmp/mejoralon.msg
+        echo "mejoralon ''" > /tmp/mejoralon.msg
         vi /tmp/mejoralon.msg
     else
         echo "Opción no válida. Usa 'mejoralon ?' para ver la ayuda."
