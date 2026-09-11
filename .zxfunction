@@ -4041,21 +4041,26 @@ function eespp {
 # Autor: Carlos
 # Descripción:
 #   Abre un archivo temporal en vi para redactar notas o mensajes rápidos.
-#   Si recibe como parámetro "?" o "0", o no recibe parámetros, explica su uso.
-# Uso: mejoralon [? | 0]
+#   Si recibe como parámetro "e", abre el archivo con vi.
+#   Si recibe "?" o "0", o no recibe parámetros, muestra la ayuda.
+# Uso: mejoralon [e | ? | 0]
 # ============================================================
 function mejoralon {
     # Muestra la ayuda si no recibe parámetros o si el parámetro es '?' o '0'
     if [ "$1" = "0" ] || [ "$1" = "?" ] ; then
-        echo "Uso: mejoralon [? | 0]"
-        echo "  - Sin parámetros, '?' o '0': Muestra esta ayuda de uso."
-        echo "  - Con cualquier otro parámetro, abre vi en /tmp/mejoralon.msg."
+        echo "Uso: mejoralon [e | ? | 0]"
+        echo "  - e                  : Abre vi en /tmp/mejoralon.msg."
+        echo "  - Sin parámetros, '?' : Muestra esta ayuda de uso."
         return 0
     fi
 
-    # Ejecuta vi para editar el archivo temporal
-    vi /tmp/mejoralon.msg
-    cat /tmp/mejoralon.msg | pbcopy
+    # Si recibe 'e', ejecuta vi para editar el archivo temporal
+    if [ "$1" = "e" ] ; then
+        vi /tmp/mejoralon.msg
+        cat /tmp/mejoralon.msg|pbcopy
+    else
+        echo "Opción no válida. Usa 'mejoralon ?' para ver la ayuda."
+    fi
 
     # Retorna con éxito (sin errores) al finalizar
     return 0
