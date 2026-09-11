@@ -101,25 +101,25 @@ alias m='mvn clean package -X | grep -iE "cause"'
 # ============================================================
 
 # Muestra el estado del directorio de trabajo y del área de preparación (archivos modificados, añadidos o sin seguimiento)
-alias gits='git status'
+alias gs='git status'
 
 # Lista los repositorios remotos vinculados junto con sus URLs de lectura y escritura
-alias gitr='git remote -v'
+alias grv='git remote -v'
 
 # Sube los cambios y commits locales a la rama correspondiente del repositorio remoto
-alias gitp='git push'
+alias gp='git push'
 
 # Muestra la lista de ramas locales e indica en cuál te encuentras actualmente
-alias gitb='git branch'
+alias gb='git branch'
 
 # Clona un repositorio remoto en un nuevo directorio local
 alias gc='git clone'
 
 # Muestra únicamente el último commit del historial de forma resumida, visual y con referencias de ramas
-alias gitl='git log -1 --oneline --graph --all --decorate'
+alias gl='git log -1 --oneline --graph --all --decorate'
 
 # Agrega el archivo comprimido 'todo_git.tar.gz', realiza un commit con un mensaje predefinido y sube los cambios al remoto en un solo paso
-alias gittar='git add ./todo_git.tar.gz && git commit -m "update tar" && git push'
+alias gacup='git add ./todo_git.tar.gz && git commit -m "update tar" && git push'
 
 # ============================================================
 # DOCKER, VAGRANT, TERRAFORM
@@ -421,3 +421,5 @@ alias jdw='open "/Applications/JDownloader2.app"'
 alias ytd='yt-dlp -S "res,ext:mp4:m4a" --recode mp4'
 
 alias hhoy='up_$(date)dd|pb'
+
+alias grv='git remote -v'
