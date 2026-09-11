@@ -4068,3 +4068,78 @@ function mejoralon {
     # Retorna con éxito (sin errores) al finalizar
     return 0
 }
+
+#!/bin/bash
+
+## ==============================================================================
+## TÍTULO: Reproductor multimedia y de voz condicional (leer_mostrar)
+## ==============================================================================
+## DESCRIPCIÓN: 
+## Reproduce un archivo multimedia usando VLC en silencio y con cierre automático, 
+## o lee un archivo de texto con 'say' dependiendo del parámetro recibido.
+## ==============================================================================
+
+function leer_mostrar {
+    # Verificar si no se recibió ningún parámetro
+    if [ -z "$1" ]; then
+        echo "Uso: leer_mostrar [?|0] <archivo_vlc> <archivo_texto>"
+        echo "Usa 'leer_mostrar ?' para ver la ayuda detallada."
+        return 0
+    fi
+
+    # Validar si el parámetro es '?' o '0' (usando '=' en lugar de '==')
+    if [ "$1" = "?" ]; then
+        echo "===================================================="
+        echo " USO DE LA FUNCIÓN: leer_mostrar"
+        echo "===================================================="
+        echo " Sintaxis: leer_mostrar [0] <archivo_vlc> <archivo_texto>"
+        echo " Ejemplo:  leer_mostrar 0 pelicula.mp4 audio.txt"
+        echo "===================================================="
+        return 0
+    elif [ "$1" = "0" ]; then
+        # Desplazamos los argumentos para que $1 sea el video y $2 el texto
+        shift
+        
+        # Ejecutar VLC y say redirigiendo errores a /dev/null
+        {
+            open -a VLC --args --volume 0 --play-and-stop "$1" ; say -f "$2"
+        } 2> /dev/null
+        
+        return 0
+    else
+        echo "Error: Parámetro no válido '$1'. Use '?' para ver la ayuda." >&2
+        return 1
+    fi
+}
+
+# function vlcsay {
+#     if [ "$1" = "?" ]; then
+#         echo "Uso:  open -a VLC --args --volume 0 --play-and-stop /tmp/pelicula.mp4 ; say -f  /tmp/audio.txt"
+#         return 1
+#     fi
+
+#     open -a VLC --args --volume 0 --play-and-stop /tmp/pelicula.mp4 ; say -f  /tmp/audio.txt
+# }
+
+# ============================================================
+# FUNCIÓN: vlcsay
+# Autor: Carlos
+# Descripción:
+#   Reproduce un video en VLC sin volumen y de forma simultánea
+#   lee un archivo de texto utilizando el sintetizador de voz (say).
+#   Si recibe como parámetro "?", muestra la ayuda de uso.
+# Uso: vlcsay [?]
+# ============================================================
+function vlcsay {
+    local video="/tmp/pelicula.mp4"
+    local audio="/tmp/audio.txt"
+
+    if [ "$1" = "?" ]; then
+        echo "Uso: vlcsay"
+        echo "Reproduce $video en VLC en silencio y lee $audio con la voz del sistema."
+        return 1
+    fi
+
+    open -a VLC --args --volume 0 --play-and-stop "$video" &
+    say -f "$audio"
+}
