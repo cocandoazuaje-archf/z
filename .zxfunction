@@ -3558,7 +3558,7 @@ function xrg {
 #              Disco, Red y Batería) optimizado para macOS (Intel y Apple Silicon).
 # ==============================================================================
 
-function xciclos {
+function xc {
     # --------------------------------------------------------------------------
     # 0. CONFIGURACIÓN DE COLORES Y FUNCIONES DE FORMATO
     # --------------------------------------------------------------------------
