@@ -4127,23 +4127,23 @@ function vlcsay {
 }
 
 # ============================================================
-# Script: rrutp
+# Script: mmailp
 # Autor: Carlos
 # Descripción:
-#   Esta función copia la palabra "26675657-7" al portapapeles.
+#   Esta función copia la palabra "cocandoazuaje@gmail.com" al portapapeles.
 #   Si recibe como parámetro "?" o "0", explica su uso.
 #   Si no recibe parámetros, también muestra la ayuda.
 # ============================================================
-function rrutp {
+function mmailp {
     if [[ "$1" == "?" || "$1" == "0" ]]; then
-        echo "Uso: rrutp"
-        echo "Copia la palabra '26675657-7' al portapapeles."
+        echo "Uso: mmailp"
+        echo "Copia la palabra 'cocandoazuaje@gmail.com' al portapapeles."
         echo "Parámetros:"
         echo "  ? o 0   Muestra esta ayuda."
         return 0
     fi
 
-    echo -n "26675657-7" | pbcopy
-    echo "¡'26675657-7' copiado al portapapeles con éxito!"
+    echo -n "cocandoazuaje@gmail.com" | pbcopy
+    echo "¡'cocandoazuaje@gmail.com' copiado al portapapeles con éxito!"
 }
 
