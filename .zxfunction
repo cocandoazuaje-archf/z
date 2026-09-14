@@ -4016,26 +4016,7 @@ function iing {
 }
 
 
-# ============================================================
-# Script: vvep
-# Autor: Carlos
-# Descripción:
-#   Esta función copia la palabra "venezuela" al portapapeles.
-#   Si recibe como parámetro "?" o "0", explica su uso.
-#   Si no recibe parámetros, también muestra la ayuda.
-# ============================================================
-function eespp {
-    if [[ "$1" == "?" || "$1" == "0" ]]; then
-        echo "Uso: eespp"
-        echo "Copia la palabra 'español' al portapapeles."
-        echo "Parámetros:"
-        echo "  ? o 0   Muestra esta ayuda."
-        return 0
-    fi
 
-    echo -n "español" | pbcopy
-    echo "¡'español' copiado al portapapeles con éxito!"
-}
 
 # ============================================================
 # FUNCIÓN: mejoralon
@@ -4144,3 +4125,25 @@ function vlcsay {
     open -a VLC --args --volume 0 --play-and-stop "$video" &
     say -f "$audio"
 }
+
+# ============================================================
+# Script: rrutp
+# Autor: Carlos
+# Descripción:
+#   Esta función copia la palabra "26675657-7" al portapapeles.
+#   Si recibe como parámetro "?" o "0", explica su uso.
+#   Si no recibe parámetros, también muestra la ayuda.
+# ============================================================
+function rrutp {
+    if [[ "$1" == "?" || "$1" == "0" ]]; then
+        echo "Uso: rrutp"
+        echo "Copia la palabra '26675657-7' al portapapeles."
+        echo "Parámetros:"
+        echo "  ? o 0   Muestra esta ayuda."
+        return 0
+    fi
+
+    echo -n "26675657-7" | pbcopy
+    echo "¡'26675657-7' copiado al portapapeles con éxito!"
+}
+
