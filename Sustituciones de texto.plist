@@ -66,13 +66,13 @@
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>arch linux</string>
+		<string>@</string>
 		<key>shortcut</key>
 		<string>aar</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>@</string>
+		<string>arch linux</string>
 		<key>shortcut</key>
 		<string>aar</string>
 	</dict>
@@ -217,7 +217,7 @@ Carlos Ocando
 
 +56 9 68002846
 
-carloseocando@gmail.com</string>
+cocandoazuaje@gmail.com</string>
 		<key>shortcut</key>
 		<string>ccap</string>
 	</dict>
@@ -254,7 +254,7 @@ Carlos Ocando
 
 +56 9 68002846
 
-cocandoazuaje@gmail.com</string>
+carloseocando@gmail.com</string>
 		<key>shortcut</key>
 		<string>ccap</string>
 	</dict>
@@ -808,14 +808,14 @@ Desarrolle un Dashboard Interactivo con Java Web y AngularJS</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-			</string>
+		<string>$HOME</string>
 		<key>shortcut</key>
 		<string>hhom</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>$HOME</string>
+		<string>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+			</string>
 		<key>shortcut</key>
 		<string>hhom</string>
 	</dict>
@@ -1013,13 +1013,13 @@ Desarrolle un Dashboard Interactivo con Java Web y AngularJS</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>carloseocando@gmail.com</string>
+		<string>cocandoazuaje@gmail.com</string>
 		<key>shortcut</key>
 		<string>mmail</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>cocandoazuaje@gmail.com</string>
+		<string>carloseocando@gmail.com</string>
 		<key>shortcut</key>
 		<string>mmail</string>
 	</dict>
@@ -1104,14 +1104,14 @@ Desarrolle un Dashboard Interactivo con Java Web y AngularJS</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>+56 9 68002846 + carloseocando@gmail.com</string>
+		<string>+56 9 68002846 + cocandoazuaje@gmail.com</string>
 		<key>shortcut</key>
 		<string>mmt
 mmt</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>+56 9 68002846 + cocandoazuaje@gmail.com</string>
+		<string>+56 9 68002846 + carloseocando@gmail.com</string>
 		<key>shortcut</key>
 		<string>mmt
 mmt</string>
@@ -1270,6 +1270,12 @@ mmt</string>
 		<string>Hola Primo estás por allí puedes hablar?</string>
 		<key>shortcut</key>
 		<string>ppri</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string>Pudiste comprar los pañales?</string>
+		<key>shortcut</key>
+		<string>ppu</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
