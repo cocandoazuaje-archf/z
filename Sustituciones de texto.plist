@@ -66,13 +66,13 @@
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>@</string>
+		<string>arch linux</string>
 		<key>shortcut</key>
 		<string>aar</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>arch linux</string>
+		<string>@</string>
 		<key>shortcut</key>
 		<string>aar</string>
 	</dict>
@@ -217,7 +217,7 @@ Carlos Ocando
 
 +56 9 68002846
 
-cocandoazuaje@gmail.com</string>
+carloseocando@gmail.com</string>
 		<key>shortcut</key>
 		<string>ccap</string>
 	</dict>
@@ -254,7 +254,7 @@ Carlos Ocando
 
 +56 9 68002846
 
-carloseocando@gmail.com</string>
+cocandoazuaje@gmail.com</string>
 		<key>shortcut</key>
 		<string>ccap</string>
 	</dict>
@@ -396,6 +396,13 @@ system_profiler SPPowerDataType |grep -i 'Cycle Count'
 		<string>corrigelo</string>
 		<key>shortcut</key>
 		<string>ccor</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string>Crea una función llamada  : ___ que haga ___ y que reciba ___ o 0 como parámetros.
+Si no recibe parámetros, debe explicar cómo se usa, Debes usar functionaw  y no (), agregar título y comentarios, La salida de errores debe redirigirse a /dev/null, Al finalizar, debe enviar la salida sin errores a un archivo ubicado en /tmp/nombre de la funcion.txt,  luego debe abrir dicho archivo con la aplicación code. </string>
+		<key>shortcut</key>
+		<string>ccrea</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
@@ -555,6 +562,12 @@ _ linux diploma-terminal.pd</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>Delcy Rodriguez</string>
+		<key>shortcut</key>
+		<string>ddel</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>Desempleado</string>
 		<key>shortcut</key>
 		<string>ddes</string>
@@ -699,13 +712,6 @@ Desarrolle un Dashboard Interactivo con Java Web y AngularJS</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>Crea una función llamada  : ___ que haga ___ y que reciba ___ como parámetros.
-Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agregar título y comentarios, La salida de errores debe redirigirse a /dev/null, Al finalizar, debe enviar la salida sin errores a un archivo ubicado en /tmp/nombre de la funcion.txt,  luego debe abrir dicho archivo con la aplicación code. </string>
-		<key>shortcut</key>
-		<string>ffup</string>
-	</dict>
-	<dict>
-		<key>phrase</key>
 		<string>hola gigia cuando puedas le comemtas a puchi q se asome al telegram</string>
 		<key>shortcut</key>
 		<string>ggi</string>
@@ -802,16 +808,28 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+			</string>
+		<key>shortcut</key>
+		<string>hhom</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>$HOME</string>
 		<key>shortcut</key>
 		<string>hhom</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-			</string>
+		<string>hospital centralo de maracaibo</string>
 		<key>shortcut</key>
-		<string>hhom</string>
+		<string>hhos</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string>Hospital Universitario de Maracaibo</string>
+		<key>shortcut</key>
+		<string>hhosu</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
@@ -995,13 +1013,13 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>cocandoazuaje@gmail.com</string>
+		<string>carloseocando@gmail.com</string>
 		<key>shortcut</key>
 		<string>mmail</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>carloseocando@gmail.com</string>
+		<string>cocandoazuaje@gmail.com</string>
 		<key>shortcut</key>
 		<string>mmail</string>
 	</dict>
@@ -1086,14 +1104,14 @@ Si no recibe parámetros, debe explicar cómo se usa, Debes usar function, agreg
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>+56 9 68002846 + cocandoazuaje@gmail.com</string>
+		<string>+56 9 68002846 + carloseocando@gmail.com</string>
 		<key>shortcut</key>
 		<string>mmt
 mmt</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
-		<string>+56 9 68002846 + carloseocando@gmail.com</string>
+		<string>+56 9 68002846 + cocandoazuaje@gmail.com</string>
 		<key>shortcut</key>
 		<string>mmt
 mmt</string>
@@ -1246,6 +1264,12 @@ mmt</string>
 		<string>Presencial</string>
 		<key>shortcut</key>
 		<string>ppre</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string>Primo estás por allí puedes hablar?</string>
+		<key>shortcut</key>
+		<string>ppri</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
@@ -1432,6 +1456,12 @@ mmt</string>
 		<string>603.113.339</string>
 		<key>shortcut</key>
 		<string>sser</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
+		<string>significado</string>
+		<key>shortcut</key>
+		<string>ssig</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
