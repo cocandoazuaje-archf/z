@@ -1273,6 +1273,12 @@ mmt</string>
 	</dict>
 	<dict>
 		<key>phrase</key>
+		<string>Hola Primo, como estáis puedes hablar?</string>
+		<key>shortcut</key>
+		<string>ppri2</string>
+	</dict>
+	<dict>
+		<key>phrase</key>
 		<string>Pudiste comprar los pañales?</string>
 		<key>shortcut</key>
 		<string>ppu</string>
